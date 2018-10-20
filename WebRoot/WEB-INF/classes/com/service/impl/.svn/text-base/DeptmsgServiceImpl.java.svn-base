@@ -1,0 +1,73 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.entity.Deptmsg;
+import com.service.IDeptmsgService;
+import com.dao.IDeptmsgDao;
+
+
+@Service("DeptmsgService")
+public class DeptmsgServiceImpl implements IDeptmsgService {
+
+	private IDeptmsgDao  deptmsgdao;
+	
+	
+
+	@Resource(name="DeptmsgDao")
+	public void setDeptmsgdao(IDeptmsgDao deptmsgdao) {
+		this.deptmsgdao = deptmsgdao;
+	}
+
+	public boolean delDeptmsg(Deptmsg deptmsg) {
+		if (deptmsgdao.delete(deptmsg))
+		{return true;}
+		else
+		{return false;}
+	}
+
+	public boolean insDeptmsg(Deptmsg deptmsg) {
+		if (deptmsgdao.insert(deptmsg))
+			{
+			 return true;
+			}
+		else
+		    {
+			 return false;
+		    }
+	}
+
+	public List<Deptmsg> searchDeptmsg(String sql) {
+		List<Deptmsg> deptmsglist=null;
+		if (sql==null)
+		   {
+			deptmsglist=deptmsgdao.selectAll();
+		   }
+		else
+		   {
+			deptmsglist=deptmsgdao.select(sql);
+		   }
+		
+		return deptmsglist;
+	}
+
+	public boolean uptDeptmsg(Deptmsg deptmsg) {
+		if (deptmsgdao.update(deptmsg))
+		   {
+			return true;
+		   }
+		else
+		{return false;}
+	}
+
+	public Deptmsg getDeptmsg(Deptmsg deptmsg) {
+		//根据传来的编号查询产品。
+		Deptmsg recdeptmsg=deptmsgdao.getDeptmsg(deptmsg);
+		return  recdeptmsg;
+	}
+
+}

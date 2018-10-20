@@ -1,0 +1,86 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Roles entity. @author MyEclipse Persistence Tools
+ */
+
+public class Roles implements java.io.Serializable {
+
+	// Fields
+
+	private Integer roleId;
+	private String roleName;
+	private String roleDesc;
+	private Integer roleGrade;
+	private Set userses = new HashSet(0);
+	private Set roleandlimitses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Roles() {
+	}
+
+	/** full constructor */
+	public Roles(String roleName, String roleDesc, Set userses,
+			Set roleandlimitses) {
+		this.roleName = roleName;
+		this.roleDesc = roleDesc;
+		this.userses = userses;
+		this.roleandlimitses = roleandlimitses;
+	}
+
+	// Property accessors
+
+	public Integer getRoleId() {
+		return this.roleId;
+	}
+
+	public void setRoleId(Integer roleId) {
+		this.roleId = roleId;
+	}
+
+	public String getRoleName() {
+		return this.roleName;
+	}
+
+	public void setRoleName(String roleName) {
+		this.roleName = roleName;
+	}
+
+	public String getRoleDesc() {
+		return this.roleDesc;
+	}
+
+	public void setRoleDesc(String roleDesc) {
+		this.roleDesc = roleDesc;
+	}
+
+	public Set getUserses() {
+		return this.userses;
+	}
+
+	public void setUserses(Set userses) {
+		this.userses = userses;
+	}
+
+	public Set getRoleandlimitses() {
+		return this.roleandlimitses;
+	}
+
+	public void setRoleandlimitses(Set roleandlimitses) {
+		this.roleandlimitses = roleandlimitses;
+	}
+
+	public Integer getRoleGrade() {
+		return roleGrade;
+	}
+
+	public void setRoleGrade(Integer roleGrade) {
+		this.roleGrade = roleGrade;
+	}
+
+}

@@ -1,0 +1,43 @@
+10
+
+dir
+5343
+svn://192.168.0.8/JY201310/projects/3stphrase/team02/source/ToceanClientSystem/src/com
+svn://192.168.0.8/JY201310
+
+
+
+2014-02-28T03:55:01.862388Z
+5342
+tanwg
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+bc7fa1d6-d830-49cd-982f-c7309ea49a83
+
+service
+dir
+
+dao
+dir
+
+entity
+dir
+
+action
+dir
+
+util
+dir
+

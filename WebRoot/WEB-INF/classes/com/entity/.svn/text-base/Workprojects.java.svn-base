@@ -1,0 +1,170 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Workprojects entity. @author MyEclipse Persistence Tools
+ */
+
+public class Workprojects implements java.io.Serializable {
+
+	// Fields
+
+	private Integer projectId;
+	private Clients clients;
+	private Users users;
+	private Workitems workitems;
+	private String projectDesc;
+	private String projectTitle;
+	private String projectColleague;
+	private String projectState;
+	private String projectType;
+	private Double projectScore;
+	private String projectUptime;
+	private String projectDowntime;
+	private Set workchanges = new HashSet(0);
+	private Set worklogs = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Workprojects() {
+	}
+
+	/** full constructor */
+	public Workprojects(Clients clients, Users users, Workitems workitems,
+			String projectDesc, String projectTitle, String projectColleague,
+			String projectState, String projectType, Double projectScore,
+			String projectUptime, String projectDowntime, Set workchanges,
+			Set worklogs) {
+		this.clients = clients;
+		this.users = users;
+		this.workitems = workitems;
+		this.projectDesc = projectDesc;
+		this.projectTitle = projectTitle;
+		this.projectColleague = projectColleague;
+		this.projectState = projectState;
+		this.projectType = projectType;
+		this.projectScore = projectScore;
+		this.projectUptime = projectUptime;
+		this.projectDowntime = projectDowntime;
+		this.workchanges = workchanges;
+		this.worklogs = worklogs;
+	}
+
+	// Property accessors
+
+	public Integer getProjectId() {
+		return this.projectId;
+	}
+
+	public void setProjectId(Integer projectId) {
+		this.projectId = projectId;
+	}
+
+	public Clients getClients() {
+		return this.clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Workitems getWorkitems() {
+		return this.workitems;
+	}
+
+	public void setWorkitems(Workitems workitems) {
+		this.workitems = workitems;
+	}
+
+	public String getProjectDesc() {
+		return this.projectDesc;
+	}
+
+	public void setProjectDesc(String projectDesc) {
+		this.projectDesc = projectDesc;
+	}
+
+	public String getProjectTitle() {
+		return this.projectTitle;
+	}
+
+	public void setProjectTitle(String projectTitle) {
+		this.projectTitle = projectTitle;
+	}
+
+	public String getProjectColleague() {
+		return this.projectColleague;
+	}
+
+	public void setProjectColleague(String projectColleague) {
+		this.projectColleague = projectColleague;
+	}
+
+	public String getProjectState() {
+		return this.projectState;
+	}
+
+	public void setProjectState(String projectState) {
+		this.projectState = projectState;
+	}
+
+	public String getProjectType() {
+		return this.projectType;
+	}
+
+	public void setProjectType(String projectType) {
+		this.projectType = projectType;
+	}
+
+	public Double getProjectScore() {
+		return this.projectScore;
+	}
+
+	public void setProjectScore(Double projectScore) {
+		this.projectScore = projectScore;
+	}
+
+	public String getProjectUptime() {
+		return this.projectUptime;
+	}
+
+	public void setProjectUptime(String projectUptime) {
+		this.projectUptime = projectUptime;
+	}
+
+	public String getProjectDowntime() {
+		return this.projectDowntime;
+	}
+
+	public void setProjectDowntime(String projectDowntime) {
+		this.projectDowntime = projectDowntime;
+	}
+
+	public Set getWorkchanges() {
+		return this.workchanges;
+	}
+
+	public void setWorkchanges(Set workchanges) {
+		this.workchanges = workchanges;
+	}
+
+	public Set getWorklogs() {
+		return this.worklogs;
+	}
+
+	public void setWorklogs(Set worklogs) {
+		this.worklogs = worklogs;
+	}
+
+}

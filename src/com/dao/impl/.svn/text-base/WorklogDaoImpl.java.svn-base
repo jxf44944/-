@@ -1,0 +1,54 @@
+package com.dao.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IWorklogDao;
+import com.entity.Worklog;
+import com.entity.Workprojects;
+
+@Repository("WorklogDao")
+public class WorklogDaoImpl extends BaseDAO implements IWorklogDao {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//查出所有的工作记录
+	public List SelectAll() {
+		List list=this.getHibernateTemplate().find("from Worklog");
+		return list;
+	}
+	//按条件查询工作记录
+	public List Select(String sql) {
+		List list=this.getHibernateTemplate().find("from Worklog"+sql);
+		return list;
+	}
+	//插入一条工作记录
+	public boolean insert(Worklog worklog) {
+		Date time=new Date();
+		String str=formatter.format(time).toString();
+		worklog.setWorklogDate(str);
+		this.getHibernateTemplate().save(worklog);
+		return true;
+	}
+	//删除一条工作记录
+	public boolean delete(Worklog worklog) {
+		Worklog delworklog=this.getHibernateTemplate().load(Worklog.class, worklog.getWorklogId());
+		this.getHibernateTemplate().delete(delworklog);
+		return true;
+	}
+	//更新一条工作记录
+	public boolean update(Worklog worklog) {
+		Date time=new Date();
+		String str=formatter.format(time).toString();
+		worklog.setWorklogDate(str);
+		this.getHibernateTemplate().update(worklog);
+		return true;
+	}
+	//获取一条工作记录
+	public Worklog getWorklog(Worklog worklog) {
+		return this.getHibernateTemplate().get(Worklog.class, worklog.getWorklogId());
+	}
+
+}

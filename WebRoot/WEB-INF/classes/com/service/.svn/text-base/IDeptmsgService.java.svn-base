@@ -1,0 +1,15 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Deptmsg;
+
+public interface IDeptmsgService {
+     public boolean insDeptmsg(Deptmsg deptmsg);
+     public boolean delDeptmsg(Deptmsg deptmsg);
+     public boolean uptDeptmsg(Deptmsg deptmsg);
+     public List<Deptmsg> searchDeptmsg(String sql);
+     public Deptmsg getDeptmsg(Deptmsg deptmsg);
+     
+     
+}

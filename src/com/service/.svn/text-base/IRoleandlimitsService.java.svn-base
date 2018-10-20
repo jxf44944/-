@@ -1,0 +1,32 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Roleandlimits;
+
+
+/***
+ * 通用 service 接口
+ * @author Feng
+ * 2014-02-15
+ */
+public interface IRoleandlimitsService {
+	
+	
+	/**新增*/
+	public boolean insRoleandlimits(Roleandlimits randl);
+	
+	/**删除*/
+	public boolean delRoleandlimits(Roleandlimits randl);
+	
+	/**修改**/
+	public boolean uptRoleandlimits(Roleandlimits randl);
+	
+	/**查找单条记录信息**/
+	public Roleandlimits getRoleandlimits(Roleandlimits randl);
+	
+	/**查找列表
+	 * */
+	public List<Roleandlimits> list(String sql);
+	
+}

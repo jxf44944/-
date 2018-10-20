@@ -1,0 +1,48 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import com.dao.ILimitTypesDao;
+import com.dao.BaseDAO;
+import com.entity.Limittype;
+/***
+ * 菜单类别dao实现
+ * @author Administrator
+ *
+ */
+public class LimitTypeDaoImpl extends BaseDAO implements ILimitTypesDao {
+
+	public boolean insert(Limittype limtype) {
+		this.getHibernateTemplate().save(limtype);
+		return true;
+	}
+
+	public boolean update(Limittype limtype) {
+		this.getHibernateTemplate().update(limtype);
+		return true;
+	}
+
+	public boolean delete(Limittype type) {
+		this.getHibernateTemplate().delete(type);
+		return true;
+	}
+
+	public Limittype getLimtype(Limittype type) {
+		Limittype retType = this.getHibernateTemplate().get(Limittype.class,type.getLtypeId());
+		return retType;
+	}
+
+	public List<Limittype> list(String sql) {
+		List<Limittype> list = null;
+		if(sql==null){
+			 list = this.getHibernateTemplate().find("from Limittype ");
+			
+		}else{
+			 list = this.getHibernateTemplate().find("from Limittype "+sql);
+			
+		}
+		return list;
+	}
+
+	
+}

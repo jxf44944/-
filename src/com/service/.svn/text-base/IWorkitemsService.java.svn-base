@@ -1,0 +1,13 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Workitems;
+
+public interface IWorkitemsService {
+	public boolean insWorkitems(Workitems work);
+	public boolean uptWorkitems(Workitems work);
+	public boolean delWorkitems(Workitems work);
+	public List<Workitems> searchWorkitems(Workitems work);
+	public Workitems getWorkitems(Workitems work);
+}

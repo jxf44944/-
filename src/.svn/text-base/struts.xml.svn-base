@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+<!-- 客户的动作配置 -->
+	<package name="clientsModel2" extends="struts-default" namespace="/clientsModel">
+		
+		<result-types>
+            <result-type name="chart" class="org.apache.struts2.dispatcher.ChartResult"></result-type>
+        </result-types>
+        
+		<action name="toListAction" class="com.action.ClientsAction" method="getClientsList">
+			<result name="toList">/CustomerList.jsp</result>
+		</action>
+		<action name="deleteAction" class="com.action.ClientsAction" method="delClients" >
+            <result name="toList" type="chain" >toListAction</result>
+        </action>
+        <action name="deleteAction2" class="com.action.ClientsAction" method="delClients2" >
+            <result name="toList" type="chain" >toListAction</result>
+        </action>
+        <action name="toEditAction" class="com.action.ClientsAction" method="toEditClients">
+			<result name="edit">/CustomerEdit.jsp</result>
+		</action>
+		<action name="editAction" class="com.action.ClientsAction" method="editClients">
+			<result name="input">/CustomerEdit.jsp</result>
+			<result name="toList" type="chain">toListAction</result>
+		</action>
+		<action name="searchAction" class="com.action.ClientsAction" method="searchClients">
+			<result name="input">/CustomerList.jsp</result>
+			<result name="toList">/CustomerList.jsp</result>
+		</action>
+		<action name="addAction" class="com.action.ClientsAction" method="addClients">
+			<result name="input">/CustomerAdd.jsp</result>
+			<result name="toList" type="chain">toListAction</result>
+		</action>
+		<action name="toAddAction" class="com.action.ClientsAction" method="toAddClients">
+			<result name="toAdd" >/CustomerAdd.jsp</result>
+		</action>
+		
+		<action name="toCountTypeAction" class="com.action.ClientsAction" method="countClientsType">
+			<result name="toList" >/CustomerCount.jsp</result>
+		</action>
+		<action name="toCountTypeAction2" class="com.action.ClientsAction" method="countClientsType2">
+			<result type="chart" name="toList"> 
+                   <param name="width">580</param>
+                   <param name="height">380</param>
+            </result>
+		</action>
+		
+		<action name="toCountProductAction" class="com.action.ClientsAction" method="countClientsProduct">
+			<result name="toList" >/CustomerCount.jsp</result>
+		</action>
+		<action name="toCountProductAction2" class="com.action.ClientsAction" method="countClientsProduct2">
+			<result name="toList" type="chart" >
+			<param name="width">580</param>
+			<param name="height">380</param>
+			</result>
+		</action>
+		<action name="toCountChannelAction" class="com.action.ClientsAction" method="countClientsChannel">
+			<result name="toList" >/CustomerCount.jsp</result>
+		</action>
+		<action name="toCountUserAction" class="com.action.ClientsAction" method="countClientsUser">
+			<result name="toList" >/CustomerCount.jsp</result>
+		</action>
+
+	</package>
+
+	
+  <package  name="promodel" extends="struts-default">
+         <action name="*List" 
+                class="com.action.{1}Action" method="List{1}" >
+                <result name="toList">{1}List.jsp</result>
+         </action>
+         <action name="*toUpdate" 
+                class="com.action.{1}Action" method="get{1}A" >
+                <result name="success">{1}Edit.jsp</result>
+         </action>
+         <action name="*Get" 
+                class="com.action.{1}Action" method="get{1}B" >
+                <result name="success">{1}Edit2.jsp</result>
+         </action>
+         <action name="*toAdd" 
+                class="com.action.{1}Action" method="toAdd{1}" >
+                <result name="success">{1}Add.jsp</result>
+         </action>
+         <action name="*_*" 
+                class="com.action.{1}Action" method="{2}{1}" >
+                <result name="{1}List" type="chain">{1}List</result>
+                <result name="success" >{2}.jsp</result>
+                <result name="LoginSuccess" >main.jsp</result>
+                <result name="Exitsuccess">Login.jsp</result>
+                <result name="gosuccess">Login.jsp</result>
+         </action>
+     </package> 
+   
+    <!-- 工作安排测试  -->
+   <!--  <package name="promodel" extends="struts-default">
+    	<action name="Workprojects_add"
+    		class="com.action.WorkprojectsAction" method="addWorkprojects">
+    		<result name="WorkprojectsList">Work_arrangement.jsp</result>
+    		<result name="input">Work_arrangement.jsp</result>
+    	</action>
+    	<action name="toAddWorkitems"
+    		class="com.action.WorkprojectsAction" method="toAddWorkprojects">
+    		<result name="SUCCESS">Work_arrangement.jsp</result>
+    	</action> 
+    </package>  -->
+</struts>	

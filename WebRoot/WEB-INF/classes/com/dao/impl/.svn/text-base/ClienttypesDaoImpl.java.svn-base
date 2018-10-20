@@ -1,0 +1,42 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IClienttypesDao;
+import com.entity.Clienttypes;
+
+@Repository("clienttypesDao")
+public class ClienttypesDaoImpl extends BaseDAO implements IClienttypesDao {
+
+	public List select(String sql) {
+		return null;
+	}
+
+	public List selectAll() {
+		List list = this.getHibernateTemplate().find("from Clienttypes ");
+		return list;
+	}
+
+	public boolean insert(Clienttypes lity) {
+		this.getHibernateTemplate().save(lity);
+		return true;
+	}
+
+	public boolean update(Clienttypes lity) {
+		this.getHibernateTemplate().update(lity);
+		return true;
+	}
+
+	public boolean delete(Clienttypes lity) {
+		Clienttypes delClient = (Clienttypes)this.getHibernateTemplate().load(Clienttypes.class, lity.getCtypeId());
+		this.getHibernateTemplate().delete(delClient);
+		return true;
+	}
+
+	public Clienttypes getClienttypes(Clienttypes lity) {
+		return this.getHibernateTemplate().get(Clienttypes.class, lity.getCtypeId());
+	}
+}

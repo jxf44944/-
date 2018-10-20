@@ -1,0 +1,14 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Clienttypes;
+
+public interface IClienttypesDao {
+	public List select(String sql);
+	public List selectAll();
+	public Clienttypes getClienttypes(Clienttypes lity);
+	public boolean insert(Clienttypes lity);
+	public boolean update(Clienttypes lity);
+	public boolean delete(Clienttypes lity);
+}

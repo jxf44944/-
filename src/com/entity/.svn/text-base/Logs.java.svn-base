@@ -1,0 +1,69 @@
+package com.entity;
+
+/**
+ * Logs entity. @author MyEclipse Persistence Tools
+ */
+
+public class Logs implements java.io.Serializable {
+
+	// Fields
+
+	private Integer logId;
+	private Users users;
+	private String logContext;
+	private String lotDate;
+
+	// Constructors
+
+	/** default constructor */
+	public Logs() {
+	}
+
+	/** minimal constructor */
+	public Logs(Integer logId) {
+		this.logId = logId;
+	}
+
+	/** full constructor */
+	public Logs(Integer logId, Users users, String logContext, String lotDate) {
+		this.logId = logId;
+		this.users = users;
+		this.logContext = logContext;
+		this.lotDate = lotDate;
+	}
+
+	// Property accessors
+
+	public Integer getLogId() {
+		return this.logId;
+	}
+
+	public void setLogId(Integer logId) {
+		this.logId = logId;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public String getLogContext() {
+		return this.logContext;
+	}
+
+	public void setLogContext(String logContext) {
+		this.logContext = logContext;
+	}
+
+	public String getLotDate() {
+		return this.lotDate;
+	}
+
+	public void setLotDate(String lotDate) {
+		this.lotDate = lotDate;
+	}
+
+}

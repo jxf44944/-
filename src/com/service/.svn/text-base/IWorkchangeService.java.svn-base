@@ -1,0 +1,17 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Users;
+import com.entity.Workchange;
+
+public interface IWorkchangeService {
+		//查找所有工作移交的记录
+		public List<Workchange> searchWorkchange(String sql);
+		//插入一条工作移交记录
+		public boolean insWorkchange(Workchange workchange);
+		//获取用户所有数据
+		public List<Users> selectUsersList();
+		//更新一条工作安排的负责人
+		public boolean uptWorkprojects(Workchange workchange);
+}

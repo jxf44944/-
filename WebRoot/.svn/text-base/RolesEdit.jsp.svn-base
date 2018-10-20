@@ -1,0 +1,126 @@
+﻿<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+<title>修改角色</title>
+<script type="text/javascript" src="js/jquery-2.0.3.js" ></script>
+<script type="text/javascript">   
+		
+		$("document").ready(function(){
+			//alert("testea-------24");
+			$("#form1").submit(function(){
+			//alert("test----------25");
+				var right = document.forms[0].rightListId;
+				for (var i = 0; i <= right.length; i++) {
+					right[i].selected = true;
+				}
+			});
+		
+		});
+		
+		
+	</script>
+
+</head>
+
+<body>
+
+
+<div id="title_bar">
+	<span id="title" > 修改 用户角色</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10" /> 添加</li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+
+<s:form id="form1" name="form1" method="post"  action="Roles_upt">
+  <table width="920" id="add_table">
+    <tr>
+      <td colspan="5">以下带*为必填项：</td>
+    </tr>
+     <tr>
+      <s:textfield name="role.roleId" type="hidden" value="%{role.roleId }" />
+      
+    <td>角色编号：</td>
+    <td>&nbsp;<s:property value="role.roleId" /></td>
+      <td width="142">&nbsp;</td>
+      <td width="6">&nbsp;</td>
+      <td width="9">&nbsp;</td>
+    </tr> 
+    <tr>
+      <s:textfield name="role.roleName" label="角色名称" value="%{role.roleName }"/>
+       <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+    	 <s:select name="role.roleGrade" label="角色等级" 
+				headerKey="0" headerValue="请选择一个等级"
+				list="#{'1':'1','2':'2','3':'3'}"  value="%{role.roleGrade }"/>
+    </tr>
+    <tr>
+      <s:textarea name="role.roleDesc" label="角色简介" value="%{role.roleDesc }"></s:textarea>
+      
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    
+     <s:optiontransferselect label="Please choose Limits:"
+ 				name="left" 
+ 				leftTitle="用户未授权权限"
+ 				rightTitle="已授权权限"
+ 				list="noHadLimitList"
+ 				multiple="true"
+ 				headerKey="-1"
+ 				headerValue="------Please Select--------"
+ 				size="10"    
+ 				listKey="limitId"
+ 				listValue="limitName"
+    			id="leftListId"
+    			
+    			doubleId="rightListId"
+    			emptyOption="false"
+    			doubleEmptyOption="false"
+    			doubleList="hadLimitList"
+    			doubleName="right"
+    			doubleMultiple="true"
+    			doubleListKey="limitId"
+    			doubleListValue="limitName "
+    			doubleSize="10"
+    			/>
+    
+
+   
+   
+    <tr>
+      <td rowspan="2">&nbsp;</td>
+      <td align="center" valign="middle">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><input type="submit" name="button" id="button" value="提交" />&nbsp;&nbsp;
+      <input type="reset" name="button" id="button" value="重置" /></td>
+    </tr>
+  </table>
+</s:form>
+</body>
+</html>

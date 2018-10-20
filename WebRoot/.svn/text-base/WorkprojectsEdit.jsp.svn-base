@@ -1,0 +1,123 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+<body>
+<div id="title_bar">
+<span id="title" > 工作管理&gt;&gt;修改工作安排</span></div>
+
+<div align="center">
+<tr>
+    <td width="100%"><legend></legend>
+          
+                 
+    <s:form  action="Workprojects_Update"  method="post" >
+        <tr>
+            <td bgcolor="#A0A0A0">
+        <tr>
+            <td>
+            <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+            <tr>
+            <td height="40" class="font42">
+            <table width="500px" border="0" align="center" cellpadding="4" cellspacing="1" bgcolor="#DDD" class="newfont03" id="tblist">
+            <tr>
+            <td height="20" colspan="13" align="center" bgcolor="#EEEEEE" class="tablestyle_title" style="text-align: center;">修改工作安排</td>
+        </tr>
+<tr>
+	<s:textfield name="workprojects.projectId" type="hidden" value="%{workprojects.projectId}"/>
+	<s:textfield name="workprojects.projectState" type="hidden" value="%{workprojects.projectState}"/>
+  	<td colspan="3" bgcolor="#FFFFFF"><s:textfield name="workprojects.projectTitle" label="主题" value="%{workprojects.projectTitle}"/></td>
+</tr>
+<tr>
+    <td colspan="3" bgcolor="#FFFFFF">
+    	<s:select name="workprojects.users.userId" label="负责人" emptyOption="true"
+    	 list="usersList"  listKey="userId"  listValue="username" value="%{workprojects.users.userId}">
+    	</s:select>
+    </td>
+</tr>
+<tr>
+    <td>
+    	<s:select name="workprojects.workitems.itemId" label="工作项目" emptyOption="true"
+    	 list="workitemsList"  listKey="itemId"  listValue="itemName" value="%{workprojects.workitems.itemId}">
+    	</s:select>
+    </td>
+</tr>
+<tr>
+    <td colspan="3" bgcolor="#FFFFFF"><s:textfield name="workprojects.projectUptime" label="初始执行时间" value="%{workprojects.projectUptime}"/></td>
+    <td colspan="3" bgcolor="#FFFFFF"><s:textfield name="workprojects.projectDowntime" label="结束执行时间" value="%{workprojects.projectDowntime}"/></td>
+</tr>
+
+<tr>
+	<td height="20" align="center" bgcolor="#FFFFFF">任务类型</td>
+    <td colspan="3" bgcolor="#FFFFFF">
+    	<s:if test="%{workprojects.projectType}=='独立任务'">
+    	<input type="radio" name="workprojects.projectType" value="独立任务" checked/>独立任务
+    	<input type="radio" name="workprojects.projectType" value="客户任务" />客户任务
+    	</s:if>
+    	<s:else>
+    	<input type="radio" name="workprojects.projectType" value="独立任务" />独立任务
+    	<input type="radio" name="workprojects.projectType" value="客户任务" checked/>客户任务
+    	</s:else>
+    </td>
+</tr>
+<tr>
+    <td  bgcolor="#FFFFFF">
+	    <s:select name="workprojects.clients.clientId" label="客户名称" emptyOption="true"
+    	 list="clientsList"  listKey="clientId"  listValue="clientName" value="%{workprojects.clients.clientId}">
+    	</s:select>
+    </td>
+</tr>
+<tr>
+    <td  bgcolor="#FFFFFF">
+<!--    		<s:select name="workprojects.projectId" label="协助同事" emptyOption="true"
+    	 list="usersList"  listKey="userId"  listValue="username">
+    	</s:select>	 -->
+    </td>
+</tr>
+
+<tr>
+     <td colspan="3" bgcolor="#FFFFFF"><s:textarea name="workprojects.projectDesc" label="任务描述" value="%{workprojects.projectDesc}"/> </td>
+</tr>
+                       </table>
+                   </td>
+                 </tr>
+             </table>
+             <table width="95%" border="0" align="center" cellpadding="0" cellspacing="0">
+                 <tr>
+                     <td height="6">
+                         <img src="../images/spacer.gif" width="1" height="1" />
+                     </td>
+                 </tr>
+                 <tr>
+                     <td height="33">
+                         <table width="100%" border="0" align="center" cellpadding="0" cellspacing="0" class="right-font08">
+                             <tr>
+                                 <td width="50%">&nbsp;</td>
+                                 <td width="49%" align="right">&nbsp;</td>
+                                 <td width="1%">&nbsp;</td>
+         <TR>
+<TD colspan="2" align="center" height="50px">
+	<s:submit/>
+</TD>
+   </TR>
+                                             </table>
+                                         </td>
+                                     </tr>
+                                 </table>
+                     </s:form>
+</div>
+
+</body>
+</html>

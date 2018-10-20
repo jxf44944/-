@@ -1,0 +1,491 @@
+package com.action;
+
+import java.awt.Font;
+import java.io.FileOutputStream;
+import java.text.DecimalFormat;
+import java.text.NumberFormat;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import org.jfree.chart.ChartFactory;
+import org.jfree.chart.ChartUtilities;
+import org.jfree.chart.JFreeChart;
+import org.jfree.chart.StandardChartTheme;
+import org.jfree.chart.labels.StandardPieSectionLabelGenerator;
+import org.jfree.chart.plot.PiePlot;
+import org.jfree.chart.plot.PiePlot3D;
+import org.jfree.data.general.DefaultPieDataset;
+
+import com.entity.Channels;
+import com.entity.Clients;
+import com.entity.Clienttypes;
+import com.entity.Product;
+import com.entity.Users;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IChannelsService;
+import com.service.IClientsService;
+import com.service.IClienttypesService;
+import com.service.IProductService;
+import com.service.IUsersService;
+import com.util.PageBean;
+
+
+public class ClientsAction extends ActionSupport {
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	//客户类别
+	private IClienttypesService clitypeservice;
+	@Resource(name="clienttypesService")
+	public void setClitypeservice(IClienttypesService clitypeservice) {
+		this.clitypeservice = clitypeservice;
+	}
+	private List<Clienttypes> clitypelist;
+	public List<Clienttypes> getClitypelist() {
+		return clitypelist;
+	}
+	private Clienttypes clitype;
+	public Clienttypes getClitype() {
+		return clitype;
+	}
+	public void setClitype(Clienttypes clitype) {
+		this.clitype = clitype;
+	}
+
+	
+	//产品
+	private IProductService proservice;
+	@Resource(name="proService")
+	public void setProservice(IProductService proservice) {
+		this.proservice = proservice;
+	}
+	private Product product;
+	public Product getProduct() {
+		return product;
+	}
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+	private List<Product> prolist;
+	public List<Product> getProlist() {
+		return prolist;
+	}
+
+	
+	//渠道
+	private IChannelsService chaservice;
+	@Resource(name="channelsService")
+	public void setChaservice(IChannelsService chaservice) {
+		this.chaservice = chaservice;
+	}
+	private Channels channel;
+	public Channels getChannel() {
+		return channel;
+	}
+	public void setChannel(Channels channel) {
+		this.channel = channel;
+	}
+	private List<Channels> chalist;
+	public List<Channels> getChalist() {
+		return chalist;
+	}
+	
+	
+	//用户
+	private IUsersService userservice;
+	@Resource(name="usersService")
+	public void setUserservice(IUsersService userservice) {
+		this.userservice = userservice;
+	}
+	private Users user;
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	private List<Users> userlist;
+	public List<Users> getUserlist() {
+		return userlist;
+	}
+	
+	
+	//客户
+	private IClientsService cliservice;
+	@Resource(name="cliService")
+	public void setCliservice(IClientsService cliservice) {
+		this.cliservice = cliservice;
+	}
+	private Clients clients;
+	public Clients getClients() {
+		return clients;
+	}
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+	//提供getCliList()
+	private List<Clients> cliList;
+	public List<Clients> getCliList() {
+		return cliList;
+	}
+
+
+	//跳转至添加页面前，获取其他表属性
+	public String toAddClients(){
+		clitypelist=clitypeservice.searchClienttypes(null);//获取客户类别列表
+		prolist=proservice.searchProduct(null);//获取产品列表
+		chalist=chaservice.searchChannels(null);//获取渠道表
+		userlist=userservice.searchUsers(null);//获取用户
+		return "toAdd";
+	}
+	//添加
+	public String addClients() {
+		cliservice.insClients(clients);
+		return "toList";
+	}
+
+	//跳转到修改页面，显示该客户信息
+	public String toEditClients(){
+		clitypelist=clitypeservice.searchClienttypes(null);//获取客户类别列表
+		prolist=proservice.searchProduct(null);//获取产品列表
+		chalist=chaservice.searchChannels(null);//获取渠道表
+		userlist=userservice.searchUsers(null);//获取用户
+		setClients(cliservice.getClients(clients));
+		return "edit";
+	}
+	//修改
+	public String editClients() {
+		cliservice.uptClients(clients);
+		return "toList";
+	}
+	
+	//单条删除
+	public String delClients() {
+		cliservice.delClients(clients);
+		return "toList";
+	}
+	
+	//批量删除
+	private String ID;
+
+	public String getID() {
+		return ID;
+	}
+	public void setID(String iD) {
+		ID = iD;
+	}
+	public String delClients2(){
+		String ids[]=ID.split(",");
+		for(int i=0;i<ids.length;i++){
+			int j=Integer.parseInt(ids[i]);
+			Clients cc=new Clients();
+			cc.setClientId(j);
+			cliservice.delClients(cc);
+		}
+		return "toList";
+	}
+
+	
+	//分页的属性设置
+	 private int page = 1; //第几页
+	    private PageBean pageBean; //包含分布信息的bean
+	    
+		public int getPage() {
+			return page;
+		}
+
+		public void setPage(int page) {
+			this.page = page;
+		}
+
+		public PageBean getPageBean() {
+			return pageBean;
+		}
+
+		public void setPageBean(PageBean pageBean) {
+			this.pageBean = pageBean;
+		}
+	//获取所有客户列表
+	public String getClientsList() {
+		//cliList = cliservice.searchClients(null);//没有分页的获取列表
+		this.pageBean=cliservice.queryForPage(3, page, clients);
+		cliList = pageBean.getList();//有分页的获取列表
+		
+		clitypelist=clitypeservice.searchClienttypes(null);//获取客户类别列表,在list页面的搜索
+		prolist=proservice.searchProduct(null);//获取产品列表，在list页面的搜索
+		chalist=chaservice.searchChannels(null);//获取渠道表
+		userlist=userservice.searchUsers(null);//获取用户
+		for(Clients o:cliList){
+			Clienttypes c=o.getClienttypes();
+			o.setClienttypes(clitypeservice.getClienttypes(c));
+			//int id=o.getClienttypes().getCtypeId();
+			//o.setClienttypes(clitypeservice.getClienttypes(id));//另外写方法，通过id获取客户类别，再封装
+			
+			Product p=o.getProduct();
+			o.setProduct(proservice.getProduct(p));
+			
+			Channels ch=o.getChannels();
+			o.setChannels(chaservice.getChannels(ch));
+			
+			Users u=o.getUsers();
+			o.setUsers(userservice.getUsers(u));
+		}
+
+		return "toList";
+	}
+	//根据页面的传参，按照条件搜索客户
+	public String searchClients() {
+		//返回一个查询的结果列表，在页面遍历cliList
+		cliList = cliservice.searchClients(clients);
+		for(Clients o:cliList){
+			Clienttypes c=o.getClienttypes();
+			o.setClienttypes(clitypeservice.getClienttypes(c));
+			
+			Product p=o.getProduct();
+			o.setProduct(proservice.getProduct(p));
+			
+			Channels ch=o.getChannels();
+			o.setChannels(chaservice.getChannels(ch));
+			
+			Users u=o.getUsers();
+			o.setUsers(userservice.getUsers(u));
+		}
+		return "toList";
+	}
+	
+	//按照客户来源渠道统计客户数据
+	public String countClientsChannel(){
+		cliList = cliservice.searchClients(null);
+		chalist=chaservice.searchChannels(null);//获取渠道表
+		counts=cliList.size();//总和
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Channels c:chalist){
+			clients.setClienttypes(null);
+			clients.setUsers(null);
+			clients.setProduct(null);
+			clients.setChannels(c);
+			int typeid=c.getChannelId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+		}
+		return "toList";
+	}
+	//按照跟进人统计客户数据
+	public String countClientsUser(){
+		cliList = cliservice.searchClients(null);
+		userlist=userservice.searchUsers(null);//获取用户
+		counts=cliList.size();//总和
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Users c:userlist){
+			clients.setChannels(null);
+			clients.setUsers(c);
+			clients.setProduct(null);
+			clients.setClienttypes(null);
+			int typeid=c.getUserId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+		}
+		return "toList";
+	}
+	
+	
+	
+	//统计数据：counts是客户总人数
+	private int counts;
+	public int getCounts() {
+		return counts;
+	}
+	public void setCounts(int counts) {
+		this.counts = counts;
+	}
+	//map（各种类型，对应的值）
+	private Map<Integer,Integer> map =new HashMap<Integer,Integer>();
+	public Map<Integer, Integer> getMap() {
+		return map;
+	}
+	public void setMap(Map<Integer, Integer> map) {
+		this.map = map;
+	}
+	
+    //供ChartResult调用->ActionInvocation.getStack().findValue("chart")
+    private JFreeChart chart;
+    public JFreeChart getChart() {
+        return chart;
+    }
+
+    public void setChart(JFreeChart chart) {
+        this.chart = chart;
+    }
+    DefaultPieDataset data=null;
+    Font font = new Font("宋体",Font.PLAIN,16) ;
+    Font font2=new Font("宋体",Font.BOLD,20);
+	//按照客户类别统计客户数据
+	public String countClientsType(){
+		cliList = cliservice.searchClients(null);
+		clitypelist=clitypeservice.searchClienttypes(null);//获取客户类别列表
+		counts=cliList.size();//总和
+		
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Clienttypes c:clitypelist){
+			clients.setChannels(null);
+			clients.setUsers(null);
+			clients.setProduct(null);
+			clients.setClienttypes(c);
+			int typeid=c.getCtypeId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+			
+		}
+
+		return "toList";
+	}
+	//jfreechart 统计客户类型的饼状图
+	public String countClientsType2(){
+		cliList = cliservice.searchClients(null);
+		clitypelist=clitypeservice.searchClienttypes(null);//获取客户类别列表
+		counts=cliList.size();//总和
+		
+        //设置数据
+        data = new DefaultPieDataset();
+        
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Clienttypes c:clitypelist){
+			clients.setChannels(null);
+			clients.setUsers(null);
+			clients.setProduct(null);
+			clients.setClienttypes(c);
+			int typeid=c.getCtypeId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+			
+			data.setValue(c.getCtypeName(), cliList.size());
+			
+		}
+        //生成JFreeChart对象
+        chart = ChartFactory.createPieChart("客户类型的饼状图", data, true,true, false);
+        //设置legend图释的字体
+        chart.getLegend().setItemFont(font);
+        //设置title标题的字体
+        chart.getTitle().setFont(font2);
+        //设置pieplot的字体
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setLabelFont(font);
+        // 图片中显示百分比:自定义方式，{0} 表示选项， {1} 表示数值， {2} 表示所占比例 ,小数点后两位
+        plot.setLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}:{2}", NumberFormat.getNumberInstance(),
+                new DecimalFormat("0%")));
+        plot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}:{2}"));
+        // 指定图片的透明度(0.0-1.0)
+        plot.setForegroundAlpha(1.0f);
+  /*    
+        //设置plot图表内容的字体
+        PiePlot pp= (PiePlot) chart.getPlot();
+        pp.setLabelFont(font);
+        pp.setLabelGenerator(new StandardPieSectionLabelGenerator("{2}",new DecimalFormat("0.0"),new DecimalFormat("0.0%")));
+             // 设置图表样式
+                  //先给个主题，将字体设置好
+        StandardChartTheme s = new StandardChartTheme("");
+        s.setRegularFont(font);
+        ChartFactory.setChartTheme(s);
+        PiePlot3D plot = (PiePlot3D) chart.getPlot();
+        // 图片中显示百分比:自定义方式，{0} 表示选项， {1} 表示数值， {2} 表示所占比例 ,小数点后两位
+
+        plot.setLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}={1}({2})", NumberFormat.getNumberInstance(),
+                new DecimalFormat("0.00%")));
+
+        plot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}={1}({2})"));
+
+        // 指定图片的透明度(0.0-1.0)
+        plot.setForegroundAlpha(1.0f);
+        // 指定显示的饼图上圆形(false)还椭圆形(true)
+        plot.setCircular(false);
+
+        // 将生成的图表文件输出到磁盘。
+        FileOutputStream fos_jpg = null;
+
+        try {
+            fos_jpg = new FileOutputStream("D:\\a.jpg");
+            ChartUtilities.writeChartAsJPEG(fos_jpg, 1.0f, chart, 400, 250,
+                    null);
+            fos_jpg.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }*/
+		return "toList";
+	}
+
+	//按照产品需求统计客户数据
+	public String countClientsProduct(){
+		cliList = cliservice.searchClients(null);
+		prolist=proservice.searchProduct(null);//获取产品列表
+		counts=cliList.size();//总和
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Product c:prolist){
+			clients.setChannels(null);
+			clients.setUsers(null);
+			clients.setClienttypes(null);
+			clients.setProduct(c);
+			int typeid=c.getProductId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+		}
+		return "toList";
+	}
+	//jfreechart 统计产品需求的饼状图
+	public String countClientsProduct2(){
+		cliList = cliservice.searchClients(null);
+		prolist=proservice.searchProduct(null);//获取产品列表
+		counts=cliList.size();//总和
+        //设置数据
+        data = new DefaultPieDataset();
+		for(Clients o:cliList){
+			clients=o;
+		}
+		for(Product c:prolist){
+			clients.setChannels(null);
+			clients.setUsers(null);
+			clients.setClienttypes(null);
+			clients.setProduct(c);
+			int typeid=c.getProductId();
+			cliList = cliservice.searchClients2(clients);
+			map.put(typeid, cliList.size());
+			data.setValue(c.getProductName(), cliList.size());
+		}
+        //生成JFreeChart对象
+        chart = ChartFactory.createPieChart("产品需求的饼状图", data, true,true, false);
+        //设置legend图释的字体
+        chart.getLegend().setItemFont(font);
+        //设置title标题的字体
+        chart.getTitle().setFont(font2);
+        //设置pieplot的字体
+        PiePlot plot = (PiePlot) chart.getPlot();
+        plot.setLabelFont(font);
+        // 图片中显示百分比:自定义方式，{0} 表示选项， {1} 表示数值， {2} 表示所占比例 ,小数点后两位
+        plot.setLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}:{2}", NumberFormat.getNumberInstance(),
+                new DecimalFormat("0%")));
+        plot.setLegendLabelGenerator(new StandardPieSectionLabelGenerator(
+                "{0}:{2}"));
+        // 指定图片的透明度(0.0-1.0)
+        plot.setForegroundAlpha(1.0f);
+		return "toList";
+	}
+
+}

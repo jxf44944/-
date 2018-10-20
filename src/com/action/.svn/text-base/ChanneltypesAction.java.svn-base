@@ -1,0 +1,66 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Channeltypes;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IChanneltypesService;
+
+public class ChanneltypesAction extends ActionSupport {
+
+	private Channeltypes channeltypes;
+	private IChanneltypesService channeltypesService;
+	private List<Channeltypes> channeltypesList;
+	
+	@Resource(name="channeltypesService")
+	public void setChanneltypesService(IChanneltypesService channeltypesService) {
+		this.channeltypesService = channeltypesService;
+	}
+	
+	public Channeltypes getChanneltypes() {
+		return channeltypes;
+	}
+	
+	public void setChanneltypes(Channeltypes channeltypes) {
+		this.channeltypes = channeltypes;
+	}
+	
+	public List<Channeltypes> getChanneltypesList() {
+		return channeltypesList;
+	}
+	
+	public void setChanneltypesList(List<Channeltypes> channeltypesList) {
+		this.channeltypesList = channeltypesList;
+	}
+	
+	public String toAddChanneltypes(){
+		return "success";
+	}
+	
+	public String AddChanneltypes(){
+		channeltypesService.insChanneltypes(channeltypes);
+		return "ChanneltypesList";
+	}
+	
+	public String DelChanneltypes(){
+		channeltypesService.delChanneltypes(channeltypes);
+		return "ChanneltypesList";
+	}
+	
+	public String UpdateChanneltypes(){
+		channeltypesService.uptChanneltypes(channeltypes);
+		return "ChanneltypesList";
+	}
+	
+	public String ListChanneltypes(){
+		channeltypesList = channeltypesService.searchChanneltypes(null);
+		return "toList";
+	}
+	
+	public String getChanneltypesA(){
+		channeltypes = channeltypesService.getChanneltypes(channeltypes);
+		return "success";
+	}
+}

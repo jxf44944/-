@@ -1,0 +1,17 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Users;
+import com.entity.Workchange;
+
+public interface IWorkchangeDao {
+	//查找所有工作移交的记录
+	public List SelectAll();
+	//按条件查找工作移交记录
+	public List Select(String sql);
+	//插入一条工作移交记录
+	public boolean insert(Workchange workchange);
+	//获取用户所有数据
+	public List<Users> selectUsersList();
+}

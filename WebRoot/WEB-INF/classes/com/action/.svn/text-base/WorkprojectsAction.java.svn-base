@@ -1,0 +1,180 @@
+package com.action;
+
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import com.entity.Clients;
+import com.entity.Roles;
+import com.entity.Users;
+import com.entity.Workitems;
+import com.entity.Workprojects;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IWorkitemsService;
+import com.service.IWorkprojectsService;
+
+public class WorkprojectsAction extends ActionSupport{
+	private Workprojects workprojects;
+	private IWorkprojectsService workprojectsService;
+	private List<Workprojects> workprojectslist;
+	private List<Workprojects> tmworkprojectslist;
+	private List<Workitems> workitemsList;
+	private List<Clients> clientsList;
+	private List<Users> usersList;
+	private Users users;
+	private IWorkitemsService workitemsService;
+	
+	Roles role=(Roles) ActionContext.getContext().getSession().get("role");
+	Users user=(Users) ActionContext.getContext().getSession().get("loginUser");
+	int i=user.getUserId();
+	String sql=" where user_id in ("+i+")";
+	  
+	public Workprojects getWorkprojects() {
+		return workprojects;
+	}
+
+	public void setWorkprojects(Workprojects workprojects) {
+		this.workprojects = workprojects;
+	}
+	
+	public List<Workitems> getWorkitemsList() {
+		return workitemsList;
+	}
+	
+	public List<Clients> getClientsList() {
+		return clientsList;
+	}
+	
+	public List<Users> getUsersList() {
+		return usersList;
+	}
+	
+	public List<Workprojects> getWorkprojectslist() {
+		return workprojectslist;
+	}
+	
+	public List<Workprojects> getTmworkprojectslist() {
+		return tmworkprojectslist;
+	}
+
+	public Users getUsers() {
+		return users;
+	}
+
+	public void setWorkprojectslist(List<Workprojects> workprojectslist) {
+		this.workprojectslist = workprojectslist;
+	}
+
+	@Resource(name="workprojectsService")
+	public void setWorkprojectsService(IWorkprojectsService workprojectsService) {
+		this.workprojectsService = workprojectsService;
+	}
+	
+	@Resource(name="workitemsService")
+	public void setWorkitemsService(IWorkitemsService workitemsService) {
+		this.workitemsService = workitemsService;
+	}
+	//新增提交
+	public String AddWorkprojects(){
+		workprojects.setUsers(user);
+		workprojects.setProjectState("0");
+		if(workprojects.getProjectColleague()==null)
+		{workprojectsService.insWorkprojects(workprojects);}
+		else
+		{Workprojects w2=new Workprojects();
+		 w2.setClients(workprojects.getClients());
+		 w2.setWorkitems(workprojects.getWorkitems());
+		 w2.setProjectDesc(workprojects.getProjectDesc());
+		 w2.setProjectTitle(workprojects.getProjectTitle());
+		 w2.setProjectDowntime(workprojects.getProjectDowntime());
+		 w2.setProjectUptime(workprojects.getProjectUptime());
+		 w2.setProjectScore(workprojects.getProjectScore());
+		 w2.setProjectType("独立任务");
+		 w2.setProjectState("0");
+		 Users u=new Users();
+		 u.setUserId(Integer.parseInt(workprojects.getProjectColleague()));
+		 w2.setUsers(u);
+		 w2.setProjectColleague(String.valueOf(workprojects.getUsers().getUserId()));
+		 ArrayList<Workprojects> list=new ArrayList<Workprojects>();
+		 list.add(workprojects);
+		 list.add(w2);
+		 for(int i=0;i<list.size();i++)
+		 {workprojectsService.insWorkprojects(list.get(i));
+		   }
+		 }
+		return "WorkprojectsList";
+	}
+	
+	//跳转工作安排
+	public String toAddWorkprojects(){
+		workitemsList=workprojectsService.selectWorkitemsList();
+		clientsList=workprojectsService.selectClientsList();
+		usersList=workprojectsService.selectUsersList();
+		return "success";
+	}
+	//列出所有的工作安排
+	public String ListWorkprojects(){
+
+		if(role.getRoleGrade()==1)
+		{
+		workprojectslist=workprojectsService.selectWorkprojectList(null);
+		}
+		else if(role.getRoleGrade()==2)
+		{
+		workprojectslist=workprojectsService.selectWorkprojectList(null);	
+		}
+		else
+		{ 
+		  workprojectslist=workprojectsService.selectWorkprojectList(sql);
+		}
+		usersList=workprojectsService.selectUsersList();
+		return "toList";
+	}
+	//删除一条工作安排
+	public String DelWorkprojects() {
+		workprojectsService.delWorkprojects(workprojects);
+		return "WorkprojectsList";
+	}
+	//获取一条记录
+	public String getWorkprojectsA() {
+		workitemsList=workprojectsService.selectWorkitemsList();
+		clientsList=workprojectsService.selectClientsList();
+		usersList=workprojectsService.selectUsersList();
+		workprojects = workprojectsService.getWorkprojects(workprojects);
+		return "success";
+	}
+	//获取一条记录
+	public String getWorkprojectsB() {
+		workprojects = workprojectsService.getWorkprojects(workprojects);
+		return "success";
+	}
+	//更新一条记录
+	public String UpdateWorkprojects() {
+		workprojectsService.uptWorkprojects(workprojects);
+		return "WorkprojectsList";
+	}
+	//修改工作任务状态+更新绩效分的字段
+	public String Update2Workprojects() {
+		Workitems w1=new Workitems();
+		w1.setItemId(workprojects.getWorkitems().getItemId());
+		Workitems w2=workitemsService.getWorkitems(w1);
+		workprojects.setProjectScore(w2.getItemScore());
+		workprojectsService.uptWorkprojects(workprojects);
+		return "WorkprojectsList";
+	}
+	//（事件提醒）获取今天工作任务数据
+	public String EventsWorkprojects(){
+		Calendar c= Calendar.getInstance();
+		String year=String.valueOf(c.get(Calendar.YEAR));
+		String month=String.valueOf(c.get(Calendar.MONTH)+1);
+		String day=String.valueOf(c.get(Calendar.DATE));
+		String today=year+"-"+month+"-"+day;
+		workprojectslist=workprojectsService.tdEventWorkprojects(today,sql);
+		tmworkprojectslist=workprojectsService.tmEventWorkprojects(today,sql);
+		return "success";
+	}
+}

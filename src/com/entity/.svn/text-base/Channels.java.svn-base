@@ -1,0 +1,77 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Channels entity. @author MyEclipse Persistence Tools
+ */
+
+public class Channels implements java.io.Serializable {
+
+	// Fields
+
+	private Integer channelId;
+	private Channeltypes channeltypes;
+	private String channelName;
+	private String channelDesc;
+	private Set clientses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Channels() {
+	}
+
+	/** full constructor */
+	public Channels(Channeltypes channeltypes, String channelName,
+			String channelDesc, Set clientses) {
+		this.channeltypes = channeltypes;
+		this.channelName = channelName;
+		this.channelDesc = channelDesc;
+		this.clientses = clientses;
+	}
+
+	// Property accessors
+
+	public Integer getChannelId() {
+		return this.channelId;
+	}
+
+	public void setChannelId(Integer channelId) {
+		this.channelId = channelId;
+	}
+
+	public Channeltypes getChanneltypes() {
+		return this.channeltypes;
+	}
+
+	public void setChanneltypes(Channeltypes channeltypes) {
+		this.channeltypes = channeltypes;
+	}
+
+	public String getChannelName() {
+		return this.channelName;
+	}
+
+	public void setChannelName(String channelName) {
+		this.channelName = channelName;
+	}
+
+	public String getChannelDesc() {
+		return this.channelDesc;
+	}
+
+	public void setChannelDesc(String channelDesc) {
+		this.channelDesc = channelDesc;
+	}
+
+	public Set getClientses() {
+		return this.clientses;
+	}
+
+	public void setClientses(Set clientses) {
+		this.clientses = clientses;
+	}
+
+}

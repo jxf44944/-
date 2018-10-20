@@ -1,0 +1,96 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Channels;
+import com.entity.Channeltypes;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IChannelsService;
+import com.service.IChanneltypesService;
+
+public class ChannelsAction extends ActionSupport {
+	
+	private Channels channels;
+	private IChannelsService channelsService;
+	private IChanneltypesService channeltypesService;
+	private List<Channels> channelsList;
+	private List<Channeltypes> channeltypesList; 
+	
+	@Resource(name="channelsService")
+	public void setChannelsService(IChannelsService channelsService) {
+		this.channelsService = channelsService;
+	}
+	
+	@Resource(name="channeltypesService")
+	public void setChanneltypesService(IChanneltypesService channeltypesService) {
+		this.channeltypesService = channeltypesService;
+	}
+	
+	public List<Channeltypes> getChanneltypesList() {
+		return channeltypesList;
+	}
+
+	public void setChanneltypesList(List<Channeltypes> channeltypesList) {
+		this.channeltypesList = channeltypesList;
+	}
+
+	public IChannelsService getChannelsService() {
+		return channelsService;
+	}
+	
+	public Channels getChannels() {
+		return channels;
+	}
+	
+	public void setChannels(Channels channels) {
+		this.channels = channels;
+	}
+	
+	public List<Channels> getChannelsList() {
+		return channelsList;
+	}
+	
+	public void setChannelsList(List<Channels> channelsList) {
+		this.channelsList = channelsList;
+	}
+	
+	//跳去添加页面
+	public String toAddChannels(){
+		channeltypesList = channeltypesService.searchChanneltypes(null);
+		return "success";
+	}
+	
+	//新增提交
+	public String AddChannels(){
+		channelsService.insChannels(channels);
+		return "ChannelsList";
+	}
+	
+	//删除一条记录
+	public String DelChannels(){
+		channelsService.delChannels(channels);
+		return "ChannelsList";
+	}
+	
+	//更新一条记录
+	public String UpdateChannels(){
+		channelsService.uptChannels(channels);
+		return "ChannelsList";
+	}
+	
+	//List所有工作记录
+	public String ListChannels(){
+		channelsList = channelsService.searchChannels(null);
+		channeltypesList = channeltypesService.searchChanneltypes(null);
+		return "toList";
+	}
+	
+	//获得一条记录
+	public String getChannelsA(){
+		channels = channelsService.getChannels(channels);
+		channeltypesList = channeltypesService.searchChanneltypes(null);
+		return "success";
+	}
+}

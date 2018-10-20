@@ -1,0 +1,14 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Channels;
+
+public interface IChannelsService {
+     public boolean insChannels(Channels cli);
+     public boolean delChannels(Channels cli);
+     public boolean uptChannels(Channels cli);
+     public Channels getChannels(Channels cli);
+     public List<Channels> searchChannels(Channels cli);
+     
+}

@@ -1,0 +1,32 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Channels;
+import com.entity.Clients;
+import com.entity.Clienttypes;
+import com.entity.Users;
+
+public interface IUsersDao {
+
+	public List select(Users cli);
+	public Users getUsers(Users cli);
+	public List selectAll();
+	
+	
+	/**增加用户**/
+	public boolean insert(Users user);
+	
+	/**删除用户**/
+	public boolean delete(Users user);
+	
+	/**修改用户*/
+	public boolean update(Users user);
+	
+	/**查询单个用户信息*/
+	public Users getUser(Users user);
+	
+	/**查询所有用户列表**/
+	public List<Users> list(String sql);
+	
+}

@@ -1,0 +1,62 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IWorklogDao;
+import com.entity.Deptmsg;
+import com.entity.Worklog;
+import com.entity.Workprojects;
+import com.service.IWorklogService;
+
+@Service("WorklogService")
+public class WorklogServiceImpl implements IWorklogService {
+	private IWorklogDao worklogdao;
+	
+	public IWorklogDao getWorklogdao() {
+		return worklogdao;
+	}
+	@Resource(name="WorklogDao")
+	public void setWorklogdao(IWorklogDao worklogdao) {
+		this.worklogdao = worklogdao;
+	}
+	//查出工作记录
+	public List<Worklog> searchWorklog(String sql) {
+		List<Worklog> workloglist=null;
+		if(sql==null)
+			workloglist=worklogdao.SelectAll();
+		else
+			workloglist=worklogdao.Select(sql);
+		return workloglist;
+	}
+	//插入一条工作记录
+	public boolean insWorklog(Worklog worklog) {
+		if (worklogdao.insert(worklog))
+		{return true;}
+		else
+		{return false;}
+	}
+	//删除一条工作记录
+	public boolean delWorklog(Worklog worklog) {
+		if (worklogdao.delete(worklog))
+		{return true;}
+		else
+		{return false;}
+	}
+	//更新一条工作记录
+	public boolean uptWorklog(Worklog worklog) {
+		if (worklogdao.update(worklog))
+		{return true;}
+		else
+		{return false;}
+	}
+	//获取一条工作记录
+	public Worklog getWorklog(Worklog worklog) {
+		Worklog reworklog=worklogdao.getWorklog(worklog);
+		return reworklog;
+	}
+
+}

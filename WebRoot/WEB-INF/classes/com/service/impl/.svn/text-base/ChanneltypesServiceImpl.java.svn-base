@@ -1,0 +1,55 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IChanneltypesDao;
+import com.entity.Channeltypes;
+import com.service.IChanneltypesService;
+
+@Service("channeltypesService")
+public class ChanneltypesServiceImpl implements IChanneltypesService {
+	
+	private IChanneltypesDao channeltypesDao;
+
+	@Resource(name="channeltypesDao")
+	public void setChanneltypesDao(IChanneltypesDao channeltypesDao) {
+		this.channeltypesDao = channeltypesDao;
+	}
+
+	public boolean insChanneltypes(Channeltypes chl) {
+		if(channeltypesDao.insert(chl))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean delChanneltypes(Channeltypes chl) {
+		if(channeltypesDao.delete(chl))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean uptChanneltypes(Channeltypes chl) {
+		if(channeltypesDao.update(chl))
+			return true;
+		else
+			return false;
+	}
+
+	public List<Channeltypes> searchChanneltypes(Channeltypes chl) {
+		List<Channeltypes> channeltypesList = null;
+		if(chl==null)
+			channeltypesList = channeltypesDao.selectAll();
+		return channeltypesList;
+	}
+
+	public Channeltypes getChanneltypes(Channeltypes chl) {
+		Channeltypes channeltypes = channeltypesDao.getChanneltypes(chl);
+		return channeltypes;
+	}
+}

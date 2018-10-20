@@ -1,0 +1,43 @@
+package com.dao.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IWorkchangeDao;
+import com.entity.Users;
+import com.entity.Workchange;
+import com.entity.Worklog;
+
+
+@Repository("WorkchangeDao")
+public class WorkchangeDaoImpl extends BaseDAO implements IWorkchangeDao {
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	//查找所有工作移交的记录
+	public List SelectAll() {
+		List list=this.getHibernateTemplate().find("from Workchange");
+		return list;
+	}
+	//按条件查找工作移交记录
+	public List Select(String sql) {
+		List list=this.getHibernateTemplate().find("from Workchange"+sql);
+		return list;
+	}
+	//插入一条工作移交记录
+	public boolean insert(Workchange workchange) {
+		Date time=new Date();
+		String str=formatter.format(time).toString();
+		workchange.setChangeTime(str);
+		this.getHibernateTemplate().save(workchange);
+		return true;
+	}
+	//获取用户所有数据
+	public List<Users> selectUsersList() {
+		return this.getHibernateTemplate().find("from Users");
+		  
+	}
+
+}

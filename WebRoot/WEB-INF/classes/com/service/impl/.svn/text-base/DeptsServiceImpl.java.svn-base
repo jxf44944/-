@@ -1,0 +1,67 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IDeptsDao;
+import com.entity.Depts;
+import com.service.IDeptsService;
+
+@Service("deptsService")
+public class DeptsServiceImpl implements IDeptsService {
+	
+	private IDeptsDao deptsDao;
+
+	@Resource(name="deptsDao")
+	public void setDeptDao(IDeptsDao deptsDao) {
+		this.deptsDao = deptsDao;
+	}
+
+	public boolean insDepts(Depts pt) {
+		if(deptsDao.insert(pt)){
+			return true;}
+		else{
+			return false;}
+	}
+
+	public boolean delDepts(Depts pt) {
+		if(deptsDao.delete(pt)){
+			return true;}
+		else{
+			return false;}
+	}
+
+	public boolean uptDepts(Depts pt) {
+		if(deptsDao.update(pt)){
+			return true;}
+		else{
+			return false;}
+	}
+
+	public List<Depts> searchDepts(Depts pt) {
+		List<Depts> deptsList = null;
+		if(pt==null){
+			deptsList = deptsDao.selectAll();}
+		return deptsList;
+	}
+	
+	public Depts getDepts(Depts pt) {
+		//根据传来的编号查询产品。
+		Depts depts = deptsDao.getDepts(pt);
+		return  depts;
+	}
+	
+	
+	
+	/**查找列表
+	 * */
+	public List<Depts> list(String sql){
+		List<Depts> list = deptsDao.list();
+		return list;
+	}
+
+	
+}

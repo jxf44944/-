@@ -1,0 +1,33 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Limits;
+
+/***
+ * 权限菜单Dao接口
+ * @author Feng
+ *
+ */
+public interface ILimitsDao {
+
+	/**新增菜单**/
+	public boolean insert(Limits limit);
+	
+	/**删除菜单**/
+	public boolean delete(Limits limit);
+	
+	/**修改菜单**/
+	public boolean update(Limits limit);
+	
+	/**查询单个菜单信息**/
+	public Limits getMsg(Limits limit);
+	
+	/**查询所有菜单列表*/
+	public List<Limits> list(String sql);
+	
+	/***
+	 * 获取用户的权限，
+	 */
+	
+}

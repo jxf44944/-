@@ -1,0 +1,28 @@
+package com.action;
+
+import java.util.List;
+import javax.annotation.Resource;
+import com.entity.Workprojects;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IWorkprojectsService;
+
+public class PerformanceAction extends ActionSupport{
+	private List<Workprojects> workprojectslist;
+	private IWorkprojectsService workprojectsService;
+
+	public List<Workprojects> getWorkprojectslist() {
+		return workprojectslist;
+	}		
+	@Resource(name="workprojectsService")
+	public void setWorkprojectsService(IWorkprojectsService workprojectsService) {
+		this.workprojectsService = workprojectsService;
+	}
+	
+	//获取所有用户已完成的工作安排
+	public String ListPerformance(){
+		workprojectslist=workprojectsService.getPerformance();
+		return "toList";
+	}
+	
+	
+}

@@ -1,0 +1,15 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Channeltypes;
+
+public interface IChanneltypesDao {
+
+	public boolean insert(Channeltypes chl);
+	public boolean delete(Channeltypes chl);
+	public boolean update(Channeltypes chl);
+	public List selectAll();
+	public List select(String sql);
+	public Channeltypes getChanneltypes(Channeltypes chl);
+}

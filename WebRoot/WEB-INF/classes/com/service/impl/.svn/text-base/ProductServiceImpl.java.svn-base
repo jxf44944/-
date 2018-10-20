@@ -1,0 +1,72 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.entity.Product;
+import com.service.IProductService;
+import com.dao.IProductDao;
+
+@Service("proService")
+public class ProductServiceImpl implements IProductService {
+
+	private IProductDao  prodao;
+	
+	
+
+	@Resource(name="proDao")
+	public void setProdao(IProductDao prodao) {
+		this.prodao = prodao;
+	}
+
+	public boolean delProduct(Product pro) {
+		if (prodao.delete(pro))
+		{return true;}
+		else
+		{return false;}
+	}
+
+	public boolean insProduct(Product pro) {
+		if (prodao.insert(pro))
+			{
+			 return true;
+			}
+		else
+		    {
+			 return false;
+		    }
+	}
+
+	public List<Product> searchProduct(Product pro) {
+		List<Product> prolist=null;
+		if (pro==null)
+		   {
+			prolist=prodao.selectAll();
+		   }
+		else
+		   {
+			//stulist=studao.select(std);
+		   }
+		
+		return prolist;
+	}
+
+	public boolean uptProduct(Product pro) {
+		if (prodao.update(pro))
+		   {
+			return true;
+		   }
+		else
+		{return false;}
+	}
+
+	public Product getProduct(Product pro) {
+		//根据传来的编号查询产品。
+		Product recpro=prodao.getProduct(pro);
+		return  recpro;
+	}
+
+}

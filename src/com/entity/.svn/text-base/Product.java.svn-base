@@ -1,0 +1,77 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Product entity. @author MyEclipse Persistence Tools
+ */
+
+public class Product implements java.io.Serializable {
+
+	// Fields
+
+	private Integer productId;
+	private String productName;
+	private String productDesc;
+	private Double productPrice;
+	private Set clientses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Product() {
+	}
+
+	/** full constructor */
+	public Product(String productName, String productDesc, Double productPrice,
+			Set clientses) {
+		this.productName = productName;
+		this.productDesc = productDesc;
+		this.productPrice = productPrice;
+		this.clientses = clientses;
+	}
+
+	// Property accessors
+
+	public Integer getProductId() {
+		return this.productId;
+	}
+
+	public void setProductId(Integer productId) {
+		this.productId = productId;
+	}
+
+	public String getProductName() {
+		return this.productName;
+	}
+
+	public void setProductName(String productName) {
+		this.productName = productName;
+	}
+
+	public String getProductDesc() {
+		return this.productDesc;
+	}
+
+	public void setProductDesc(String productDesc) {
+		this.productDesc = productDesc;
+	}
+
+	public Double getProductPrice() {
+		return this.productPrice;
+	}
+
+	public void setProductPrice(Double productPrice) {
+		this.productPrice = productPrice;
+	}
+
+	public Set getClientses() {
+		return this.clientses;
+	}
+
+	public void setClientses(Set clientses) {
+		this.clientses = clientses;
+	}
+
+}

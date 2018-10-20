@@ -1,0 +1,80 @@
+package com.entity;
+
+/**
+ * Sendtips entity. @author MyEclipse Persistence Tools
+ */
+
+public class Sendtips implements java.io.Serializable {
+
+	// Fields
+
+	private Integer tipsId;
+	private Users users;
+	private String tipscontext;
+	private Integer receiveUserId;
+	private String sendDate;
+
+	// Constructors
+
+	/** default constructor */
+	public Sendtips() {
+	}
+
+	/** minimal constructor */
+	public Sendtips(Integer tipsId) {
+		this.tipsId = tipsId;
+	}
+
+	/** full constructor */
+	public Sendtips(Integer tipsId, Users users, String tipscontext,
+			Integer receiveUserId, String sendDate) {
+		this.tipsId = tipsId;
+		this.users = users;
+		this.tipscontext = tipscontext;
+		this.receiveUserId = receiveUserId;
+		this.sendDate = sendDate;
+	}
+
+	// Property accessors
+
+	public Integer getTipsId() {
+		return this.tipsId;
+	}
+
+	public void setTipsId(Integer tipsId) {
+		this.tipsId = tipsId;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public String getTipscontext() {
+		return this.tipscontext;
+	}
+
+	public void setTipscontext(String tipscontext) {
+		this.tipscontext = tipscontext;
+	}
+
+	public Integer getReceiveUserId() {
+		return this.receiveUserId;
+	}
+
+	public void setReceiveUserId(Integer receiveUserId) {
+		this.receiveUserId = receiveUserId;
+	}
+
+	public String getSendDate() {
+		return this.sendDate;
+	}
+
+	public void setSendDate(String sendDate) {
+		this.sendDate = sendDate;
+	}
+
+}

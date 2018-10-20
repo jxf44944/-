@@ -1,0 +1,55 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IClienttypesDao;
+import com.entity.Clienttypes;
+import com.service.IClienttypesService;
+
+@Service("clienttypesService")
+public class ClienttypesServiceImpl implements IClienttypesService {
+
+	private IClienttypesDao clienttypesDao;
+	
+	@Resource(name="clienttypesDao")
+	public void setClienttypesDao(IClienttypesDao clienttypesDao) {
+		this.clienttypesDao = clienttypesDao;
+	}
+
+	public boolean insClienttypes(Clienttypes lity) {
+		if(clienttypesDao.insert(lity))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean uptClienttypes(Clienttypes lity) {
+		if(clienttypesDao.update(lity))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean delClienttypes(Clienttypes lity) {
+		if(clienttypesDao.delete(lity))
+			return true;
+		else
+			return false;
+	}
+
+	public List<Clienttypes> searchClienttypes(Clienttypes lity) {
+		List<Clienttypes> clienttypesList = null;
+		if(lity==null)
+			clienttypesList = clienttypesDao.selectAll();
+		return clienttypesList;
+	}
+
+	public Clienttypes getClienttypes(Clienttypes lity) {
+		Clienttypes clienttypes = clienttypesDao.getClienttypes(lity);
+		return clienttypes;
+	}
+}

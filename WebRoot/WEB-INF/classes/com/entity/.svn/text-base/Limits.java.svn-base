@@ -1,0 +1,77 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Limits entity. @author MyEclipse Persistence Tools
+ */
+
+public class Limits implements java.io.Serializable {
+
+	// Fields
+
+	private Integer limitId;
+	private Limittype limittype;
+	private String limitName;
+	private String limitUrl;
+	private Set roleandlimitses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Limits() {
+	}
+
+	/** full constructor */
+	public Limits(Limittype limittype, String limitName, String limitUrl,
+			Set roleandlimitses) {
+		this.limittype = limittype;
+		this.limitName = limitName;
+		this.limitUrl = limitUrl;
+		this.roleandlimitses = roleandlimitses;
+	}
+
+	// Property accessors
+
+	public Integer getLimitId() {
+		return this.limitId;
+	}
+
+	public void setLimitId(Integer limitId) {
+		this.limitId = limitId;
+	}
+
+	public Limittype getLimittype() {
+		return this.limittype;
+	}
+
+	public void setLimittype(Limittype limittype) {
+		this.limittype = limittype;
+	}
+
+	public String getLimitName() {
+		return this.limitName;
+	}
+
+	public void setLimitName(String limitName) {
+		this.limitName = limitName;
+	}
+
+	public String getLimitUrl() {
+		return this.limitUrl;
+	}
+
+	public void setLimitUrl(String limitUrl) {
+		this.limitUrl = limitUrl;
+	}
+
+	public Set getRoleandlimitses() {
+		return this.roleandlimitses;
+	}
+
+	public void setRoleandlimitses(Set roleandlimitses) {
+		this.roleandlimitses = roleandlimitses;
+	}
+
+}

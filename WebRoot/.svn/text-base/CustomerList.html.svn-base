@@ -1,0 +1,114 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 客户管理&gt;&gt;客户列表</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+
+<table id="list_table" >
+      <tr>
+        <th width="4%"   >
+          <input type="checkbox" name="checkbox" id="checkbox" />
+        </th>
+        <th width="10%"  >用户名</th>
+        <th width="10%" >用户角色</th>
+	<th width="10%" >客户类别</th>
+	<th width="10%" >负责人</th>
+        <th width="14%"  >联系方式</th>
+        <th width="16%" >QQ</th>
+        <th width="17%">来源渠道</th>
+	<th width="13%" >基本操作</th>
+      </tr>
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox2" id="checkbox2" />
+        </td>
+        <td >Alex</td>
+        <td >学生</td>
+	<td >B类别</td>
+	<td >张三</td>
+        <td >13913612548</td>
+        <td >168012419</td>
+        <td >《广州日报》看到的</td>
+        <td ><span class="STYLE21">删除 | 查看</span></td>
+      </tr>
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox3" id="checkbox3" />
+        </td>
+        <td >json</td>
+        <td >学生</td>
+	<td >D类别</td>
+	<td >张三</td>
+        <td >13913612548</td>
+        <td >168012419</td>
+        <td >《广州日报》看到的</td>
+        <td  ><span class="STYLE21">删除 | 查看</span></td>
+      </tr>
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox4" id="checkbox4" />
+        </td>
+        <td >mark</td>
+        <td >学生</td>
+	<td >A类别</td>
+	<td >张四</td>
+        <td >13913612548</td>
+        <td >168012419</td>
+        <td >《广州日报》看到的</td>
+        <td  ><span class="STYLE21">删除 | 查看</span></td>
+      </tr>
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox5" id="checkbox5" />
+        </td>
+        <td >make</td>
+        <td >学生</td>
+	<td >A类别</td>
+	<td >李四</td>
+        <td >13913612548</td>
+        <td >168012419</td>
+        <td >《广州日报》看到的</td>
+        <td  ><span class="STYLE21">删除 | 查看</span></td>
+      </tr>
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox5" id="checkbox5" />
+        </td>
+        <td >Alice</td>
+        <td >学生</td>
+	<td >C类别</td>
+	<td >王五</td>
+        <td >13913612548</td>
+        <td >168012419</td>
+        <td >《广州日报》看到的</td>
+        <td  ><span class="STYLE21">删除 | 查看</span></td>
+      </tr>
+    </table>
+    
+<div id="page_bar">
+	<div id="page">
+    	共有<strong> 5</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>1</strong> 页
+    </div>
+    
+   <div id="tool">
+  	<a href="#">首页</a>
+    	<a href="#">上一页</a>
+   	<a href="#">下一页</a>
+    	<a href="#">末页</a>
+    转到<input type="text" name="currentPage" />页
+  </div>
+</div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Workitems;
+import com.service.IWorkitemsService;
+
+public class WorkitemsAction {
+	
+	private Workitems workitems;
+	private IWorkitemsService workitemsService;
+	private List<Workitems> workitemsList;
+	
+	@Resource(name="workitemsService")
+	public void setWorkitemsService(IWorkitemsService workitemsService) {
+		this.workitemsService = workitemsService;
+	}
+	
+	public List<Workitems> getWorkitemsList() {
+		return workitemsList;
+	}
+
+	public void setWorkitemsList(List<Workitems> workitemsList) {
+		this.workitemsList = workitemsList;
+	}
+
+	public Workitems getWorkitems() {
+		return workitems;
+	}
+	
+	public void setWorkitems(Workitems workitems) {
+		this.workitems = workitems;
+	}
+	
+	public String toAddWorkitems(){
+		return "success";
+	}
+	
+	public String ListWorkitems(){
+		workitemsList = workitemsService.searchWorkitems(null);
+		return "toList";
+	}
+	
+	public String getWorkitemsA(){
+		workitems = workitemsService.getWorkitems(workitems);
+		return "success";
+	}
+	
+	public String AddWorkitems(){
+		workitemsService.insWorkitems(workitems);
+		return "WorkitemsList";
+	}
+	
+	public String DelWorkitems(){
+		workitemsService.delWorkitems(workitems);
+		return "WorkitemsList";
+	}
+	
+	public String UpdateWorkitems(){
+		workitemsService.uptWorkitems(workitems);
+		return "WorkitemsList";
+	}
+}

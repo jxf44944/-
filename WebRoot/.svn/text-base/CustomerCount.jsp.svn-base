@@ -1,0 +1,55 @@
+﻿<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ page import="org.jfree.data.general.DefaultPieDataset,org.jfree.chart.ChartFactory
+,org.jfree.chart.JFreeChart,org.jfree.chart.servlet.*" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath }/css/main.css"/>
+
+</head>
+<body>
+<div id="title_bar">
+	<span id="title" > 客户管理&gt;&gt;数据统计</span>
+
+</div>
+<div>
+<table width="100%" id="list_table" >
+	<caption >
+		<a href="${pageContext.request.contextPath }/clientsModel/toCountTypeAction">按客户类型统计</a>
+		<a href="${pageContext.request.contextPath }/clientsModel/toCountProductAction">按产品需求统计</a>
+		<a href="${pageContext.request.contextPath }/clientsModel/toCountChannelAction">按来源渠道统计</a>
+		<a href="${pageContext.request.contextPath }/clientsModel/toCountUserAction">按照跟进人统计</a>
+	</caption>
+		<tr>
+      	 <c:forEach items="${clitypelist}" var="c">
+   		 	<th>${c.ctypeName}</th>
+   		</c:forEach>
+   		<c:forEach items="${userlist}" var="u">
+   		 	<th>${u.username}</th>
+   		</c:forEach>
+   		<c:forEach items="${chalist}" var="ch">
+   		 	<th>${ch.channelName}</th>
+   		</c:forEach>
+   		<c:forEach items="${prolist}" var="p">
+   		 	<th>${p.productName}</th>
+   		</c:forEach>
+   		<th>合计</th>
+		</tr>
+		<tr>
+		<s:iterator value="map" id="column">
+			<td><s:property value="value"/>人</td>
+		</s:iterator>
+			<td><s:property value="counts"/>人</td>
+		</tr>
+</table>
+</div>  
+<div>
+<img id="clitype" src="${pageContext.request.contextPath }/clientsModel/toCountTypeAction2"/>
+<img id="prolist" src="${pageContext.request.contextPath }/clientsModel/toCountProductAction2"/>
+</div> 
+</body>
+</html>

@@ -1,0 +1,105 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IClientsDao;
+import com.entity.Clients;
+
+@Repository(value = "cliDao")
+public class ClientsDaoImpl extends BaseDAO implements IClientsDao {
+
+	public boolean insert(Clients cli) {
+		System.out.println("cli==="+cli.getClientId());
+		this.getHibernateTemplate().save(cli);
+		return true;
+	}
+
+	public boolean update(Clients cli) {
+		this.getHibernateTemplate().update(cli);
+		return true;
+	}
+
+	public boolean delete(Clients cli) {
+		Clients delcli = (Clients) this.getHibernateTemplate().load(
+				Clients.class, cli.getClientId());
+		this.getHibernateTemplate().delete(delcli);
+		return true;
+	}
+
+	// 查询所有列表
+	public List selectAll() {
+		List<Clients> li = this.getHibernateTemplate().find("from Clients");
+		return li;
+	}
+
+	// 按照条件来查询客户
+	public List select(Clients cli) {
+		String where = " where 1=1";
+		if (cli.getClientName() != null && cli.getClientName().length() > 0) {
+			where = where + " and clientName like '%" + cli.getClientName()
+					+ "%'";
+		}
+		if (cli.getUsers().getUserId() != null && cli.getUsers().getUserId()> 0) {
+			where = where + " and users.userId =" + cli.getUsers().getUserId();
+		}
+		if (cli.getProduct().getProductId() != null && cli.getProduct().getProductId()> 0) {
+			where = where + " and product.productId =" + cli.getProduct().getProductId();
+		}
+		if (cli.getClienttypes().getCtypeId() != null && cli.getClienttypes().getCtypeId() > 0) {
+			where = where + " and clienttypes.ctypeId =" + cli.getClienttypes().getCtypeId();
+		}
+		if (cli.getChannels().getChannelId() != null && cli.getChannels().getChannelId() > 0) {
+			where = where + " and channels.channelId =" + cli.getChannels().getChannelId();
+		}
+		if (cli.getClientJob() != null && cli.getClientJob().length() > 0) {
+			where = where + " and clientJob like '%" + cli.getClientJob()
+					+ "%'";
+		}
+		if (cli.getClientState() != null && cli.getClientState().length() > 0) {
+			where = where + " and clientState like '%" + cli.getClientState()
+					+ "%'";
+		}
+		if (cli.getClientSchool() != null && cli.getClientSchool().length() > 0) {
+			where = where + " and clientSchool like '%" + cli.getClientSchool()
+					+ "%'";
+		}
+		if (cli.getClientEducate() != null && cli.getClientEducate().length() > 0) {
+			where = where + " and clientEducate like '%" + cli.getClientEducate()
+					+ "%'";
+		}
+		String selecthql = "from Clients" + where;
+		List<Clients> li = this.getHibernateTemplate().find(selecthql);
+		return li;
+	}
+	
+	//统计数据
+	public List select2(Clients cli) {
+		String where = " where 1=1";
+		if (cli.getUsers() != null && cli.getUsers().getUserId()> 0) {
+			where = where + " and users.userId =" + cli.getUsers().getUserId();
+		}
+		if (cli.getProduct() != null && cli.getProduct().getProductId()> 0) {
+			where = where + " and product.productId =" + cli.getProduct().getProductId();
+		}
+		if (cli.getClienttypes()!= null && cli.getClienttypes().getCtypeId() > 0) {
+			where = where + " and clienttypes.ctypeId =" + cli.getClienttypes().getCtypeId();
+		}
+		if (cli.getChannels()!= null && cli.getChannels().getChannelId() > 0) {
+			where = where + " and channels.channelId =" + cli.getChannels().getChannelId();
+		}
+		
+		String selecthql = "from Clients" + where;
+		List<Clients> li = this.getHibernateTemplate().find(selecthql);
+		return li;
+	}
+
+	// 更改页面时获取要更改的客户信息
+	public Clients getClients(Clients cli) {
+		return this.getHibernateTemplate()
+				.get(Clients.class, cli.getClientId());
+	}
+
+}

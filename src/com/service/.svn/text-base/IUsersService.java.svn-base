@@ -1,0 +1,40 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Channels;
+import com.entity.Clients;
+import com.entity.Clienttypes;
+import com.entity.Users;
+
+public interface IUsersService {
+   
+    
+     public List<Users> searchUsers(Users cli);
+     
+     
+     
+
+ 	/**新增*/
+ 	public boolean insUsers(Users user);
+ 	
+ 	/**删除*/
+ 	public boolean delUsers(Users user);
+ 	
+ 	/**修改**/
+ 	public boolean uptUsers(Users user);
+ 	
+ 	/**查找单条记录信息**/
+ 	public Users getUsers(Users user);
+ 	
+ 	/**按条件查找所有符合的记录
+ 	 * */
+ 	public List<Users> list(String sql);
+ 	
+ 	/**查询所有的用户*/
+ 	public List<Users> listAll();
+ 	
+ 	/***用户登录验证*/
+ 	public Users checkUser(Users user);
+     
+}

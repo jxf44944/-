@@ -1,0 +1,53 @@
+package com.entity;
+
+/**
+ * Roleandlimits entity. @author MyEclipse Persistence Tools
+ */
+
+public class Roleandlimits implements java.io.Serializable {
+
+	// Fields
+
+	private Integer id;
+	private Roles roles;
+	private Limits limits;
+
+	// Constructors
+
+	/** default constructor */
+	public Roleandlimits() {
+	}
+
+	/** full constructor */
+	public Roleandlimits(Roles roles, Limits limits) {
+		this.roles = roles;
+		this.limits = limits;
+	}
+
+	// Property accessors
+
+	public Integer getId() {
+		return this.id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public Roles getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
+
+	public Limits getLimits() {
+		return this.limits;
+	}
+
+	public void setLimits(Limits limits) {
+		this.limits = limits;
+	}
+
+}

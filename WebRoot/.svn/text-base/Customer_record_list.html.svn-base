@@ -1,0 +1,89 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 客户信息&gt;&gt客户记录列表</span>
+
+     <ul id="operation">
+	<li><input name='txt3' type="text" class="text" style="width:100px" value="" /></li>
+        <li><img  width="10" height="10" />查询</a></li>
+    </ul>
+</div>
+
+<table id="list_table" >
+      <tr>
+        
+    <th width="40">编号</th>
+    <th width="300">客户</th>
+    <th width="76">业务状态</th>
+    <th width="76">负责人</th>
+    <th width="125">操作时间</th>
+    <th width="150" colspan="5">描述</th>
+      </tr>
+      <tr>
+        
+       <td>1</td>
+    <td>小明</td>
+    <td>A类用户</td>
+    <td>tom</td>
+    <td colspan="5">2013-11-11</td>
+    <td>新进用户</td>
+      </tr>
+      <tr>
+        
+         <td>2</td>
+    <td>小明</td>
+    <td>回访A类客户</td>
+    <td>tom</td>
+    <td colspan="5">2013-11-11</td>
+    <td>有意来学学习</td>
+      </tr>
+      <tr>
+        <td>3</td>
+    <td>小明</td>
+    <td>详谈</td>
+    <td>tom</td>
+    <td colspan="5">2013-11-11</td>
+    <td>客户基本了解本业务</td>
+      </tr>
+      <tr>
+        <td>4</td>
+    <td>小明</td>
+    <td>修改客户类型</td>
+    <td>tom</td>
+    <td colspan="5">2013-11-11</td>
+    <td>主动来了解本业务</td>
+      </tr>
+       <tr>
+        <td>5</td>
+    <td>小明</td>
+    <td>签约</td>
+    <td>tom</td>
+    <td colspan="5">2013-11-11</td>
+    <td>客户完成本次业务</td>
+      </tr> 
+       
+      
+    </table>
+    
+<div id="page_bar">
+	<div id="page">
+    	共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong> 页
+    </div>
+    
+   <div id="tool">
+  	<a href="#">首页</a>
+    <a href="#">上一页</a>
+    <a href="#">下一页</a>
+    <a href="#">末页</a>
+    转到<input type="text" name="currentPage" value="5"/>页
+  </div>
+</div>
+</body>
+</html>

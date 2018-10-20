@@ -1,0 +1,94 @@
+package com.entity;
+
+/**
+ * Workchange entity. @author MyEclipse Persistence Tools
+ */
+
+public class Workchange implements java.io.Serializable {
+
+	// Fields
+
+	private Integer changeId;
+	private Clients clients;
+	private Users users;
+	private Workprojects workprojects;
+	private String changeDesc;
+	private String changeUsername;
+	private String changeTime;
+
+	// Constructors
+
+	/** default constructor */
+	public Workchange() {
+	}
+
+	/** full constructor */
+	public Workchange(Clients clients, Users users, Workprojects workprojects,
+			String changeDesc, String changeUsername, String changeTime) {
+		this.clients = clients;
+		this.users = users;
+		this.workprojects = workprojects;
+		this.changeDesc = changeDesc;
+		this.changeUsername = changeUsername;
+		this.changeTime = changeTime;
+	}
+
+	// Property accessors
+
+	public Integer getChangeId() {
+		return this.changeId;
+	}
+
+	public void setChangeId(Integer changeId) {
+		this.changeId = changeId;
+	}
+
+	public Clients getClients() {
+		return this.clients;
+	}
+
+	public void setClients(Clients clients) {
+		this.clients = clients;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Workprojects getWorkprojects() {
+		return this.workprojects;
+	}
+
+	public void setWorkprojects(Workprojects workprojects) {
+		this.workprojects = workprojects;
+	}
+
+	public String getChangeDesc() {
+		return this.changeDesc;
+	}
+
+	public void setChangeDesc(String changeDesc) {
+		this.changeDesc = changeDesc;
+	}
+
+	public String getChangeUsername() {
+		return this.changeUsername;
+	}
+
+	public void setChangeUsername(String changeUsername) {
+		this.changeUsername = changeUsername;
+	}
+
+	public String getChangeTime() {
+		return this.changeTime;
+	}
+
+	public void setChangeTime(String changeTime) {
+		this.changeTime = changeTime;
+	}
+
+}

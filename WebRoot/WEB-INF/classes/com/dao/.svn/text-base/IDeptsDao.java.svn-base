@@ -1,0 +1,30 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Depts;
+import com.entity.Product;
+
+public interface IDeptsDao {
+	
+	public List selectAll();
+	public List select(String sql);
+	public Depts getDepts(Depts pt);
+	
+	
+
+	/**增加部门**/
+	public boolean insert(Depts dept);
+	
+	/**删除部门**/
+	public boolean delete(Depts dept);
+	
+	/**修改部门**/
+	public boolean update(Depts dept);
+	
+	/**查询单个部门**/
+	public Depts getDept(Depts dept);
+	
+	/**查询部门列表**/
+	public List<Depts> list();
+}

@@ -1,0 +1,132 @@
+package com.action;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
+import javax.annotation.Resource;
+
+import com.entity.Limits;
+import com.entity.Roleandlimits;
+import com.entity.Roles;
+import com.entity.Users;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.ILimitsService;
+import com.service.IRoleService;
+import com.service.IRoleandlimitsService;
+import com.service.IUsersService;
+
+/***
+ * 用户登录action
+ * @author Feng
+ *
+ */
+public class LoginAction extends ActionSupport{
+	
+	/**
+	 * 登录操作
+	 * 1.需要将页面上的用户名，密码封装到user里，传到后台进行验证
+	 * 2.验证通过，需要到后台获取用户对应角色所拥有的菜单项，返回到左侧的菜单栏中
+	 *
+	 * **/
+	
+	private IUsersService userService;
+	private IRoleService roleService;
+	private IRoleandlimitsService roleandlimitService;
+	private ILimitsService limitService;
+	
+	/**登录的用户**/
+	private Users user;
+	/**用户所拥有的权限*/
+	private List<Limits> limitList;
+	
+	
+	public IRoleandlimitsService getRoleandlimitService() {
+		return roleandlimitService;
+	}
+	@Resource(name="roleandlimitsService")
+	public void setRoleandlimitService(IRoleandlimitsService roleandlimitService) {
+		this.roleandlimitService = roleandlimitService;
+	}
+	public ILimitsService getLimitService() {
+		return limitService;
+	}
+	@Resource(name="limitsService")
+	public void setLimitService(ILimitsService limitService) {
+		this.limitService = limitService;
+	}
+	public IRoleService getRoleService() {
+		return roleService;
+	}
+	@Resource(name="roleService")
+	public void setRoleService(IRoleService roleService) {
+		this.roleService = roleService;
+	}
+	public IUsersService getUserService() {
+		return userService;
+	}
+	@Resource(name="usersService")
+	public void setUserService(IUsersService userService) {
+		this.userService = userService;
+	}
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	public List<Limits> getLimitList() {
+		return limitList;
+	}
+	public void setLimitList(List<Limits> limitList) {
+		this.limitList = limitList;
+	}
+	
+	
+	/**登录验证
+	 * 通过验证-->获取角色-->获取角色菜单-->获取菜单-->返回页面
+	 * **/
+	public String checkLogin(){
+		System.out.println("here is CheckLogin 88  here is ok........");
+		
+		Users retUser = userService.checkUser(user);
+		if(retUser!=null){
+			Roles role = retUser.getRoles();
+			Roles retRole = roleService.getRoles(role);//用户验证的时候已经拿到了角色 了，需不需要再去拿一次呢？
+			System.out.println(retRole.getRoleGrade()+"..........grade ");
+		//	StringBuffer sbr = new StringBuffer("");
+			List<Roleandlimits> roleAndlimitList = roleandlimitService.list("where role_id="+role.getRoleId());
+			List<Limits> limitList2 = new ArrayList<Limits>();
+			for(Roleandlimits randl : roleAndlimitList){
+				Limits limit = randl.getLimits();
+				limitList2.add(limit);
+			}
+			limitList = limitList2;
+	
+			for(Limits limit : limitList2){
+				System.out.println(limit.getLimitName()+"..106.."+limit.getLimitUrl());
+			}
+			Map  session=ActionContext.getContext().getSession();
+			session.put("mylimitlist",limitList);
+			session.put("loginUser", retUser);
+			session.put("role", retRole);
+            System.out.println(limitList.size()+"....limitlist..size..line 99.LoginAction.");		 
+			return "LoginSuccess";
+		}
+		
+		return "input";
+	}
+	public String ExitLogin(){
+		ActionContext.getContext().getSession().remove("limitList");
+		ActionContext.getContext().getSession().remove("loginUser");
+		ActionContext.getContext().getSession().remove("role");
+		return "Exitsuccess";
+	}
+	public String ToLogin(){
+		return "gosuccess";
+	}
+	
+	
+	
+}

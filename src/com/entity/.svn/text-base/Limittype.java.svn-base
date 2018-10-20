@@ -1,0 +1,66 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Limittype entity. @author MyEclipse Persistence Tools
+ */
+
+public class Limittype implements java.io.Serializable {
+
+	// Fields
+
+	private Integer ltypeId;
+	private String ltypeName;
+	private String ltypeDesc;
+	private Set limitses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Limittype() {
+	}
+
+	/** full constructor */
+	public Limittype(String ltypeName, String ltypeDesc, Set limitses) {
+		this.ltypeName = ltypeName;
+		this.ltypeDesc = ltypeDesc;
+		this.limitses = limitses;
+	}
+
+	// Property accessors
+
+	public Integer getLtypeId() {
+		return this.ltypeId;
+	}
+
+	public void setLtypeId(Integer ltypeId) {
+		this.ltypeId = ltypeId;
+	}
+
+	public String getLtypeName() {
+		return this.ltypeName;
+	}
+
+	public void setLtypeName(String ltypeName) {
+		this.ltypeName = ltypeName;
+	}
+
+	public String getLtypeDesc() {
+		return this.ltypeDesc;
+	}
+
+	public void setLtypeDesc(String ltypeDesc) {
+		this.ltypeDesc = ltypeDesc;
+	}
+
+	public Set getLimitses() {
+		return this.limitses;
+	}
+
+	public void setLimitses(Set limitses) {
+		this.limitses = limitses;
+	}
+
+}

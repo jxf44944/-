@@ -1,0 +1,64 @@
+﻿<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 工作管理&gt;&gt;修改工作任务的状态</span>
+   
+</div>
+ <s:form  action="Workprojects_Update2"  method="post">
+  <table width="1055" id="update_table" >
+    <tr>
+      <td>以下带*为必填项：</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+	<tr>
+    <td colspan="3" bgcolor="#FFFFFF">
+        <s:textfield name="workprojects.projectId" type="hidden" value="%{workprojects.projectId}"/>
+        <s:textfield name="workprojects.users.userId" type="hidden" value="%{workprojects.users.userId}"/>
+        <s:textfield name="workprojects.workitems.itemId" type="hidden" value="%{workprojects.workitems.itemId}"/>
+        <s:textfield name="workprojects.clients.clientId" type="hidden" value="%{workprojects.clients.clientId}"/>
+        <s:textfield name="workprojects.projectUptime" type="hidden" value="%{workprojects.projectUptime}"/>
+		<s:textfield name="workprojects.projectDowntime" type="hidden" value="%{workprojects.projectDowntime}"/>
+		<s:textfield name="workprojects.projectType" type="hidden" value="%{workprojects.projectType}"/>
+		<s:textfield name="workprojects.projectColleague" type="hidden" value="%{workprojects.projectColleague}"/>
+		<s:textfield name="workprojects.projectDesc" type="hidden" value="%{workprojects.projectDesc}"/>
+		<s:textfield name="workprojects.projectTitle"  label="工作任务" value="%{workprojects.projectTitle}" disable="true"/>
+    </td>
+	</tr>
+
+
+    <tr>
+      <td><s:select name="workprojects.projectState" label="工作任务的状态" emptyOption="true"
+    	 list="#{'0':'未处理','1':'处理失败','2':'处理成功'}"  value="%{workprojects.projectState}" >
+    	</s:select></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    
+    <tr>
+	  <s:submit/>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</s:form>
+<p>&nbsp;</p>
+</body>
+</html>

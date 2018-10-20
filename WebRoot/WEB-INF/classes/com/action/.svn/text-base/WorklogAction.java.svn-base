@@ -1,0 +1,131 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Roles;
+import com.entity.Users;
+import com.entity.Worklog;
+import com.entity.Workprojects;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IWorklogService;
+import com.service.IWorkprojectsService;
+
+public class WorklogAction extends ActionSupport{
+	private Worklog worklog;
+	
+	private IWorkprojectsService workprojectsservice;
+	
+	private IWorklogService worklogservice;
+	
+	private List<Worklog> workloglist;
+
+	private List<Workprojects> workprojectslist;
+	
+	private List<Users> usersList;
+	
+	//获取session的值
+		Roles role=(Roles) ActionContext.getContext().getSession().get("role");
+		Users user=(Users) ActionContext.getContext().getSession().get("loginUser");
+	//获取登录用户的ID
+		int i=user.getUserId();
+		String sql=" where user_id in ("+i+")";
+
+	public Worklog getWorklog() {
+		return worklog;
+	}
+
+	public void setWorklog(Worklog worklog) {
+		this.worklog = worklog;
+	}
+	
+	public IWorklogService getWorklogservice() {
+		return worklogservice;
+	}
+	
+	public List<Workprojects> getWorkprojectslist() {
+		return workprojectslist;
+	}
+
+	public void setWorkprojectslist(List<Workprojects> workprojectslist) {
+		this.workprojectslist = workprojectslist;
+	}
+
+	@Resource(name="WorklogService")
+	public void setWorklogservice(IWorklogService worklogservice) {
+		this.worklogservice = worklogservice;
+	}
+	
+	@Resource(name="workprojectsService")
+	public void setWorkprojectsservice(IWorkprojectsService workprojectsservice) {
+		this.workprojectsservice = workprojectsservice;
+	}
+
+	public List<Worklog> getWorkloglist() {
+		return workloglist;
+	}
+
+	
+	public List<Users> getUsersList() {
+		return usersList;
+	}
+
+	public void setWorkloglist(List<Worklog> workloglist) {
+		this.workloglist = workloglist;
+	}
+	
+
+	//List所有工作记录
+	public String ListWorklog(){
+		if(role.getRoleGrade()==1)
+		{
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		workloglist=worklogservice.searchWorklog(null);
+		}
+		else if(role.getRoleGrade()==2)
+		{
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);	
+		}
+		else
+		{ 
+		  workprojectslist=workprojectsservice.selectWorkprojectList(sql);
+		  workloglist=worklogservice.searchWorklog(sql);
+		}
+		usersList=workprojectsservice.selectUsersList();
+		return "toList";
+	}
+	// 新增提交
+	public String AddWorklog() {
+		worklog.setUsers(user);
+		worklogservice.insWorklog(worklog);
+		return "WorklogList";
+	}
+	//删除一条记录
+	public String DelWorklog() {
+		worklogservice.delWorklog(worklog);
+		return "WorklogList";
+	}
+	//跳去添加页面
+	public String toAddWorklog(){
+		String hql=sql+" and project_state in ("+0+")";
+		if(role.getRoleGrade()==1)
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		else
+		workprojectslist=workprojectsservice.selectWorkprojectList(hql);
+		return "success";
+	}
+	//获取一条记录
+	public String getWorklogA() {
+		worklog = worklogservice.getWorklog(worklog);
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		return "success";
+	}
+	//更新一条记录
+	public String UpdateWorklog() {
+		worklogservice.uptWorklog(worklog);
+		return "WorklogList";
+	}
+	
+}

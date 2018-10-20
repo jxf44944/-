@@ -1,0 +1,55 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IWorkitemsDao;
+import com.entity.Workitems;
+import com.service.IWorkitemsService;
+
+@Service("workitemsService")
+public class WorkitemsServiceImpl implements IWorkitemsService {
+	
+	private IWorkitemsDao workitemsDao;
+	
+	@Resource(name="workitemsDao")
+	public void setWorkitemsDao(IWorkitemsDao workitemsDao) {
+		this.workitemsDao = workitemsDao;
+	}
+
+	public boolean insWorkitems(Workitems work) {
+		if(workitemsDao.insert(work))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean uptWorkitems(Workitems work) {
+		if(workitemsDao.update(work))
+			return true;
+		else
+			return false;
+	}
+
+	public boolean delWorkitems(Workitems work) {
+		if(workitemsDao.delete(work))
+			return true;
+		else
+			return false;
+	}
+
+	public List<Workitems> searchWorkitems(Workitems work) {
+		List<Workitems> workitemsList = null;
+		if(work==null)
+			workitemsList = workitemsDao.selectAll();
+		return workitemsList;
+	}
+
+	public Workitems getWorkitems(Workitems work) {
+		Workitems workitems = workitemsDao.getWorkitems(work);
+		return workitems;
+	}
+}

@@ -1,0 +1,14 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Workitems;
+
+public interface IWorkitemsDao {
+	public boolean insert(Workitems work);
+	public boolean update(Workitems work);
+	public boolean delete(Workitems work);
+	public List selectAll();
+	public List select(String sql);
+	public Workitems getWorkitems(Workitems work);
+}

@@ -1,0 +1,82 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"
+	errorPage=""%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" >
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<title>业务管理系统</title>
+<script language="javascript">
+   function deleteChannels(paraproid)
+     {
+	var msg = "您确认要删除编号为" + paraproid + "的来源渠道吗?";
+    var r =window.confirm(msg);
+    if (r==true)
+        {
+         location.href="<%=request.getContextPath()%>/Channels_Del?channels.channelId="+paraproid;
+        }
+      }
+   function getChannels(paraproid)
+     {
+         location.href="<%=request.getContextPath()%>/ChannelstoUpdate?channels.channelId="+paraproid;
+      }
+
+  </script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+<body>
+	<div id="title_bar">
+		<span id="title"> 业务管理&gt;&gt;来源渠道管理</span>
+		<ul id="operation">
+			<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+			<li><img src="images/add.gif" width="10" height="10" /><a href="${pageContext.request.contextPath }/ChannelstoAdd"> 添加</a></li>
+			<li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+		</ul>
+	</div>
+	<table id="list_table">
+		<tr>
+			<th width="40" align="center" >选择</th>
+			<th width="40" align="center" >序号</th>
+			<th width="76" align="center" >渠道大类</th>
+			<th width="125" align="center" >具体渠道</th>
+			<th width="180" align="center" >描述</th>
+			<th width="125" align="center" >操作</th>
+		</tr>
+		<s:iterator value="channelsList" var="l">
+			<tr>
+				<td bgcolor="#FFFFFF" align="center"><input type="checkbox"
+					name="checkbox2" id="checkbox2" />
+				</td>
+				<td><s:property value="#l.channelId" />
+				</td>
+				<td>
+					<s:iterator value="ChanneltypesList" var="c">     
+					<s:if test="#c.channeltypeId==#l.channeltypes.channeltypeId">  
+						<s:property value="#c.channeltypeName" />
+					</s:if>     
+					</s:iterator>	
+				</td>
+				<td><s:property value="#l.channelName" />
+				</td>
+				<td><s:property value="#l.channelDesc" />
+				</td>
+				<td>
+					<a href="javascript:getChannels('<s:property value="#l.channelId" />')">修改</a>|
+					<a href="javascript:deleteChannels('<s:property value="#l.channelId" />')">删除</a>
+				</td>
+			</tr>
+		</s:iterator>
+	</table>
+	<div id="page_bar">
+		<div id="page">
+			共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong>
+			页
+		</div>
+
+		<div id="tool">
+			<a href="#">首页</a> <a href="#">上一页</a> <a href="#">下一页</a> <a
+				href="#">末页</a> 转到<input type="text" name="currentPage" value="5" />页
+		</div>
+	</div>
+</body>
+</html>

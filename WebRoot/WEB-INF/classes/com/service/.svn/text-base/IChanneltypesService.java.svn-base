@@ -1,0 +1,14 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Channeltypes;
+
+public interface IChanneltypesService {
+
+	public boolean insChanneltypes(Channeltypes chl);
+	public boolean delChanneltypes(Channeltypes chl);
+	public boolean uptChanneltypes(Channeltypes chl);
+	public List<Channeltypes> searchChanneltypes(Channeltypes chl);
+	public Channeltypes getChanneltypes(Channeltypes chl);
+}

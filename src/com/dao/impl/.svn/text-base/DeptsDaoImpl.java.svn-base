@@ -1,0 +1,57 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IDeptsDao;
+import com.entity.Depts;
+
+@Repository("deptsDao")
+public class DeptsDaoImpl extends BaseDAO implements IDeptsDao {
+	
+	public boolean delete(Depts pt) {
+		Depts delDepts = (Depts)this.getHibernateTemplate().load(Depts.class, pt.getDeptId());
+		this.getHibernateTemplate().delete(delDepts);
+		return true;
+	}
+
+	public Depts getDepts(Depts pt) {
+		return this.getHibernateTemplate().get(Depts.class, pt.getDeptId());
+   }
+
+	public boolean insert(Depts pt) {
+		this.getHibernateTemplate().save(pt);
+		return true;
+	}
+
+	public List selectAll() {
+		List list=this.getHibernateTemplate().find("from Depts ");
+		 return list;
+	}
+
+	public boolean update(Depts pt) {
+		this.getHibernateTemplate().update(pt);
+		return true;
+	}
+
+	public List select(String sql) {
+		 return null;
+	}
+	
+
+	
+	/**查询单个部门**/
+	public Depts getDept(Depts dept){
+		Depts recDept = this.getHibernateTemplate().get(Depts.class, dept.getDeptId());
+		return recDept;
+	}
+	
+	/**查询部门列表**/
+	public List<Depts> list(){
+		List<Depts> list = this.getHibernateTemplate().find("from Depts ");
+		return list;
+	}
+	
+}

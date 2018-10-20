@@ -1,0 +1,77 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Clienttypes entity. @author MyEclipse Persistence Tools
+ */
+
+public class Clienttypes implements java.io.Serializable {
+
+	// Fields
+
+	private Integer ctypeId;
+	private String ctypeName;
+	private String ctypeDesc;
+	private String followtime;
+	private Set clientses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Clienttypes() {
+	}
+
+	/** full constructor */
+	public Clienttypes(String ctypeName, String ctypeDesc, String followtime,
+			Set clientses) {
+		this.ctypeName = ctypeName;
+		this.ctypeDesc = ctypeDesc;
+		this.followtime = followtime;
+		this.clientses = clientses;
+	}
+
+	// Property accessors
+
+	public Integer getCtypeId() {
+		return this.ctypeId;
+	}
+
+	public void setCtypeId(Integer ctypeId) {
+		this.ctypeId = ctypeId;
+	}
+
+	public String getCtypeName() {
+		return this.ctypeName;
+	}
+
+	public void setCtypeName(String ctypeName) {
+		this.ctypeName = ctypeName;
+	}
+
+	public String getCtypeDesc() {
+		return this.ctypeDesc;
+	}
+
+	public void setCtypeDesc(String ctypeDesc) {
+		this.ctypeDesc = ctypeDesc;
+	}
+
+	public String getFollowtime() {
+		return this.followtime;
+	}
+
+	public void setFollowtime(String followtime) {
+		this.followtime = followtime;
+	}
+
+	public Set getClientses() {
+		return this.clientses;
+	}
+
+	public void setClientses(Set clientses) {
+		this.clientses = clientses;
+	}
+
+}

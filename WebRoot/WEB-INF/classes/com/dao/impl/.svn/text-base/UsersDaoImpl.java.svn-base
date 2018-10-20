@@ -1,0 +1,79 @@
+package com.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IUsersDao;
+import com.entity.Channels;
+import com.entity.Users;
+@Repository(value="usersDao")
+public class UsersDaoImpl extends BaseDAO implements IUsersDao {
+
+	
+
+	
+	/**删除用户*/
+	public boolean delete(Users cli) {
+		Users delcli = (Users) this.getHibernateTemplate().load(
+				Users.class, cli.getUserId());
+		this.getHibernateTemplate().delete(delcli);
+		return true;
+	}
+
+	public List select(Users cli) {
+	
+		return null;
+	}
+
+	public Users getUsers(Users cli) {
+		return this.getHibernateTemplate()
+				.get(Users.class, cli.getUserId());
+	}
+
+	public List selectAll() {
+		List<Users> li=this.getHibernateTemplate().find("from Users");
+		return li;
+	}
+
+	
+	
+	/**添加用户*/
+	public boolean insert(Users user){
+		this.getHibernateTemplate().save(user);
+		return true;
+	}
+	
+	
+	
+	
+	/**修改用户**/
+	public boolean update(Users user){
+		this.getHibernateTemplate().update(user);
+		return true;
+	}
+	
+	/**查询单个用户**/
+	public Users getUser(Users user){
+		Users user2 = this.getHibernateTemplate().get(Users.class, user.getUserId());
+		return user2;
+	}
+	
+	/**查询所有用户*/
+	public List<Users> list(String sql){
+		List<Users> list = new ArrayList<Users>();
+		if(sql!=null){
+			list = this.getHibernateTemplate().find("from Users "+sql);
+		}else{
+			list = this.getHibernateTemplate().find("from Users ");
+		}
+		
+			return list;
+		
+	}
+	
+	
+	
+}

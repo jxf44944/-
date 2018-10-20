@@ -1,0 +1,86 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IClientsDao;
+import com.entity.Clients;
+import com.service.IClientsService;
+import com.util.PageBean;
+@Service(value="cliService")
+public class ClientsServiceImpl implements IClientsService {
+
+	private  IClientsDao clidao;
+	@Resource(name="cliDao")
+	public  void setClidao(IClientsDao clidao) {
+		this.clidao = clidao;
+	}
+
+	public boolean insClients(Clients cli) {
+		if(clidao.insert(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean delClients(Clients cli) {
+		if(clidao.delete(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean uptClients(Clients cli) {
+		if(clidao.update(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public List<Clients> searchClients(Clients cli) {
+		List<Clients> clilist=null;
+		if(cli==null){
+			clilist=clidao.selectAll();
+		}else{
+			clilist=clidao.select(cli);
+		}
+		return clilist;
+	}
+	public List<Clients> searchClients2(Clients cli) {
+		List<Clients> clilist=null;
+		clilist=clidao.select2(cli);
+		return clilist;
+	}
+
+	public Clients getClients(Clients cli) {
+		Clients c=clidao.getClients(cli);
+		return c;
+	}
+
+	//用到的参数是为了把搜索的条件传入进来
+	public PageBean queryForPage(int pageSize, int currentPage, Clients cli) {
+		String where="";
+		String hql="from Clients "+where;
+		int allRow=clidao.getAllRowCount(hql);//总记录数
+		int totalPage =PageBean.countTotalPage(pageSize, allRow);//总页数
+		final int offset = PageBean.countOffset(pageSize, currentPage);//当前页开始记录
+		final int length =pageSize;//每页记录数
+		List list=clidao.queryForPage(hql, offset, length); //"一页"的记录
+	    //把分页信息保存到bean中
+	    PageBean pageBean = new PageBean();
+	    pageBean.setPageSize(pageSize);
+	    pageBean.setCurrentPage(currentPage);
+	    pageBean.setAllRow(allRow);
+	    pageBean.setTotalPage(totalPage);
+	    pageBean.setList(list);
+	    //pageBean.init();
+		return pageBean;
+	}
+
+}

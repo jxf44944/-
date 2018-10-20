@@ -1,0 +1,94 @@
+package com.entity;
+
+/**
+ * Worklog entity. @author MyEclipse Persistence Tools
+ */
+
+public class Worklog implements java.io.Serializable {
+
+	// Fields
+
+	private Integer worklogId;
+	private Users users;
+	private Workprojects workprojects;
+	private Workitems workitems;
+	private String worklogDesc;
+	private String worklogDate;
+	private Double workscore;
+
+	// Constructors
+
+	/** default constructor */
+	public Worklog() {
+	}
+
+	/** full constructor */
+	public Worklog(Users users, Workprojects workprojects, Workitems workitems,
+			String worklogDesc, String worklogDate, Double workscore) {
+		this.users = users;
+		this.workprojects = workprojects;
+		this.workitems = workitems;
+		this.worklogDesc = worklogDesc;
+		this.worklogDate = worklogDate;
+		this.workscore = workscore;
+	}
+
+	// Property accessors
+
+	public Integer getWorklogId() {
+		return this.worklogId;
+	}
+
+	public void setWorklogId(Integer worklogId) {
+		this.worklogId = worklogId;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Workprojects getWorkprojects() {
+		return this.workprojects;
+	}
+
+	public void setWorkprojects(Workprojects workprojects) {
+		this.workprojects = workprojects;
+	}
+
+	public Workitems getWorkitems() {
+		return this.workitems;
+	}
+
+	public void setWorkitems(Workitems workitems) {
+		this.workitems = workitems;
+	}
+
+	public String getWorklogDesc() {
+		return this.worklogDesc;
+	}
+
+	public void setWorklogDesc(String worklogDesc) {
+		this.worklogDesc = worklogDesc;
+	}
+
+	public String getWorklogDate() {
+		return this.worklogDate;
+	}
+
+	public void setWorklogDate(String worklogDate) {
+		this.worklogDate = worklogDate;
+	}
+
+	public Double getWorkscore() {
+		return this.workscore;
+	}
+
+	public void setWorkscore(Double workscore) {
+		this.workscore = workscore;
+	}
+
+}

@@ -1,0 +1,19 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Worklog;
+import com.entity.Workprojects;
+
+public interface IWorklogService {
+		//查出工作记录
+		public List<Worklog> searchWorklog(String sql);
+		//插入一条工作记录
+		public boolean insWorklog(Worklog worklog);
+		//删除一条工作记录
+		public boolean delWorklog(Worklog worklog);
+		//更新一条工作记录
+		public boolean uptWorklog(Worklog worklog);
+		//获取一条工作记录
+		public Worklog getWorklog(Worklog worklog);
+}

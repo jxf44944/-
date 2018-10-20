@@ -1,0 +1,84 @@
+package com.entity;
+
+/**
+ * Deptmsg entity. @author MyEclipse Persistence Tools
+ */
+
+public class Deptmsg implements java.io.Serializable {
+
+	// Fields
+
+	private Integer dmsgId;
+	private Depts depts;
+	private Users users;
+	private String deptmsgTitle;
+	private String deptmsgDesc;
+	private String deptmsgTime;
+
+	// Constructors
+
+	/** default constructor */
+	public Deptmsg() {
+	}
+
+	/** full constructor */
+	public Deptmsg(Depts depts, Users users, String deptmsgTitle,
+			String deptmsgDesc, String deptmsgTime) {
+		this.depts = depts;
+		this.users = users;
+		this.deptmsgTitle = deptmsgTitle;
+		this.deptmsgDesc = deptmsgDesc;
+		this.deptmsgTime = deptmsgTime;
+	}
+
+	// Property accessors
+
+	public Integer getDmsgId() {
+		return this.dmsgId;
+	}
+
+	public void setDmsgId(Integer dmsgId) {
+		this.dmsgId = dmsgId;
+	}
+
+	public Depts getDepts() {
+		return this.depts;
+	}
+
+	public void setDepts(Depts depts) {
+		this.depts = depts;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public String getDeptmsgTitle() {
+		return this.deptmsgTitle;
+	}
+
+	public void setDeptmsgTitle(String deptmsgTitle) {
+		this.deptmsgTitle = deptmsgTitle;
+	}
+
+	public String getDeptmsgDesc() {
+		return this.deptmsgDesc;
+	}
+
+	public void setDeptmsgDesc(String deptmsgDesc) {
+		this.deptmsgDesc = deptmsgDesc;
+	}
+
+	public String getDeptmsgTime() {
+		return this.deptmsgTime;
+	}
+
+	public void setDeptmsgTime(String deptmsgTime) {
+		this.deptmsgTime = deptmsgTime;
+	}
+
+}

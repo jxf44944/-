@@ -1,0 +1,481 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost_3306
+Source Server Version : 50096
+Source Host           : localhost:3306
+Source Database       : clientsystem_db
+
+Target Server Type    : MYSQL
+Target Server Version : 50096
+File Encoding         : 65001
+
+Date: 2014-02-28 11:56:39
+*/
+
+SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for `channels`
+-- ----------------------------
+DROP TABLE IF EXISTS `channels`;
+CREATE TABLE `channels` (
+  `channel_id` int(11) NOT NULL auto_increment,
+  `channeltype_id` int(11) default NULL,
+  `channel_name` varchar(200) default NULL,
+  `channel_desc` varchar(300) default NULL,
+  PRIMARY KEY  (`channel_id`),
+  KEY `FK_Reference_30` (`channeltype_id`),
+  CONSTRAINT `FK_Reference_30` FOREIGN KEY (`channeltype_id`) REFERENCES `channeltypes` (`channeltype_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of channels
+-- ----------------------------
+INSERT INTO `channels` VALUES ('1', '1', '51job网', '在51job网了解公司的信息。');
+INSERT INTO `channels` VALUES ('2', '2', '58同城', '一个神奇的宣传网站');
+INSERT INTO `channels` VALUES ('3', '4', '口碑传播', '通过培训过的同学介绍的。');
+INSERT INTO `channels` VALUES ('4', '1', '广州日报', '查看广州日报了解公司的产品。');
+INSERT INTO `channels` VALUES ('5', '2', '拓胜官网', '通过上网查看公司首页了解信息。');
+INSERT INTO `channels` VALUES ('6', '3', '学校实训', '通过到学校做实训，让学生了解公司信息。');
+
+-- ----------------------------
+-- Table structure for `channeltypes`
+-- ----------------------------
+DROP TABLE IF EXISTS `channeltypes`;
+CREATE TABLE `channeltypes` (
+  `channeltype_id` int(11) NOT NULL auto_increment,
+  `channeltype_name` varchar(200) default NULL,
+  `channeltype_desc` varchar(300) default NULL,
+  PRIMARY KEY  (`channeltype_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of channeltypes
+-- ----------------------------
+INSERT INTO `channeltypes` VALUES ('1', '平面媒体', '通过报纸、51job网了解到我公司的产品。');
+INSERT INTO `channeltypes` VALUES ('2', '线上传播', '上网查看我公司官网，了解公司的产品。');
+INSERT INTO `channeltypes` VALUES ('3', '校园活动', '通过到学校参与实训活动，了解我公司的产品。');
+INSERT INTO `channeltypes` VALUES ('4', '口碑传播', '通过培训过的学员推荐的。');
+
+-- ----------------------------
+-- Table structure for `clients`
+-- ----------------------------
+DROP TABLE IF EXISTS `clients`;
+CREATE TABLE `clients` (
+  `client_id` int(11) NOT NULL auto_increment,
+  `ctype_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `channel_id` int(11) default NULL,
+  `product_id` int(11) default NULL,
+  `client_name` varchar(200) default NULL,
+  `client_phone` varchar(300) default NULL,
+  `client_birthday` varchar(100) default NULL,
+  `client_qq` varchar(100) default NULL,
+  `client_hobby` varchar(300) default NULL,
+  `client_job` varchar(200) default NULL,
+  `client_sex` varchar(200) default NULL,
+  `client_age` int(11) default NULL,
+  `client_address` varchar(300) default NULL,
+  `client_school` varchar(200) default NULL,
+  `client_idcard` varchar(300) default NULL,
+  `client_educate` varchar(50) default NULL,
+  `client_major` varchar(50) default NULL,
+  `client_state` varchar(50) default NULL,
+  `native` varchar(50) default NULL,
+  `email` varchar(50) default NULL,
+  `description` varchar(50) default NULL,
+  PRIMARY KEY  (`client_id`),
+  KEY `FK334B86081AB18979` (`user_id`),
+  KEY `FK334B8608220041ED` (`ctype_id`),
+  KEY `FK334B86087F0CD43C` (`product_id`),
+  KEY `FK334B8608D993B505` (`channel_id`),
+  CONSTRAINT `FK334B86081AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `FK334B8608220041ED` FOREIGN KEY (`ctype_id`) REFERENCES `clienttypes` (`ctype_id`),
+  CONSTRAINT `FK334B86087F0CD43C` FOREIGN KEY (`product_id`) REFERENCES `product` (`product_id`),
+  CONSTRAINT `FK334B8608D993B505` FOREIGN KEY (`channel_id`) REFERENCES `channels` (`channel_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of clients
+-- ----------------------------
+INSERT INTO `clients` VALUES ('4', '1', '4', '2', '3', '张三', '13478909876', '1990-02-14', '567654345', '看书', '待业', '男', '24', '广州市番禺区数字区1栋233', '华南师范大学', '44123456543234578', '本科', '人力资源', '已报名', '广州', '567654345@qq.com', '对Java非常感兴趣，想报名');
+INSERT INTO `clients` VALUES ('5', '3', '4', '1', '3', '李四', '13567809876', '1997-03-21', '', '', '在职', '男', null, '', ', , ', '44463565465463', '本科, 本科, 本科', ', , ', '已毕业', '', '', '对培训没什么兴趣');
+
+-- ----------------------------
+-- Table structure for `clienttypes`
+-- ----------------------------
+DROP TABLE IF EXISTS `clienttypes`;
+CREATE TABLE `clienttypes` (
+  `ctype_id` int(11) NOT NULL auto_increment,
+  `ctype_name` varchar(30) default NULL,
+  `ctype_desc` varchar(300) default NULL,
+  `followtime` varchar(100) default NULL,
+  PRIMARY KEY  (`ctype_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of clienttypes
+-- ----------------------------
+INSERT INTO `clienttypes` VALUES ('1', 'A客户', '高价值，具有明确需求和购买意向的客户', '每3天');
+INSERT INTO `clienttypes` VALUES ('2', 'B客户', '具有需求，但意向不明确的客户', '每7天');
+INSERT INTO `clienttypes` VALUES ('3', 'C客户', '需求不明显的客户', '每15天');
+
+-- ----------------------------
+-- Table structure for `deptmsg`
+-- ----------------------------
+DROP TABLE IF EXISTS `deptmsg`;
+CREATE TABLE `deptmsg` (
+  `dmsg_id` int(11) NOT NULL auto_increment,
+  `dept_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `deptmsg_title` varchar(200) default NULL,
+  `deptmsg_desc` varchar(300) default NULL,
+  `deptmsg_time` varchar(100) default NULL,
+  PRIMARY KEY  (`dmsg_id`),
+  KEY `FK5CA9471C7F29E985` (`dept_id`),
+  KEY `FK5CA9471C1AB18979` (`user_id`),
+  CONSTRAINT `FK5CA9471C1AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `FK5CA9471C7F29E985` FOREIGN KEY (`dept_id`) REFERENCES `depts` (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of deptmsg
+-- ----------------------------
+INSERT INTO `deptmsg` VALUES ('1', '3', '5', '9点到办公室开会', '每个员工都要准时到达', '2014-02-27 21:22:32');
+INSERT INTO `deptmsg` VALUES ('2', '1', '1', '系统维护', '2014-02-01到2014-02-02，请大家准备好，因为维护影响工作', '2014-02-27 21:42:39');
+
+-- ----------------------------
+-- Table structure for `depts`
+-- ----------------------------
+DROP TABLE IF EXISTS `depts`;
+CREATE TABLE `depts` (
+  `dept_id` int(11) NOT NULL auto_increment,
+  `dept_name` varchar(200) default NULL,
+  `dept_desc` varchar(300) default NULL,
+  `dept_phone` varchar(200) default NULL,
+  PRIMARY KEY  (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of depts
+-- ----------------------------
+INSERT INTO `depts` VALUES ('1', '管理系统维护部', '管理所有信息。', '13413686126');
+INSERT INTO `depts` VALUES ('2', '咨询部', '管理咨询部门的所有业务。', '13512214234');
+INSERT INTO `depts` VALUES ('3', '业务部门', '推销公司产品吸引客户购买', '13527909871');
+INSERT INTO `depts` VALUES ('4', '行政部', '管理财务报表的业务', '13514351231');
+
+-- ----------------------------
+-- Table structure for `limits`
+-- ----------------------------
+DROP TABLE IF EXISTS `limits`;
+CREATE TABLE `limits` (
+  `limit_id` int(11) NOT NULL auto_increment,
+  `limit_name` varchar(100) default NULL,
+  `limit_url` varchar(300) default NULL,
+  `limit_type` int(11) default NULL,
+  `ltypeId` int(11) default NULL,
+  PRIMARY KEY  (`limit_id`),
+  KEY `FKBE462C18775EC718` (`ltypeId`),
+  CONSTRAINT `FKBE462C18775EC718` FOREIGN KEY (`ltypeId`) REFERENCES `limittype` (`ltypeId`)
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of limits
+-- ----------------------------
+INSERT INTO `limits` VALUES ('1', '部门管理', 'DeptsList', null, null);
+INSERT INTO `limits` VALUES ('2', '用户管理', 'UsersList', null, null);
+INSERT INTO `limits` VALUES ('3', '角色管理', 'RolesList', null, null);
+INSERT INTO `limits` VALUES ('4', '工作项目绩效管理', 'WorkitemsList', null, null);
+INSERT INTO `limits` VALUES ('5', '产品管理', 'ProductList', null, null);
+INSERT INTO `limits` VALUES ('6', '客户类别管理', 'ClienttypesList', null, null);
+INSERT INTO `limits` VALUES ('7', '来源渠道管理', 'ChannelsList', null, null);
+INSERT INTO `limits` VALUES ('8', '客户录入', 'clientsModel/toAddAction', null, null);
+INSERT INTO `limits` VALUES ('9', '客户列表', 'clientsModel/toListAction', null, null);
+INSERT INTO `limits` VALUES ('10', '工作安排', 'WorkprojectsList', null, null);
+INSERT INTO `limits` VALUES ('11', '事件提醒', 'Workprojects_Events', null, null);
+INSERT INTO `limits` VALUES ('12', '工作移交', 'WorkchangeList', null, null);
+INSERT INTO `limits` VALUES ('13', '工作记录', 'WorklogList', null, null);
+INSERT INTO `limits` VALUES ('14', '部门通知', 'DeptmsgList', null, null);
+INSERT INTO `limits` VALUES ('15', '发布通知消息', 'DeptmsgtoAdd', null, null);
+INSERT INTO `limits` VALUES ('16', '客户数据统计', 'CustomerCount.jsp', null, null);
+INSERT INTO `limits` VALUES ('17', '绩效统计', 'PerformanceList', null, null);
+
+-- ----------------------------
+-- Table structure for `limittype`
+-- ----------------------------
+DROP TABLE IF EXISTS `limittype`;
+CREATE TABLE `limittype` (
+  `ltypeId` int(11) NOT NULL auto_increment,
+  `ltypeName` varchar(200) default NULL,
+  `ltypeDesc` varchar(300) default NULL,
+  PRIMARY KEY  (`ltypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=gbk;
+
+-- ----------------------------
+-- Records of limittype
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `logs`
+-- ----------------------------
+DROP TABLE IF EXISTS `logs`;
+CREATE TABLE `logs` (
+  `log_id` int(11) NOT NULL,
+  `user_id` int(11) default NULL,
+  `log_context` varchar(300) default NULL,
+  `lot_date` varchar(300) default NULL,
+  PRIMARY KEY  (`log_id`),
+  KEY `FK32C5AF1AB18979` (`user_id`),
+  CONSTRAINT `FK32C5AF1AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of logs
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `product`
+-- ----------------------------
+DROP TABLE IF EXISTS `product`;
+CREATE TABLE `product` (
+  `product_id` int(11) NOT NULL auto_increment,
+  `product_name` varchar(200) default NULL,
+  `product_desc` varchar(300) default NULL,
+  `product_price` double default NULL,
+  PRIMARY KEY  (`product_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of product
+-- ----------------------------
+INSERT INTO `product` VALUES ('2', 'Java基础班培训', '基础的core Java知识', '1000');
+INSERT INTO `product` VALUES ('3', 'Java就业班培训', '专业的JavaSe,Java Web开发的培训', '10000');
+
+-- ----------------------------
+-- Table structure for `roleandlimits`
+-- ----------------------------
+DROP TABLE IF EXISTS `roleandlimits`;
+CREATE TABLE `roleandlimits` (
+  `id` int(11) NOT NULL auto_increment,
+  `role_id` int(11) default NULL,
+  `limit_id` int(11) default NULL,
+  PRIMARY KEY  (`id`),
+  KEY `FKF6B94CF980E31315` (`limit_id`),
+  KEY `FKF6B94CF9755C31A3` (`role_id`),
+  CONSTRAINT `FKF6B94CF9755C31A3` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+  CONSTRAINT `FKF6B94CF980E31315` FOREIGN KEY (`limit_id`) REFERENCES `limits` (`limit_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=110 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of roleandlimits
+-- ----------------------------
+INSERT INTO `roleandlimits` VALUES ('24', '3', '8');
+INSERT INTO `roleandlimits` VALUES ('25', '3', '9');
+INSERT INTO `roleandlimits` VALUES ('26', '3', '10');
+INSERT INTO `roleandlimits` VALUES ('27', '3', '11');
+INSERT INTO `roleandlimits` VALUES ('28', '3', '12');
+INSERT INTO `roleandlimits` VALUES ('29', '3', '13');
+INSERT INTO `roleandlimits` VALUES ('30', '3', '14');
+INSERT INTO `roleandlimits` VALUES ('31', '4', '8');
+INSERT INTO `roleandlimits` VALUES ('32', '4', '9');
+INSERT INTO `roleandlimits` VALUES ('33', '4', '10');
+INSERT INTO `roleandlimits` VALUES ('34', '4', '11');
+INSERT INTO `roleandlimits` VALUES ('35', '4', '12');
+INSERT INTO `roleandlimits` VALUES ('36', '4', '13');
+INSERT INTO `roleandlimits` VALUES ('37', '4', '14');
+INSERT INTO `roleandlimits` VALUES ('38', '4', '15');
+INSERT INTO `roleandlimits` VALUES ('39', '4', '6');
+INSERT INTO `roleandlimits` VALUES ('40', '4', '5');
+INSERT INTO `roleandlimits` VALUES ('41', '4', '7');
+INSERT INTO `roleandlimits` VALUES ('93', '1', '3');
+INSERT INTO `roleandlimits` VALUES ('94', '1', '1');
+INSERT INTO `roleandlimits` VALUES ('95', '1', '2');
+INSERT INTO `roleandlimits` VALUES ('96', '1', '4');
+INSERT INTO `roleandlimits` VALUES ('97', '1', '5');
+INSERT INTO `roleandlimits` VALUES ('98', '1', '6');
+INSERT INTO `roleandlimits` VALUES ('99', '1', '7');
+INSERT INTO `roleandlimits` VALUES ('100', '1', '8');
+INSERT INTO `roleandlimits` VALUES ('101', '1', '9');
+INSERT INTO `roleandlimits` VALUES ('102', '1', '10');
+INSERT INTO `roleandlimits` VALUES ('103', '1', '11');
+INSERT INTO `roleandlimits` VALUES ('104', '1', '12');
+INSERT INTO `roleandlimits` VALUES ('105', '1', '13');
+INSERT INTO `roleandlimits` VALUES ('106', '1', '14');
+INSERT INTO `roleandlimits` VALUES ('107', '1', '15');
+INSERT INTO `roleandlimits` VALUES ('108', '1', '16');
+INSERT INTO `roleandlimits` VALUES ('109', '1', '17');
+
+-- ----------------------------
+-- Table structure for `roles`
+-- ----------------------------
+DROP TABLE IF EXISTS `roles`;
+CREATE TABLE `roles` (
+  `role_id` int(11) NOT NULL auto_increment,
+  `role_name` varchar(200) default NULL,
+  `role_desc` varchar(200) default NULL,
+  `role_grade` int(11) default NULL,
+  PRIMARY KEY  (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of roles
+-- ----------------------------
+INSERT INTO `roles` VALUES ('1', '管理员', '拥有所有权限。', '1');
+INSERT INTO `roles` VALUES ('3', '普通员工', '公司的基础员工，能管理自己每天的工作', '3');
+INSERT INTO `roles` VALUES ('4', '业务主管', '管理整个部门', '2');
+
+-- ----------------------------
+-- Table structure for `sendtips`
+-- ----------------------------
+DROP TABLE IF EXISTS `sendtips`;
+CREATE TABLE `sendtips` (
+  `tips_id` int(11) NOT NULL,
+  `user_id` int(11) default NULL,
+  `tipscontext` varchar(300) default NULL,
+  `receiveUser_id` int(11) default NULL,
+  `send_date` varchar(300) default NULL,
+  PRIMARY KEY  (`tips_id`),
+  KEY `FK4A691EC01AB18979` (`user_id`),
+  CONSTRAINT `FK4A691EC01AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of sendtips
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `users`
+-- ----------------------------
+DROP TABLE IF EXISTS `users`;
+CREATE TABLE `users` (
+  `user_id` int(11) NOT NULL auto_increment,
+  `role_id` int(11) default NULL,
+  `dept_id` int(11) default NULL,
+  `username` varchar(50) default NULL,
+  `gender` varchar(20) default NULL,
+  `age` int(11) default NULL,
+  `password` varchar(200) default NULL,
+  `user_status` tinyint(1) default NULL,
+  `user_desc` varchar(300) default NULL,
+  `birthday` varchar(300) default NULL,
+  PRIMARY KEY  (`user_id`),
+  KEY `FK6A68E087F29E985` (`dept_id`),
+  KEY `FK6A68E08755C31A3` (`role_id`),
+  CONSTRAINT `FK6A68E08755C31A3` FOREIGN KEY (`role_id`) REFERENCES `roles` (`role_id`),
+  CONSTRAINT `FK6A68E087F29E985` FOREIGN KEY (`dept_id`) REFERENCES `depts` (`dept_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of users
+-- ----------------------------
+INSERT INTO `users` VALUES ('1', '1', '1', 'admin', '男', '21', '123456', null, null, null);
+INSERT INTO `users` VALUES ('4', '3', '3', 'tanabc', '男', '22', '123456', '1', '本人上进好学', '1990-09-09');
+INSERT INTO `users` VALUES ('5', '4', '3', 'feng', '男', '23', '123456', '1', '业务部的主管', '1991-01-01');
+INSERT INTO `users` VALUES ('6', '3', '3', 'xiaoli', '女', '25', '123456', '1', '我是一个普通的员工', '1989-02-28');
+
+-- ----------------------------
+-- Table structure for `workchange`
+-- ----------------------------
+DROP TABLE IF EXISTS `workchange`;
+CREATE TABLE `workchange` (
+  `change_id` int(11) NOT NULL auto_increment,
+  `client_id` int(11) default NULL,
+  `user_id` int(11) default NULL,
+  `project_id` int(11) default NULL,
+  `change_desc` varchar(200) default NULL,
+  `change_username` varchar(200) default NULL,
+  `change_time` varchar(100) default NULL,
+  PRIMARY KEY  (`change_id`),
+  KEY `FKE5278A013FC462EA` (`project_id`),
+  KEY `FKE5278A011AB18979` (`user_id`),
+  KEY `FKE5278A01EACFA8F9` (`client_id`),
+  CONSTRAINT `FKE5278A011AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `FKE5278A013FC462EA` FOREIGN KEY (`project_id`) REFERENCES `workprojects` (`project_id`),
+  CONSTRAINT `FKE5278A01EACFA8F9` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of workchange
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `workitems`
+-- ----------------------------
+DROP TABLE IF EXISTS `workitems`;
+CREATE TABLE `workitems` (
+  `item_id` int(11) NOT NULL auto_increment,
+  `item_name` varchar(300) default NULL,
+  `item_desc` varchar(300) default NULL,
+  `item_score` double default NULL,
+  PRIMARY KEY  (`item_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of workitems
+-- ----------------------------
+INSERT INTO `workitems` VALUES ('1', '签约', '客户成交', '5');
+INSERT INTO `workitems` VALUES ('2', '促成', '促使有意向客户报名，但是没有成交。', '4');
+INSERT INTO `workitems` VALUES ('3', '跟进', '与已接触客户联系，传递业务信息，了解需求及购买决策变化。', '3');
+INSERT INTO `workitems` VALUES ('4', '转介绍', '获取客户转介绍其他客户信息，并与被介绍客户完成接洽', '4');
+INSERT INTO `workitems` VALUES ('5', '新增A客户', '具有明确需求和购买意向的客户', '2');
+INSERT INTO `workitems` VALUES ('6', '新增B客户', '具有需求，但意向不明确的客户', '1');
+INSERT INTO `workitems` VALUES ('7', '新增C客户', '需求不明显的客户', '0.1');
+INSERT INTO `workitems` VALUES ('8', '客户服务', '提供直接客户服务，包括：收集资料、办理手续、解答问题等。', '1');
+
+-- ----------------------------
+-- Table structure for `worklog`
+-- ----------------------------
+DROP TABLE IF EXISTS `worklog`;
+CREATE TABLE `worklog` (
+  `worklog_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
+  `project_id` int(11) default NULL,
+  `item_id` int(11) default NULL,
+  `worklog_desc` varchar(200) default NULL,
+  `worklog_date` varchar(300) default NULL,
+  `workscore` double default NULL,
+  PRIMARY KEY  (`worklog_id`),
+  KEY `FK5AE83693B1162978` (`item_id`),
+  KEY `FK5AE836933FC462EA` (`project_id`),
+  KEY `FK5AE836931AB18979` (`user_id`),
+  CONSTRAINT `FK5AE836931AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `FK5AE836933FC462EA` FOREIGN KEY (`project_id`) REFERENCES `workprojects` (`project_id`),
+  CONSTRAINT `FK5AE83693B1162978` FOREIGN KEY (`item_id`) REFERENCES `workitems` (`item_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of worklog
+-- ----------------------------
+
+-- ----------------------------
+-- Table structure for `workprojects`
+-- ----------------------------
+DROP TABLE IF EXISTS `workprojects`;
+CREATE TABLE `workprojects` (
+  `project_id` int(11) NOT NULL auto_increment,
+  `user_id` int(11) default NULL,
+  `item_id` int(11) default NULL,
+  `client_id` int(11) default NULL,
+  `project_desc` varchar(200) default NULL,
+  `project_title` varchar(100) default NULL,
+  `project_colleague` varchar(100) default NULL,
+  `project_state` varchar(100) default NULL,
+  `project_type` varchar(100) default NULL,
+  `project_score` double default NULL,
+  `project_uptime` varchar(100) default NULL,
+  `project_downtime` varchar(100) default NULL,
+  PRIMARY KEY  (`project_id`),
+  KEY `FKA8853E8BB1162978` (`item_id`),
+  KEY `FKA8853E8B1AB18979` (`user_id`),
+  KEY `FKA8853E8BEACFA8F9` (`client_id`),
+  CONSTRAINT `FKA8853E8B1AB18979` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`),
+  CONSTRAINT `FKA8853E8BB1162978` FOREIGN KEY (`item_id`) REFERENCES `workitems` (`item_id`),
+  CONSTRAINT `FKA8853E8BEACFA8F9` FOREIGN KEY (`client_id`) REFERENCES `clients` (`client_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of workprojects
+-- ----------------------------
+INSERT INTO `workprojects` VALUES ('7', '4', '3', '4', '跟进客户。。。。', '跟进客户', '6', '2', '客户任务', '3', '2014-2-27', '2014-2-27');
+INSERT INTO `workprojects` VALUES ('8', '6', '3', '4', '跟进客户。。。。', '跟进客户', '4', '0', '独立任务', null, '2014-2-27', '2014-2-27');

@@ -1,0 +1,72 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Depts;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IDeptsService;
+
+public class DeptsAction extends ActionSupport{
+	
+	private Depts depts;
+	
+	private IDeptsService deptsService;
+
+	@Resource(name="deptsService")
+	public void setDeptsService(IDeptsService deptsService) {
+		this.deptsService = deptsService;
+	}
+
+	public Depts getDepts() {
+		return depts;
+	}
+
+	public void setDepts(Depts depts) {
+		this.depts = depts;
+	}
+
+/*	// 跳转新增页面
+	public String toAddProduct() {
+		return "toAdd";
+	}*/
+	public String toAddDepts(){
+		return "success";
+	}
+	// 新增提交
+	public String AddDepts() {
+		deptsService.insDepts(depts);
+		return "DeptsList";
+	}
+
+	public String DelDepts() {
+		deptsService.delDepts(depts);
+		return "DeptsList";
+	}
+
+	public String UpdateDepts() {
+		deptsService.uptDepts(depts);
+		return "DeptsList";
+	}
+	
+	private List<Depts> deptsList;
+
+	public List<Depts> getDeptsList() {
+		return deptsList;
+	}
+
+	public void setDeptsList(List<Depts> deptsList) {
+		this.deptsList = deptsList;
+	}
+
+	public String ListDepts() {
+		deptsList = deptsService.searchDepts(null);
+		return "toList";
+	}
+
+	public String getDeptsA() {
+		depts = deptsService.getDepts(depts);
+		return "success";
+	}
+}

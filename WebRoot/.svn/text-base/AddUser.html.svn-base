@@ -1,0 +1,194 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 添加用户</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10"  /><a href="AddDept.html"> 添加</a></li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1055" id="add_table" >
+    <tr>
+      <td>以下带*为必填项：</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*所属部门：</td>
+      <td><label for="select"></label>
+        <select name="select" id="select">
+        <option >财务部</option>
+        <option>咨询部</option>
+        <option>业务部</option>
+      </select></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*姓名：</td>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*用户名：</td>
+      <td><label for="textfield2"></label>
+      <input type="text" name="textfield2" id="textfield2" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*密码：</td>
+      <td><label for="textfield3"></label>
+      <input type="text" name="textfield3" id="textfield3" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*确认密码：</td>
+      <td><label for="textfield4"></label>
+      <input type="text" name="textfield4" id="textfield4" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*角色：</td>
+      <td><label for="select2"></label>
+        <select name="select2" id="select2">
+        <option >管理员</option>
+        <option>部门主管</option>
+        <option>普通员工</option>
+     
+      </select></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*账号状态：</td>
+      <td><label for="select2"></label>
+        <select name="select2" id="select2">
+        <option >开放</option>
+        <option>禁用</option>
+     
+      </select></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>职位：</td>
+      <td><label for="textfield5"></label>
+      <input type="text" name="textfield5" id="textfield5" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>描述：</td>
+      <td><label for="textarea"></label>
+      <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td colspan="2">详细资料：</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>性别：</td>
+      <td><p>
+        <label>
+          <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_0" />
+          男
+        </label>
+        
+        <label>
+          <input type="radio" name="RadioGroup1" value="单选" id="RadioGroup1_1" />
+          女
+        </label>
+        <br />
+      </p></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>出生年月：</td>
+      <td><label for="textfield6"></label>
+      <input type="text" name="textfield6" id="textfield6" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>手机号码：</td>
+      <td><label for="textfield7"></label>
+      <input type="text" name="textfield7" id="textfield7" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>QQ：</td>
+      <td><label for="textfield8"></label>
+      <input type="text" name="textfield8" id="textfield8" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>MSN：</td>
+      <td><input type="text" name="textfield9" id="textfield9" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="textfield10" id="textfield10" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="提交" />
+      <input type="reset" name="button2" id="button2" value="重置" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
+</body>
+</html>

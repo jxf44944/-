@@ -1,0 +1,87 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Workitems entity. @author MyEclipse Persistence Tools
+ */
+
+public class Workitems implements java.io.Serializable {
+
+	// Fields
+
+	private Integer itemId;
+	private String itemName;
+	private String itemDesc;
+	private Double itemScore;
+	private Set worklogs = new HashSet(0);
+	private Set workprojectses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Workitems() {
+	}
+
+	/** full constructor */
+	public Workitems(String itemName, String itemDesc, Double itemScore,
+			Set worklogs, Set workprojectses) {
+		this.itemName = itemName;
+		this.itemDesc = itemDesc;
+		this.itemScore = itemScore;
+		this.worklogs = worklogs;
+		this.workprojectses = workprojectses;
+	}
+
+	// Property accessors
+
+	public Integer getItemId() {
+		return this.itemId;
+	}
+
+	public void setItemId(Integer itemId) {
+		this.itemId = itemId;
+	}
+
+	public String getItemName() {
+		return this.itemName;
+	}
+
+	public void setItemName(String itemName) {
+		this.itemName = itemName;
+	}
+
+	public String getItemDesc() {
+		return this.itemDesc;
+	}
+
+	public void setItemDesc(String itemDesc) {
+		this.itemDesc = itemDesc;
+	}
+
+	public Double getItemScore() {
+		return this.itemScore;
+	}
+
+	public void setItemScore(Double itemScore) {
+		this.itemScore = itemScore;
+	}
+
+	public Set getWorklogs() {
+		return this.worklogs;
+	}
+
+	public void setWorklogs(Set worklogs) {
+		this.worklogs = worklogs;
+	}
+
+	public Set getWorkprojectses() {
+		return this.workprojectses;
+	}
+
+	public void setWorkprojectses(Set workprojectses) {
+		this.workprojectses = workprojectses;
+	}
+
+}

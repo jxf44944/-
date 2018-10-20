@@ -1,0 +1,169 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 部门管理>>添加部门</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10" /> 添加</li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+<form id="form1" name="form1" method="post" action="">
+  <table width="920" id="add_table">
+    <tr>
+      <td colspan="5">以下带*为必填项：</td>
+    </tr>
+    <tr>
+      <td width="123" align="center">*部门编号：</td>
+      <td width="606"><input type="text" name="dep_id" id="dep_id" /></td>
+      <td width="142">&nbsp;</td>
+      <td width="6">&nbsp;</td>
+      <td width="9">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">*部门名称：</td>
+      <td><input type="text" name="dep_name" id="dep_name" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">联系电话：</td>
+      <td>
+        <input type="text" name="dep_name2" id="dep_name2" />
+      </label></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">部门简介：</td>
+      <td><label for="dep_desc"></label>
+      <textarea name="dep_desc" id="dep_desc" cols="45" rows="5"></textarea></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">*部门权限：</td>
+      <td><table width="581" align="left">
+        <tr>
+          <td width="168"><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_0" />
+            权限item
+          </label></td>
+        
+          <td width="182"><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_1" />
+权限item </label></td>
+       
+          <td width="215"><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_2" />
+权限item </label></td>
+     </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_3" />
+权限item </label></td>
+   
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_4" />
+权限item </label></td>
+    
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_5" />
+权限item </label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_6" />
+权限item </label></td>
+    
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_7" />
+权限item </label></td>
+  
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_8" />
+权限item </label></td>
+       </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_9" />
+权限item </label></td>
+     
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_10" />
+权限item </label></td>
+  
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_11" />
+权限item </label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_12" />
+权限item </label></td>
+ 
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_13" />
+权限item </label></td>
+ 
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_14" />
+权限item </label></td>
+     </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_15" />
+权限item </label></td>
+     
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_16" />
+权限item </label></td>
+   
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_17" />
+权限item </label></td>
+        </tr>
+        <tr>
+          <td><label>
+            <input type="checkbox" name="limitCheckboxGroup1" value="复选框" id="limitCheckboxGroup1_18" />
+权限item </label></td>
+        </tr>
+      </table></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td rowspan="2">&nbsp;</td>
+      <td align="center" valign="middle">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><input type="submit" name="button" id="button" value="提交" />&nbsp;&nbsp;
+      <input type="reset" name="button" id="button" value="重置" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

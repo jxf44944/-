@@ -1,0 +1,67 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Clienttypes;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IClienttypesService;
+
+public class ClienttypesAction extends ActionSupport {
+
+	private Clienttypes clienttypes;
+	private IClienttypesService clienttypesService;
+	private List<Clienttypes> clienttypesList;
+	
+	public List<Clienttypes> getClienttypesList() {
+		return clienttypesList;
+	}
+
+	public void setClienttypesList(List<Clienttypes> clienttypesList) {
+		this.clienttypesList = clienttypesList;
+	}
+
+	@Resource(name="clienttypesService")
+	public void setClienttypesService(IClienttypesService clienttypesService) {
+		this.clienttypesService = clienttypesService;
+	}
+	
+	public Clienttypes getClienttypes() {
+		return clienttypes;
+	}
+	
+	public void setClienttypes(Clienttypes clienttypes) {
+		this.clienttypes = clienttypes;
+	}
+	
+	public String toAddClienttypes(){
+		return "success";
+	}
+	
+	//新增提交
+	public String AddClienttypes(){
+		clienttypesService.insClienttypes(clienttypes);
+		return "ClienttypesList";
+	}
+	
+	public String DelClienttypes(){
+		clienttypesService.delClienttypes(clienttypes);
+		return "ClienttypesList";
+	}
+	
+	public String UpdateClienttypes(){
+		clienttypesService.uptClienttypes(clienttypes);
+		return "ClienttypesList";
+	}
+	
+	public String ListClienttypes() {
+		clienttypesList = clienttypesService.searchClienttypes(null);
+		return "toList";
+	}
+	
+	public String getClienttypesA(){
+		clienttypes = clienttypesService.getClienttypes(clienttypes);
+		return "success";
+	}
+}

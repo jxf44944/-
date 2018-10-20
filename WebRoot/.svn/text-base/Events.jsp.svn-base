@@ -1,0 +1,129 @@
+<%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>业务管理系统 </title>
+   <link rel="stylesheet" type="text/css" href="css/main.css"/>
+   </head>
+<body>
+	<div id="title_bar">
+		<span id="title"> 工作管理&gt;&gt;事件提醒</span>
+	</div>
+	<table>
+		<tr>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+			<td>&nbsp;</td>
+		</tr>
+	</table>
+	<table width="95%" border="0" align="center" cellpadding="0"
+		cellspacing="0">
+		<tr>
+			<td><table width="95%" border="0" align="center" cellpadding="0"
+					cellspacing="0">
+					<tr>
+						<td height="40" class="font42">
+							<table width="65%" border="0" align="center" cellpadding="4"
+								cellspacing="1" bgcolor="#DDD" class="newfont03" id="tblist">
+								<tr>
+									<td height="20" colspan="14" align="center" bgcolor="#EEEEEE"
+										class="tablestyle_title" style="text-align: center;">
+										今天工作任务列表</td>
+								</tr>
+								<tr>
+									<td width="13%" height="20" align="center" bgcolor="#FFFFFF">序号</td>
+									<td width="26%" align="center" bgcolor="#FFFFFF">时间</td>
+									<td width="26%" align="center" bgcolor="#FFFFFF">事件</td>
+									<td width="21%" align="center" bgcolor="#FFFFFF">状态</td>
+								</tr>
+								<s:iterator value="workprojectslist">
+								<tr>
+									<td height="20" align="center" bgcolor="#FFFFFF"></td>
+									<td align="center" bgcolor="#FFFFFF"><s:property value="projectUptime" /></td>
+									<td align="center" bgcolor="#FFFFFF"><s:property value="projectTitle" /></td>
+									<td align="center" bgcolor="#FFFFFF">
+									<s:if test="projectState==0">
+									                    未处理
+									       </s:if>
+									       <s:elseif test="projectState==1">
+									                  处理失败
+									       </s:elseif>
+									       <s:else>
+									                  处理成功
+									       </s:else></td>
+								</tr>
+								</s:iterator>
+							</table></td>
+					</tr>
+
+					<tr>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+						<td>&nbsp;</td>
+					</tr>
+					<tr>
+						<td height="40" class="font42">
+							<table width="65%" border="0" align="center" cellpadding="4"
+								cellspacing="1" bgcolor="#DDD" class="newfont03" id="tblist">
+								<tr>
+									<td height="20" colspan="14" align="center" bgcolor="#EEEEEE"
+										class="tablestyle_title" style="text-align: center;">
+										今天之前未处理的工作任务列表</td>
+								</tr>
+								<tr>
+									<td width="13%" height="20" align="center" bgcolor="#FFFFFF">序号</td>
+									<td width="26%" align="center" bgcolor="#FFFFFF">时间</td>
+									<td width="26%" align="center" bgcolor="#FFFFFF">事件</td>
+									<td width="21%" align="center" bgcolor="#FFFFFF">状态</td>
+								</tr>
+								<s:iterator value="tmworkprojectslist">
+								<tr>
+									<td height="20" align="center" bgcolor="#FFFFFF"></td>
+									<td align="center" bgcolor="#FFFFFF"><s:property value="projectUptime" /></td>
+									<td align="center" bgcolor="#FFFFFF"><s:property value="projectTitle" /></td>
+									<td align="center" bgcolor="#FFFFFF">
+									<s:if test="projectState==0">
+										                    未处理
+										       </s:if>
+								    <s:elseif test="projectState==1">
+										                  处理失败
+										       </s:elseif>
+										       <s:else>
+										                  处理成功
+										       </s:else></td>
+								</tr>
+								</s:iterator>
+							</table></td>
+					</tr>
+
+					<tr>
+						<td height="6"><img src="../images/spacer.gif" width="1"
+							height="1" /></td>
+					</tr>
+					<tr>
+						<td height="33">
+							<table width="99%" border="0" align="center" cellpadding="0"
+								cellspacing="0" class="right-font08">
+								<tr>
+									<td width="50%">&nbsp;</td>
+									<td width="49%" align="right">&nbsp;</td>
+									<td width="1%">&nbsp;</td>
+									<TR>
+										<TD colspan="2" align="center" height="50px"><input type="button"
+											name="Submit2" value="返回" class="button"
+											onclick="window.history.go(-1);" />
+										</TD>
+									</TR>
+							</table></td>
+					</tr>
+				</table>
+</body>
+
+</html>

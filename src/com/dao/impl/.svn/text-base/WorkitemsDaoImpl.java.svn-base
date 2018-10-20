@@ -1,0 +1,42 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IWorkitemsDao;
+import com.entity.Workitems;
+
+@Repository("workitemsDao")
+public class WorkitemsDaoImpl extends BaseDAO implements IWorkitemsDao {
+
+	public boolean insert(Workitems work) {
+		this.getHibernateTemplate().save(work);
+		return true;
+	}
+
+	public boolean update(Workitems work) {
+		this.getHibernateTemplate().update(work);
+		return true;
+	}
+
+	public boolean delete(Workitems work) {
+		Workitems delWork = this.getHibernateTemplate().load(Workitems.class, work.getItemId());
+		this.getHibernateTemplate().delete(delWork);
+		return true;
+	}
+
+	public List selectAll() {
+		List list = this.getHibernateTemplate().find("from Workitems ");
+		return list;
+	}
+
+	public List select(String sql) {
+		return null;
+	}
+
+	public Workitems getWorkitems(Workitems work) {
+		return this.getHibernateTemplate().get(Workitems.class, work.getItemId());
+	}
+}

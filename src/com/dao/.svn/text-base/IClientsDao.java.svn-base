@@ -1,0 +1,20 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Clients;
+
+public interface IClientsDao {
+
+	public boolean insert(Clients cli);
+	public boolean update(Clients cli);
+	public boolean delete(Clients cli);
+	public List selectAll();
+	public List select(Clients cli);
+	public List select2(Clients cli);
+	public Clients getClients(Clients cli);
+	
+	public int getAllRowCount(String hql);
+	public List queryForPage(final String hql,final int offset,final int length);   
+   
+}

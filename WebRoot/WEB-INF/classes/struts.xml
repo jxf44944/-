@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC "-//Apache Software Foundation//DTD Struts Configuration 2.1//EN" "http://struts.apache.org/dtds/struts-2.1.dtd">
+<struts>
+    <constant name="struts.enable.DynamicMethodInvocation" value="false" />
+    <constant name="struts.locale" value="zh_CN"></constant>
+    <constant name="struts.i18n.encoding" value="UTF-8"></constant> 
+    <constant name="struts.devMode" value="true"></constant>
+  <package  name="promodel" extends="struts-default,json-default">
+  
+		<!--入库 -->
+  	     <action name="Allorderdetailadd"
+                class="com.action.AllorderAction" method="toAddAllorderdetail" >
+                <result name="success">AllorderdetailAdd.jsp</result>
+         </action>
+         
+		<!--出库 -->
+  	     <action name="AllordertoAddOut"
+                class="com.action.AllorderAction" method="toAddAllorderdetail" >
+                <result name="success">AllorderdetailAdd.jsp</result>
+         </action>
+         
+         <action name="*List" 
+                class="com.action.{1}Action" method="List{1}" >
+                <result name="toList">{1}List.jsp</result>
+                <result name="AllList">{1}ListAll.jsp</result>
+         </action>
+         <action name="*toUpdate" 
+                class="com.action.{1}Action" method="get{1}A" >
+                <result name="success">{1}Edit.jsp</result>
+         </action>
+         <action name="*toEditB" 
+                class="com.action.{1}Action" method="get{1}A" >
+                <result name="success">{1}EditB.jsp</result>
+         </action>
+         <action name="*detail" 
+                class="com.action.{1}Action" method="Get{1}detail" >
+                <result name="success">AllorderdetailList.jsp</result>
+         </action>
+         <action name="*Get" 
+                class="com.action.{1}Action" method="get{1}B" >
+                <result name="success">{1}Edit2.jsp</result>
+         </action>
+         <action name="*Huo" 
+                class="com.action.{1}Action" method="get{1}" >
+                <result name="json" type="json">
+	                <!-- 这里指定将被Struts2序列化的属性，该属性在action中必须有对应的getter方法 -->
+	                <param name="root">dataMap</param>
+                </result>
+         </action>
+         <action name="*toAdd" class="com.action.{1}Action" method="toAdd{1}" >
+                <result name="success">{1}Add.jsp</result>
+                <result name="AllorderOut">AllordertoAddOut.jsp</result>
+                <result name="json" type="json">
+                	<param name="root">dataMap</param>
+                </result>
+         </action>
+         <action name="*_*" 
+                class="com.action.{1}Action" method="{2}{1}" >
+                <result name="{1}List" type="chain">{1}List</result>
+                <result name="toList" >{1}List.jsp</result>
+                <result name="success" >{2}.jsp</result>
+                <result name="remove" >AllorderAdd.jsp</result><!--添加  -->
+                <result name="LoginSuccess" >main.jsp</result>
+                <result name="Exitsuccess">Login.jsp</result>
+                <result name="gosuccess">Login.jsp</result>
+                <result name="input">error.jsp</result>
+         </action>
+     </package>
+
+	<!--2018-5-2 新增一个包，防止跟上面的 代码有冲突 -->
+<!-- 	<package name="tjj" namespace="/medicine" extends="struts-default,json-default"> -->
+<!-- 		<action name="removeallorder" class="com.action.AllorderAction" method="removeAllorder" > -->
+<!-- 			<result name="success">toAdd.jsp</result> -->
+<!-- 		</action> -->
+<!-- 	</package> -->
+</struts>	

@@ -1,0 +1,273 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Clients entity. @author MyEclipse Persistence Tools
+ */
+
+public class Clients implements java.io.Serializable {
+
+	// Fields
+
+	private Integer clientId;
+	private Users users;
+	private Product product;
+	private Clienttypes clienttypes;
+	private Channels channels;
+	private String clientName;
+	private String clientPhone;
+	private String clientBirthday;
+	private String clientQq;
+	private String clientHobby;
+	private String clientJob;
+	private String clientSex;
+	private Integer clientAge;
+	private String clientAddress;
+	private String clientSchool;
+	private String clientIdcard;
+	private String clientEducate;
+	private String clientMajor;
+	private String clientState;
+	private String native_;
+	private String email;
+	private String description;
+	private Set workprojectses = new HashSet(0);
+	private Set workchanges = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Clients() {
+	}
+
+	/** full constructor */
+	public Clients(Users users, Product product, Clienttypes clienttypes,
+			Channels channels, String clientName, String clientPhone,
+			String clientBirthday, String clientQq, String clientHobby,
+			String clientJob, String clientSex, Integer clientAge,
+			String clientAddress, String clientSchool, String clientIdcard,
+			String clientEducate, String clientMajor, String clientState,
+			String native_, String email, String description,
+			Set workprojectses, Set workchanges) {
+		this.users = users;
+		this.product = product;
+		this.clienttypes = clienttypes;
+		this.channels = channels;
+		this.clientName = clientName;
+		this.clientPhone = clientPhone;
+		this.clientBirthday = clientBirthday;
+		this.clientQq = clientQq;
+		this.clientHobby = clientHobby;
+		this.clientJob = clientJob;
+		this.clientSex = clientSex;
+		this.clientAge = clientAge;
+		this.clientAddress = clientAddress;
+		this.clientSchool = clientSchool;
+		this.clientIdcard = clientIdcard;
+		this.clientEducate = clientEducate;
+		this.clientMajor = clientMajor;
+		this.clientState = clientState;
+		this.native_ = native_;
+		this.email = email;
+		this.description = description;
+		this.workprojectses = workprojectses;
+		this.workchanges = workchanges;
+	}
+
+	// Property accessors
+
+	public Integer getClientId() {
+		return this.clientId;
+	}
+
+	public void setClientId(Integer clientId) {
+		this.clientId = clientId;
+	}
+
+	public Users getUsers() {
+		return this.users;
+	}
+
+	public void setUsers(Users users) {
+		this.users = users;
+	}
+
+	public Product getProduct() {
+		return this.product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public Clienttypes getClienttypes() {
+		return this.clienttypes;
+	}
+
+	public void setClienttypes(Clienttypes clienttypes) {
+		this.clienttypes = clienttypes;
+	}
+
+	public Channels getChannels() {
+		return this.channels;
+	}
+
+	public void setChannels(Channels channels) {
+		this.channels = channels;
+	}
+
+	public String getClientName() {
+		return this.clientName;
+	}
+
+	public void setClientName(String clientName) {
+		this.clientName = clientName;
+	}
+
+	public String getClientPhone() {
+		return this.clientPhone;
+	}
+
+	public void setClientPhone(String clientPhone) {
+		this.clientPhone = clientPhone;
+	}
+
+	public String getClientBirthday() {
+		return this.clientBirthday;
+	}
+
+	public void setClientBirthday(String clientBirthday) {
+		this.clientBirthday = clientBirthday;
+	}
+
+	public String getClientQq() {
+		return this.clientQq;
+	}
+
+	public void setClientQq(String clientQq) {
+		this.clientQq = clientQq;
+	}
+
+	public String getClientHobby() {
+		return this.clientHobby;
+	}
+
+	public void setClientHobby(String clientHobby) {
+		this.clientHobby = clientHobby;
+	}
+
+	public String getClientJob() {
+		return this.clientJob;
+	}
+
+	public void setClientJob(String clientJob) {
+		this.clientJob = clientJob;
+	}
+
+	public String getClientSex() {
+		return this.clientSex;
+	}
+
+	public void setClientSex(String clientSex) {
+		this.clientSex = clientSex;
+	}
+
+	public Integer getClientAge() {
+		return this.clientAge;
+	}
+
+	public void setClientAge(Integer clientAge) {
+		this.clientAge = clientAge;
+	}
+
+	public String getClientAddress() {
+		return this.clientAddress;
+	}
+
+	public void setClientAddress(String clientAddress) {
+		this.clientAddress = clientAddress;
+	}
+
+	public String getClientSchool() {
+		return this.clientSchool;
+	}
+
+	public void setClientSchool(String clientSchool) {
+		this.clientSchool = clientSchool;
+	}
+
+	public String getClientIdcard() {
+		return this.clientIdcard;
+	}
+
+	public void setClientIdcard(String clientIdcard) {
+		this.clientIdcard = clientIdcard;
+	}
+
+	public String getClientEducate() {
+		return this.clientEducate;
+	}
+
+	public void setClientEducate(String clientEducate) {
+		this.clientEducate = clientEducate;
+	}
+
+	public String getClientMajor() {
+		return this.clientMajor;
+	}
+
+	public void setClientMajor(String clientMajor) {
+		this.clientMajor = clientMajor;
+	}
+
+	public String getClientState() {
+		return this.clientState;
+	}
+
+	public void setClientState(String clientState) {
+		this.clientState = clientState;
+	}
+
+	public String getNative_() {
+		return this.native_;
+	}
+
+	public void setNative_(String native_) {
+		this.native_ = native_;
+	}
+
+	public String getEmail() {
+		return this.email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
+	public String getDescription() {
+		return this.description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Set getWorkprojectses() {
+		return this.workprojectses;
+	}
+
+	public void setWorkprojectses(Set workprojectses) {
+		this.workprojectses = workprojectses;
+	}
+
+	public Set getWorkchanges() {
+		return this.workchanges;
+	}
+
+	public void setWorkchanges(Set workchanges) {
+		this.workchanges = workchanges;
+	}
+
+}

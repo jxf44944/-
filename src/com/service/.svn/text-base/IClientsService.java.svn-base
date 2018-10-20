@@ -1,0 +1,17 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Clients;
+import com.util.PageBean;
+
+public interface IClientsService {
+     public boolean insClients(Clients cli);
+     public boolean delClients(Clients cli);
+     public boolean uptClients(Clients cli);
+     public List<Clients> searchClients(Clients cli);
+     public Clients getClients(Clients cli);
+     public List<Clients> searchClients2(Clients cli);
+     
+     public PageBean queryForPage(int pageSize,int currentPage,Clients cli);
+}

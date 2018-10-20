@@ -1,0 +1,55 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.ILimitsDao;
+import com.entity.Limits;
+
+/***
+ * 菜单栏dao实现类
+ * @author Feng
+ *
+ */
+@Repository("limitsDao")
+public class LimitsDaoImpl extends BaseDAO implements ILimitsDao{
+
+	/**新增菜单**/
+	public boolean insert(Limits limit){
+		this.getHibernateTemplate().save(limit);
+		return true;
+	}
+	
+	/**删除菜单**/
+	public boolean delete(Limits limit){
+		this.getHibernateTemplate().delete(limit);
+		return true;
+	}
+	
+	/**修改菜单**/
+	public boolean update(Limits limit){
+		this.getHibernateTemplate().update(limit);
+		return true;
+	}
+	
+	/**查询单个菜单信息**/
+	public Limits getMsg(Limits limit){
+		
+		Limits limits = this.getHibernateTemplate().get(Limits.class, limit.getLimitId());
+		return limits;
+	}
+	
+	/**查询所有菜单列表*/
+	public List<Limits> list(String sql){
+		List<Limits> list = null;
+		if(sql!=null){
+			list = this.getHibernateTemplate().find("from Limits "+sql);
+		}else{
+	//		System.out.println("here is limitDaoImpl 50 lsit();");
+			list = this.getHibernateTemplate().find("from Limits");
+		}
+		return list;
+	}
+}

@@ -1,0 +1,15 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Channels;
+
+public interface IChannelsDao {
+
+	public boolean insert(Channels cli);
+	public boolean update(Channels cli);
+	public boolean delete(Channels cli);
+	public List select(Channels cli);
+	public Channels getChannels(Channels cli);
+	public List selectAll();
+}

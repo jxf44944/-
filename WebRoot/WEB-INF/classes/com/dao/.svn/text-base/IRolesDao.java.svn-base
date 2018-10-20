@@ -1,0 +1,32 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Roles;
+
+/***
+ * 角色dao接口
+ * @author Feng
+ *2014-02-15
+ *
+ */
+public interface IRolesDao {
+
+	
+	/**添加角色*/
+	public boolean insert(Roles role);
+	
+	/**删除角色*/
+	public boolean delete(Roles role);
+	
+	/**修改角色**/
+	public boolean update(Roles role);
+	
+	/**查询单个角色**/
+	public Roles getRole(Roles role);
+	
+	/**查询所有角色*/
+	public List<Roles> list();
+	
+	
+}

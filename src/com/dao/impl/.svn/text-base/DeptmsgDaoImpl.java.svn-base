@@ -1,0 +1,58 @@
+package com.dao.impl;
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IDeptmsgDao;
+import com.entity.Deptmsg;
+
+@Repository("DeptmsgDao")
+public class DeptmsgDaoImpl extends BaseDAO implements IDeptmsgDao{
+	SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+
+	public boolean delete(Deptmsg deptmsg) {
+		Deptmsg deldeptmsg=(Deptmsg)this.getHibernateTemplate().load(Deptmsg.class, deptmsg.getDmsgId());
+		this.getHibernateTemplate().delete(deldeptmsg);
+		return true;
+	}
+
+	public Deptmsg getDeptmsg(Deptmsg deptmsg) {
+		return this.getHibernateTemplate().get(Deptmsg.class, deptmsg.getDmsgId());
+   }
+
+	public boolean insert(Deptmsg deptmsg) {
+		Date currentTime = new Date();
+		String str_date1 = formatter.format(currentTime).toString();
+		deptmsg.setDeptmsgTime(str_date1);
+		this.getHibernateTemplate().save(deptmsg);
+		return true;
+	}
+
+	public List selectAll() {
+		List list=this.getHibernateTemplate().find("from Deptmsg ");
+		 return list;
+	}
+
+	public boolean update(Deptmsg deptmsg) {
+		Date currentTime = new Date();
+		String str_date1 = formatter.format(currentTime).toString();
+		deptmsg.setDeptmsgTime(str_date1);
+		this.getHibernateTemplate().update(deptmsg);
+		return true;
+	}
+
+	public List select(String sql) {
+		List list=this.getHibernateTemplate().find("from Deptmsg "+sql);
+		 return list;
+	}
+
+}

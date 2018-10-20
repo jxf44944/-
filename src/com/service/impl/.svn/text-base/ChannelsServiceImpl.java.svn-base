@@ -1,0 +1,62 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IChannelsDao;
+import com.entity.Channels;
+import com.service.IChannelsService;
+
+@Service("channelsService")
+public class ChannelsServiceImpl implements IChannelsService {
+
+	private IChannelsDao chadao;
+	
+	@Resource(name="channelsDao")
+	public void setChadao(IChannelsDao chadao) {
+		this.chadao = chadao;
+	}
+
+	public boolean insChannels(Channels cli) {
+		if(chadao.insert(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean delChannels(Channels cli) {
+		if(chadao.delete(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public boolean uptChannels(Channels cli) {
+		if(chadao.update(cli)){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	public Channels getChannels(Channels cli) {
+		Channels c=chadao.getChannels(cli);
+		return c;
+	}
+
+	public List<Channels> searchChannels(Channels cli) {
+		List<Channels> list=null;
+		if(cli==null){
+			list=chadao.selectAll();
+		}else{
+			list=chadao.select(cli);
+		}
+		return list;
+	}
+
+}

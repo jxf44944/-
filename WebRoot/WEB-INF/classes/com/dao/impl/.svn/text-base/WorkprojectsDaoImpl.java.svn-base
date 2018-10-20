@@ -1,0 +1,80 @@
+package com.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IWorkprojectsDao;
+import com.entity.Clients;
+import com.entity.Users;
+import com.entity.Workitems;
+import com.entity.Workprojects;
+
+@Repository("workprojectsDao")
+public class WorkprojectsDaoImpl extends BaseDAO implements IWorkprojectsDao {
+
+	public boolean insert(Workprojects workprojects) {
+		this.getHibernateTemplate().save(workprojects);
+		return true;
+	}
+	
+	//获取工作项目所有数据
+	public List<Workitems> selectWorkitemsList() {
+		return this.getHibernateTemplate().find("from Workitems");
+	}
+	
+	//获取客户所有数据
+	public List<Clients> selectClientsList() {
+		return this.getHibernateTemplate().find("from Clients");
+	}
+	
+	//获取用户所有数据
+	public List<Users> selectUsersList() {
+		return this.getHibernateTemplate().find("from Users");
+	}
+	
+	//获取所有工作安排
+	public List<Workprojects> selectAll(){
+		return this.getHibernateTemplate().find("from Workprojects");
+	}
+	
+	//删除一条工作安排
+	public boolean delete(Workprojects workprojects) {
+		Workprojects delworkprojects=this.getHibernateTemplate().load(Workprojects.class, workprojects.getProjectId());
+		this.getHibernateTemplate().delete(delworkprojects);
+		return true;
+	}
+	//获取一条工作安排
+	public Workprojects getWorkprojects(Workprojects workprojects) {
+		Workprojects workprojects2=this.getHibernateTemplate().get(Workprojects.class, workprojects.getProjectId());
+		return workprojects2;
+	}
+	//更新一条工作安排
+	public boolean update(Workprojects workprojects) {
+		this.getHibernateTemplate().update(workprojects);
+		return true;
+	}
+	//获取今天所有的工作任务
+	public List<Workprojects> tdEventWorkprojects(String s,String sql) {
+	//	return this.getHibernateTemplate().find("from Workprojects");
+		String ss=("from Workprojects ")+sql+(" and project_uptime=")+("'")+s+("'");
+		return this.getHibernateTemplate().find(ss);
+	}
+	//获取今天之前所有的工作任务
+	public List<Workprojects> tmEventWorkprojects(String s,String sql) {
+		String ss=("from Workprojects ")+sql+(" and project_uptime!=")+("'")+s+("'");
+		return this.getHibernateTemplate().find(ss);
+	}
+	//按条件查看工作任务
+	public List<Workprojects> selectWorkprojectsList(String sql){
+		return this.getHibernateTemplate().find("from Workprojects"+sql);
+	}
+	
+	//获取
+	public List<Workprojects> getPerformance() {
+		return this.getHibernateTemplate().find("from Workprojects where project_state=2");
+	}
+	
+}

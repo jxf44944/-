@@ -1,0 +1,63 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<meta name="author" content="曾庆锋" />
+<title>无标题文档</title>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 管理人员添加</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10" /> 添加</li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+
+<form action="#" method="post">
+<table id="add_table" >
+	<tr>
+    	<td colspan="3" align="left">以下带<span class="red">*</span>为必填项:</td>
+    </tr>
+	<tr>
+    	<td width="20%" align="right"><span class="red">*</span>所属部门:</td>
+        <td width="20%">
+        	<select>
+            	<option>行政部</option>
+                <option>咨询部</option>
+                <option>渠道部</option>
+            </select>
+        </td>
+        <td width="60%">请选择所属部门</td>
+    </tr>
+    
+    <tr>
+    	<td  align="right"><span class="red">*</span>姓名:</td>
+        <td >
+    		<input type="text" name="name"/>
+        </td>
+        <td >请填写姓名,(四个中文汉字或八个英文字母以内,一个中文汉字等于两个英文字母)</td>
+    </tr>
+    
+    <tr>
+    	<td  align="right"><span class="red">*</span>用户名:</td>
+        <td >
+    		<input type="text" name="name"/>
+        </td>
+        <td >请填写用户名,(用户名由10位以内的字母、数字、下划线组成，用户名不区分大小写字母)</td>
+    </tr>
+    
+    <tr>
+    	<td colspan="3" align="center">
+        	<input type="submit" value="添加"/>
+            <input type="reset" value="重置"/>
+        </td>
+    </tr>
+</table>
+</form>
+</body>
+</html>

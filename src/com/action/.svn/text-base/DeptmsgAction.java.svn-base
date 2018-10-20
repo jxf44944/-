@@ -1,0 +1,112 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Deptmsg;
+import com.entity.Depts;
+import com.entity.Roles;
+import com.entity.Users;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IDeptmsgService;
+import com.service.IWorkprojectsService;
+
+
+
+public class DeptmsgAction extends ActionSupport {
+
+	private Deptmsg deptmsg;
+	
+	private IDeptmsgService Deptmsgservice;
+	
+	private List<Users> usersList;
+	
+	private IWorkprojectsService workprojectsService;
+	
+	Roles role=(Roles) ActionContext.getContext().getSession().get("role");
+	Users user=(Users) ActionContext.getContext().getSession().get("loginUser");
+	
+	
+	@Resource(name="DeptmsgService")
+	public void setDeptmsgservice(IDeptmsgService Deptmsgservice) {
+		this.Deptmsgservice = Deptmsgservice;
+	}
+
+	public Deptmsg getDeptmsg() {
+		return deptmsg;
+	}
+
+
+
+	public void setDeptmsg(Deptmsg deptmsg) {
+		this.deptmsg = deptmsg;
+	}
+
+	
+/*	// 跳转新增页面
+	public String toAddProduct() {
+		return "toAdd";
+	}*/
+
+	public List<Users> getUsersList() {
+		return usersList;
+	}
+
+	public void setUsersList(List<Users> usersList) {
+		this.usersList = usersList;
+	}
+
+	@Resource(name="workprojectsService")
+	public void setWorkprojectsService(IWorkprojectsService workprojectsService) {
+		this.workprojectsService = workprojectsService;
+	}
+
+	// 新增提交
+	public String AddDeptmsg() {
+		deptmsg.setUsers(user);
+		Depts depts=new Depts();
+		depts.setDeptId(user.getDepts().getDeptId());
+		deptmsg.setDepts(depts);
+		Deptmsgservice.insDeptmsg(deptmsg);
+		return "DeptmsgList";
+	}
+
+	public String DelDeptmsg() {
+		Deptmsgservice.delDeptmsg(deptmsg);
+		return "DeptmsgList";
+	}
+	public String toAddDeptmsg(){
+		return "success";
+	}
+
+	private List<Deptmsg> deptmsglist;
+
+	public List<Deptmsg> getDeptmsgList() {
+		return deptmsglist;
+	}
+
+	public String ListDeptmsg() {
+		if(role.getRoleGrade()==1)
+		{
+			deptmsglist = Deptmsgservice.searchDeptmsg(null);
+		}
+		else
+		{ 
+			int i=user.getDepts().getDeptId();
+			String sql=" where dept_id in ("+i+")";
+			deptmsglist = Deptmsgservice.searchDeptmsg(sql);
+		}
+		usersList=workprojectsService.selectUsersList();
+		return "toList";
+	}
+	public String getDeptmsgA() {
+		deptmsg = Deptmsgservice.getDeptmsg(deptmsg);
+		return "success";
+	}
+	public String UpdateDeptmsg() {
+		Deptmsgservice.uptDeptmsg(deptmsg);
+		return "DeptmsgList";
+	}
+}

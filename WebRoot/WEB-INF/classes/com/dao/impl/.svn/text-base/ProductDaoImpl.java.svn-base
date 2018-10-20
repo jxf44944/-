@@ -1,0 +1,48 @@
+package com.dao.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import org.hibernate.Query;
+import org.hibernate.Session;
+import org.hibernate.Transaction;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IProductDao;
+import com.entity.Product;
+
+@Repository("proDao")
+public class ProductDaoImpl extends BaseDAO implements IProductDao{
+
+	public boolean delete(Product pro) {
+		Product delpro=(Product)this.getHibernateTemplate().load(Product.class, pro.getProductId());
+		this.getHibernateTemplate().delete(delpro);
+		return true;
+	}
+
+	public Product getProduct(Product pro) {
+		return this.getHibernateTemplate().get(Product.class, pro.getProductId());
+   }
+
+	public boolean insert(Product pro) {
+		this.getHibernateTemplate().save(pro);
+		return true;
+	}
+
+	public List selectAll() {
+		List list=this.getHibernateTemplate().find("from Product ");
+		 return list;
+	}
+
+	public boolean update(Product pro) {
+		this.getHibernateTemplate().update(pro);
+		return true;
+	}
+
+	public List select(String sql) {
+		 return null;
+	}
+
+}

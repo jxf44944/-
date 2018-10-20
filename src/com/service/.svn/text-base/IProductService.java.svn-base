@@ -1,0 +1,15 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Product;
+
+public interface IProductService {
+     public boolean insProduct(Product pro);
+     public boolean delProduct(Product pro);
+     public boolean uptProduct(Product pro);
+     public List<Product> searchProduct(Product pro);
+     public Product getProduct(Product pro);
+     
+     
+}

@@ -1,0 +1,15 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Deptmsg;
+
+
+public interface IDeptmsgDao {
+   public boolean insert(Deptmsg deptmsg);
+   public boolean update(Deptmsg deptmsg);
+   public boolean delete(Deptmsg deptmsg);
+   public List selectAll();
+   public List select(String sql);
+   public  Deptmsg getDeptmsg(Deptmsg deptmsg);
+}

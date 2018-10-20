@@ -1,0 +1,69 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Product;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IProductService;
+
+
+public class ProductAction extends ActionSupport {
+
+	private Product product;
+	
+	
+	private IProductService proservice;
+
+	@Resource(name="proService")
+	public void setProservice(IProductService proservice) {
+		this.proservice = proservice;
+	}
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+/*	// 跳转新增页面
+	public String toAddProduct() {
+		return "toAdd";
+	}*/
+	//跳到新增页面
+	public String toAddProduct(){
+		return "success";
+	}
+	// 新增提交
+	public String AddProduct() {
+		proservice.insProduct(product);
+		return "ProductList";
+	}
+
+	public String DelProduct() {
+		proservice.delProduct(product);
+		return "ProductList";
+	}
+
+	private List<Product> proList;
+
+	public List<Product> getProList() {
+		return proList;
+	}
+
+	public String ListProduct() {
+		proList = proservice.searchProduct(null);
+		return "toList";
+	}
+	public String getProductA() {
+		product = proservice.getProduct(product);
+		return "success";
+	}
+	public String UpdateProduct() {
+		proservice.uptProduct(product);
+		return "ProductList";
+	}
+}

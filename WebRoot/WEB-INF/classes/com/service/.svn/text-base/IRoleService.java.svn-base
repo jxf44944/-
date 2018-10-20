@@ -1,0 +1,32 @@
+package com.service;
+
+import java.util.List;
+
+import com.entity.Roles;
+
+
+/***
+ * 角色 service 接口
+ * @author Feng
+ * 2014-02-15
+ */
+public interface IRoleService {
+	
+	
+	/**新增*/
+	public boolean insRoles(Roles role , String[] limitArr);
+	
+	/**删除*/
+	public boolean delRoles(Roles role);
+	
+	/**修改**/
+	public boolean uptRoles(Roles role, String[] limitArr);
+	
+	/**查找单条记录信息**/
+	public Roles getRoles(Roles role);
+	
+	/**查找列表
+	 * */
+	public List<Roles> list(String sql);
+	
+}

@@ -1,0 +1,104 @@
+package com.action;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import com.entity.Roles;
+import com.entity.Users;
+import com.entity.Workchange;
+import com.entity.Workprojects;
+import com.opensymphony.xwork2.ActionContext;
+import com.opensymphony.xwork2.ActionSupport;
+import com.service.IWorkchangeService;
+import com.service.IWorkprojectsService;
+
+public class WorkchangeAction extends ActionSupport{
+	private Workchange workchange;
+	private IWorkchangeService workchangeService;
+	private IWorkprojectsService workprojectsservice;
+	private List<Workchange> workchangelist;	
+	private List<Workprojects> workprojectslist;
+	private List<Users> userslist;
+	//获取session的值
+	Roles role=(Roles) ActionContext.getContext().getSession().get("role");
+	Users user=(Users) ActionContext.getContext().getSession().get("loginUser");
+	//获取登录用户的ID
+	int i=user.getUserId();
+	String sql=" where user_id in ("+i+")";
+	
+	public Workchange getWorkchange() {
+		return workchange;
+	}
+	public void setWorkchange(Workchange workchange) {
+		this.workchange = workchange;
+	}
+	public IWorkchangeService getWorkchangeService() {
+		return workchangeService;
+	}
+	@Resource(name="WorkchangeService")
+	public void setWorkchangeService(IWorkchangeService workchangeService) {
+		this.workchangeService = workchangeService;
+	}
+	@Resource(name="workprojectsService")
+	public void setWorkprojectsservice(IWorkprojectsService workprojectsservice) {
+		this.workprojectsservice = workprojectsservice;
+	}
+	
+	public List<Workchange> getWorkchangelist() {
+		return workchangelist;
+	}
+	public void setWorkchangelist(List<Workchange> workchangelist) {
+		this.workchangelist = workchangelist;
+	}
+	
+	public List<Workprojects> getWorkprojectslist() {
+		return workprojectslist;
+	}
+	public void setWorkprojectslist(List<Workprojects> workprojectslist) {
+		this.workprojectslist = workprojectslist;
+	}
+	
+	public List<Users> getUserslist() {
+		return userslist;
+	}
+	public void setUserslist(List<Users> userslist) {
+		this.userslist = userslist;
+	}
+	//新增提交
+	public String AddWorkchange(){
+		 workchangeService.uptWorkprojects(workchange);
+		 workchangeService.insWorkchange(workchange);	
+		 return "WorkchangeList";
+	}
+	//列出所有的工作移交
+	public String ListWorkchange(){
+		if(role.getRoleGrade()==1)
+		{
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		workchangelist=workchangeService.searchWorkchange(null);
+		}
+		else if(role.getRoleGrade()==2)
+		{
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);	
+		}
+		else
+		{ 
+		  workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		  workchangelist=workchangeService.searchWorkchange(sql);
+		}
+		//workprojectslist=workprojectsservice.selectWorkprojectList();
+		userslist=workchangeService.selectUsersList();
+		return "toList";
+	}
+	//跳到新增页面
+	public String toAddWorkchange(){
+		String hql=sql+" and project_state in ("+0+")";
+		if(role.getRoleGrade()==1)
+		workprojectslist=workprojectsservice.selectWorkprojectList(null);
+		else
+		workprojectslist=workprojectsservice.selectWorkprojectList(hql);
+		userslist=workchangeService.selectUsersList();
+		return "success";
+	}
+}

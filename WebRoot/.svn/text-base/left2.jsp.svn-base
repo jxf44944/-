@@ -1,0 +1,186 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/chili-1.7.pack.js"></script>
+<script type="text/javascript" src="js/jquery.easing.js"></script>
+<script type="text/javascript" src="js/jquery.dimensions.js"></script>
+<script type="text/javascript" src="js/jquery.accordion.js"></script>
+<script language="javascript">
+	jQuery().ready(function(){
+		jQuery('#navigation').accordion({
+			header: '.head',
+			navigation1: true, 
+			event: 'click',
+			fillSpace: true,
+			animated: 'bounceslide'
+		});
+	});
+</script>
+<style type="text/css">
+<!--
+body {
+	margin:0px;
+	padding:0px;
+	font-size: 12px;
+}
+#navigation {
+	margin:0px;
+	padding:0px;
+	width:147px;
+}
+#navigation a.head {
+	cursor:pointer;
+	background:url(images/main_34.gif) no-repeat scroll;
+	display:block;
+	font-weight:bold;
+	margin:0px;
+	padding:5px 0 5px;
+	text-align:center;
+	font-size:12px;
+	text-decoration:none;
+}
+#navigation ul {
+	border-width:0px;
+	margin:0px;
+	padding:0px;
+	text-indent:0px;
+}
+#navigation li {
+	list-style:none; display:inline;
+}
+#navigation li li a {
+	display:block;
+	font-size:12px;
+	text-decoration: none;
+	text-align:center;
+	padding:3px;
+}
+#navigation li li a:hover {
+	background:url(images/tab_bg.gif) repeat-x;
+		border:solid 1px #adb9c2;
+}
+-->
+</style>
+</head>
+<body>
+<div  style="height:100%;">
+  <ul id="navigation">
+	<li> <a class="head">系统管理</a>
+      <ul>
+        <li><a href="${pageContext.request.contextPath }/DeptsList" target="rightFrame">部门管理</a></li>
+        <li><a href="${pageContext.request.contextPath }/UsersList" target="rightFrame">用户管理</a></li>
+		<li><a href="${pageContext.request.contextPath }/RolesList" target="rightFrame">角色管理</a></li>
+		<li><a href="LogsList.jsp" target="rightFrame">日志管理</a></li>		
+
+	
+      </ul>
+    </li>
+	<li> <a class="head">业务管理</a>
+      <ul>
+		<li><a href="${pageContext.request.contextPath }/WorkitemsList" target="rightFrame">工作项目绩效管理
+
+</a></li>
+		<li><a href="${pageContext.request.contextPath }/ProductList" 
+
+target="rightFrame">产品管理</a></li>
+		<li><a href="${pageContext.request.contextPath }/ClienttypesList" target="rightFrame">客户类别管理
+
+</a></li>
+		<li><a href="${pageContext.request.contextPath }/ChannelsList" target="rightFrame">来源渠道管理</a></li>
+	<!--	<li><a href="right2.html" target="rightFrame">绩效分值管理</a></li>	
+
+-->
+      </ul>
+    </li>
+	<li> <a class="head">客户管理</a>
+      <ul>
+        <li><a href="${pageContext.request.contextPath }/clientsModel/toAddAction" target="rightFrame">客户录入</a></li>
+        <li><a href="${pageContext.request.contextPath }/clientsModel/toListAction" target="rightFrame">客户列表</a></li>
+		<li><a href="CustomerCount.jsp" target="rightFrame">数据统计</a></li> 
+
+      </ul>
+    </li>
+	<li> <a class="head">工作管理</a>
+      <ul>
+        <li><a href="${pageContext.request.contextPath }/WorkprojectsList" target="rightFrame">工作安排</a></li>
+        <li><a href="${pageContext.request.contextPath }/Workprojects_Events" target="rightFrame">事件提醒</a></li>
+		<li><a href="${pageContext.request.contextPath }/WorkchangeList" target="rightFrame">工作移交
+
+</a></li>
+		<li><a href="${pageContext.request.contextPath }/WorklogList" target="rightFrame">工作记录
+
+</a></li>
+		<li><a href="${pageContext.request.contextPath }/PerformanceList" target="rightFrame">绩效评价
+
+</a></li>
+
+      </ul>
+    </li>
+	<li> <a class="head">财务报表</a>
+      <ul>
+        <li><a href="right3.html" target="rightFrame">产品业务报表</a></li>
+        <li><a href="right2.html" target="rightFrame">当日业务报表</a></li>
+		<li><a href="right2.html" target="rightFrame">月度业务报表</a></li>
+		<li><a href="right2.html" target="rightFrame">员工绩效报表</a></li>
+		<li><a href="right2.html" target="rightFrame">宣传渠道报表
+
+</a></li><!-- 投入费用 ，根据客户调查问卷收集信息，记录宣传效果，客户来源， -->
+      </ul>
+    </li>
+	<li> <a class="head">内部通知</a>
+      <ul>
+        <li><a href="${pageContext.request.contextPath }/DeptmsgList" target="rightFrame">部门通知</a></li>
+        <li><a href="SendtipsList.jsp" target="rightFrame">电子便签</a></li>
+		<li><a href="${pageContext.request.contextPath }/DeptmsgtoAdd" target="rightFrame">发布通知消息</a></li>
+      </ul>
+    </li>
+	<li> <a class="head">客户反馈信息</a>
+      <ul>
+        <li><a href="Electronic_notes.html" target="rightFrame">客户建议</a></li>
+        <li><a href="Electronic_add_notes.html" target="rightFrame">录入客户建议</a></li>
+		<li><a href="ClientComplainList" target="rightFrame">投诉信息列表</a></li>
+		<li><a href="ClientComplainAdd.jsp" target="rightFrame">录入投诉信息</a></li>
+      </ul>
+    </li>
+
+
+
+<!-- 原来的部分 	
+	<li> <a class="head">日志管理</a>
+      <ul>
+        <li><a href="right3.html" target="rightFrame">添加日志</a></li>
+        <li><a href="right2.html" target="rightFrame">查看/修改日志</a></li>
+      </ul>
+    </li>
+    <li> <a class="head">分类管理</a>
+      <ul>
+        <li><a href="AddKind.php" target="rightFrame">添加分类</a></li>
+        <li><a href="Kinds.php" target="rightFrame">查看/删除分类</a></li>
+      </ul>
+    </li>
+    <li> <a class="head">留言评论管理</a>
+      <ul>
+        <li><a href="messages.php" target="rightFrame">查看/删除留言</a></li>
+        <li><a href="comments.php" target="rightFrame">查看/删除评论</a></li>
+      </ul>
+    </li>
+    <li> <a class="head">友情链接管理</a>
+      <ul>
+        <li><a href="AddLink.php" target="rightFrame">添加友情链接</a></li>
+        <li><a href="Links.php" target="rightFrame">查看/修改友情链接</a></li>
+      </ul>
+    </li>
+    <li> <a class="head">版本信息</a>
+      <ul>
+        <li><a href="http://Www.865171.cn" target="_blank">by Jessica(865171.cn)</a></li>
+      </ul>
+    </li>
+	-->
+  </ul>
+</div>
+</body>
+</html>

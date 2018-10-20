@@ -1,0 +1,170 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 客户管理&gt;&gt;录入客户信息</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10"  /><a href="AddDept.html"> 添加</a></li>
+        <li><img src="images/edit.gif" width="10" height="10" /> 编辑</li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+<form id="form1" name="form1" method="post" action="">
+  <table width="1055" id="add_table" >
+    <tr>
+      <td width="9%" >客户基本资料：</td>
+      <td width="24%" >&nbsp;</td>
+      <td width="9%" >&nbsp;</td>
+      <td width="55%" >&nbsp;</td>
+      <td width="3%" >&nbsp;</td>
+    </tr>
+    <tr>
+      <td>姓名：</td>
+      <td><label for="textfield"></label>
+      <input type="text" name="textfield" id="textfield" /></td>
+      <td>性别：</td>
+      <td><label for="select"></label>
+        <select name="select" id="select">
+        <option>男</option>
+        <option>女</option>
+      </select></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>联系电话：</td>
+      <td><label for="textfield2"></label>
+      <input type="text" name="textfield2" id="textfield2" /></td>
+      <td>QQ：</td>
+      <td><input type="text" name="textfield11" id="textfield11" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Email：</td>
+      <td><label for="textfield3"></label>
+      <input type="text" name="textfield3" id="textfield3" /></td>
+      <td>MSN:</td>
+      <td><input type="text" name="textfield12" id="textfield12" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>籍贯：</td>
+      <td><label for="textfield4"></label>
+      <input type="text" name="textfield4" id="textfield4" /></td>
+      <td>所在地：</td>
+      <td><input type="text" name="textfield13" id="textfield13" /></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>客户类型：</td>
+      <td><label for="select2"></label>
+        <select name="select3" id="select3">
+          <option >A类</option>
+          <option>B类</option>
+          <option >C类</option>
+          <option>D类</option>
+      </select></td>
+      <td>客户状态：</td>
+      <td><select name="select2" id="select2">
+        <option >未报名</option>
+        <option>已报名</option>
+        <option >等待付款</option>
+        <option>已付款</option>
+        <option >已毕业</option>
+        <option>已就业</option>
+      </select></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>需求状况：</td>
+      <td><label for="textfield5"></label>
+        <p>
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="SD" id="CheckboxGroup1_0" />
+           SD</label>
+       
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="ASD" id="CheckboxGroup1_1" />
+            ASD</label>
+      
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="WSD" id="CheckboxGroup1_2" />
+            WSD</label>
+        
+          <label>
+            <input type="checkbox" name="CheckboxGroup1" value="SB" id="CheckboxGroup1_3" />
+            SB</label>
+        
+      </p></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>需求描述：</td>
+      <td colspan="3"><label for="textarea"></label>
+      <textarea name="textarea" id="textarea" cols="45" rows="5"></textarea></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>来源：</td>
+      <td><label>
+        <input type="checkbox" name="CheckboxGroup1_" value="SD" id="CheckboxGroup1_4" />
+        SD</label>
+        <label>
+          <input type="checkbox" name="CheckboxGroup1_" value="ASD" id="CheckboxGroup1_5" />
+          ASD</label>
+        <label>
+          <input type="checkbox" name="CheckboxGroup1_" value="WSD" id="CheckboxGroup1_6" />
+          WSD</label>
+        <label>
+          <input type="checkbox" name="CheckboxGroup1_" value="SB" id="CheckboxGroup1_7" />
+      SB</label></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>介绍人：</td>
+      <td><p>
+        <label for="textfield9"></label>
+        <input type="text" name="textfield5" id="textfield9" />
+        <br />
+      </p></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><input type="submit" name="button" id="button" value="提交" />
+      <input type="reset" name="button2" id="button2" value="重置" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</form>
+<p>&nbsp;</p>
+</body>
+</html>

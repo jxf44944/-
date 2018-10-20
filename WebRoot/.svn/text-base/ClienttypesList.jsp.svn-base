@@ -1,0 +1,80 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"
+	errorPage=""%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript">
+   function deleteClienttypes(paraproid)
+     {
+	var msg = "您确认要删除编号为" + paraproid + "的客户吗?";
+    var r =window.confirm(msg);
+    if (r==true)
+        {
+         location.href="<%=request.getContextPath()%>/Clienttypes_Del?clienttypes.ctypeId="+paraproid;
+        }
+      }
+   function getClienttypes(paraproid)
+     {
+         location.href="<%=request.getContextPath()%>/ClienttypestoUpdate?clienttypes.ctypeId="+paraproid;
+      }
+
+  </script>
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+</head>
+
+<body>
+	<div id="title_bar">
+		<span id="title"> 业务管理&gt;&gt;客户类别管理</span>
+		<ul id="operation">
+			<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+			<li><img src="images/add.gif" width="10" height="10" /><a
+				href="${pageContext.request.contextPath }/ClienttypestoAdd "> 添加</a>
+			</li>
+			<li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+		</ul>
+	</div>
+
+	<table id="list_table">
+		<tr>
+			<th width="6%">选择</th>
+			<th width="6%">编号</th>
+			<th width="12%">客户类别</th>
+			<th width="12%">跟进周期</th>
+			<th width="40%">描述</th>
+			<th width="12%">基本操作</th>
+		</tr>
+		<s:iterator value="clienttypesList">
+			<tr>
+				<td bgcolor="#FFFFFF" align="center"><input type="checkbox"
+					name="checkbox2" id="checkbox2" />
+				</td>
+				<td><s:property value="ctypeId" />
+				</td>
+				<td><s:property value="ctypeName" />
+				</td>
+				<td><s:property value="followtime" />
+				</td>
+				<td><s:property value="ctypeDesc" />
+				</td>
+				<td><a href="javascript:getClienttypes('<s:property value="ctypeId" />')">修改</a>|
+          			<a href="javascript:deleteClienttypes('<s:property value="ctypeId" />')">删除</a></td> 
+			</tr>
+		</s:iterator>
+	</table>
+
+	<div id="page_bar">
+		<div id="page">
+			共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong>
+			页
+		</div>
+
+		<div id="tool">
+			<a href="#">首页</a> <a href="#">上一页</a> <a href="#">下一页</a> <a
+				href="#">末页</a> 转到<input type="text" name="currentPage" value="5" />页
+		</div>
+	</div>
+</body>
+</html>

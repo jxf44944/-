@@ -1,0 +1,87 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Depts entity. @author MyEclipse Persistence Tools
+ */
+
+public class Depts implements java.io.Serializable {
+
+	// Fields
+
+	private Integer deptId;
+	private String deptName;
+	private String deptDesc;
+	private String deptPhone;
+	private Set deptmsgs = new HashSet(0);
+	private Set userses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Depts() {
+	}
+
+	/** full constructor */
+	public Depts(String deptName, String deptDesc, String deptPhone,
+			Set deptmsgs, Set userses) {
+		this.deptName = deptName;
+		this.deptDesc = deptDesc;
+		this.deptPhone = deptPhone;
+		this.deptmsgs = deptmsgs;
+		this.userses = userses;
+	}
+
+	// Property accessors
+
+	public Integer getDeptId() {
+		return this.deptId;
+	}
+
+	public void setDeptId(Integer deptId) {
+		this.deptId = deptId;
+	}
+
+	public String getDeptName() {
+		return this.deptName;
+	}
+
+	public void setDeptName(String deptName) {
+		this.deptName = deptName;
+	}
+
+	public String getDeptDesc() {
+		return this.deptDesc;
+	}
+
+	public void setDeptDesc(String deptDesc) {
+		this.deptDesc = deptDesc;
+	}
+
+	public String getDeptPhone() {
+		return this.deptPhone;
+	}
+
+	public void setDeptPhone(String deptPhone) {
+		this.deptPhone = deptPhone;
+	}
+
+	public Set getDeptmsgs() {
+		return this.deptmsgs;
+	}
+
+	public void setDeptmsgs(Set deptmsgs) {
+		this.deptmsgs = deptmsgs;
+	}
+
+	public Set getUserses() {
+		return this.userses;
+	}
+
+	public void setUserses(Set userses) {
+		this.userses = userses;
+	}
+
+}

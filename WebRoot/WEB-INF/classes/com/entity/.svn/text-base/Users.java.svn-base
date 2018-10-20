@@ -1,0 +1,199 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Users entity. @author MyEclipse Persistence Tools
+ */
+
+public class Users implements java.io.Serializable {
+
+	// Fields
+
+	private Integer userId;
+	private Depts depts;
+	private Roles roles;
+	private String username;
+	private String gender;
+	private Integer age;
+	private String password;
+	private Boolean userStatus;
+	private String userDesc;
+	private String birthday;
+	private Set worklogs = new HashSet(0);
+	private Set workchanges = new HashSet(0);
+	private Set deptmsgs = new HashSet(0);
+	private Set logses = new HashSet(0);
+	private Set sendtipses = new HashSet(0);
+	private Set clientses = new HashSet(0);
+	private Set workprojectses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Users() {
+	}
+
+	/** full constructor */
+	public Users(Depts depts, Roles roles, String username, String gender,
+			Integer age, String password, Boolean userStatus, String userDesc,
+			String birthday, Set worklogs, Set workchanges, Set deptmsgs,
+			Set logses, Set sendtipses, Set clientses, Set workprojectses) {
+		this.depts = depts;
+		this.roles = roles;
+		this.username = username;
+		this.gender = gender;
+		this.age = age;
+		this.password = password;
+		this.userStatus = userStatus;
+		this.userDesc = userDesc;
+		this.birthday = birthday;
+		this.worklogs = worklogs;
+		this.workchanges = workchanges;
+		this.deptmsgs = deptmsgs;
+		this.logses = logses;
+		this.sendtipses = sendtipses;
+		this.clientses = clientses;
+		this.workprojectses = workprojectses;
+	}
+
+	// Property accessors
+
+	public Integer getUserId() {
+		return this.userId;
+	}
+
+	public void setUserId(Integer userId) {
+		this.userId = userId;
+	}
+
+	public Depts getDepts() {
+		return this.depts;
+	}
+
+	public void setDepts(Depts depts) {
+		this.depts = depts;
+	}
+
+	public Roles getRoles() {
+		return this.roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
+
+	public String getUsername() {
+		return this.username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getGender() {
+		return this.gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
+	}
+
+	public Integer getAge() {
+		return this.age;
+	}
+
+	public void setAge(Integer age) {
+		this.age = age;
+	}
+
+	public String getPassword() {
+		return this.password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public Boolean getUserStatus() {
+		return this.userStatus;
+	}
+
+	public void setUserStatus(Boolean userStatus) {
+		this.userStatus = userStatus;
+	}
+
+	public String getUserDesc() {
+		return this.userDesc;
+	}
+
+	public void setUserDesc(String userDesc) {
+		this.userDesc = userDesc;
+	}
+
+	public String getBirthday() {
+		return this.birthday;
+	}
+
+	public void setBirthday(String birthday) {
+		this.birthday = birthday;
+	}
+
+	public Set getWorklogs() {
+		return this.worklogs;
+	}
+
+	public void setWorklogs(Set worklogs) {
+		this.worklogs = worklogs;
+	}
+
+	public Set getWorkchanges() {
+		return this.workchanges;
+	}
+
+	public void setWorkchanges(Set workchanges) {
+		this.workchanges = workchanges;
+	}
+
+	public Set getDeptmsgs() {
+		return this.deptmsgs;
+	}
+
+	public void setDeptmsgs(Set deptmsgs) {
+		this.deptmsgs = deptmsgs;
+	}
+
+	public Set getLogses() {
+		return this.logses;
+	}
+
+	public void setLogses(Set logses) {
+		this.logses = logses;
+	}
+
+	public Set getSendtipses() {
+		return this.sendtipses;
+	}
+
+	public void setSendtipses(Set sendtipses) {
+		this.sendtipses = sendtipses;
+	}
+
+	public Set getClientses() {
+		return this.clientses;
+	}
+
+	public void setClientses(Set clientses) {
+		this.clientses = clientses;
+	}
+
+	public Set getWorkprojectses() {
+		return this.workprojectses;
+	}
+
+	public void setWorkprojectses(Set workprojectses) {
+		this.workprojectses = workprojectses;
+	}
+
+}

@@ -1,0 +1,14 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Product;
+
+public interface IProductDao {
+   public boolean insert(Product pro);
+   public boolean update(Product pro);
+   public boolean delete(Product pro);
+   public List selectAll();
+   public List select(String sql);
+   public  Product getProduct(Product pro);
+}

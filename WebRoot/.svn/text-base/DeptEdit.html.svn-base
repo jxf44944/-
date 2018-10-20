@@ -1,0 +1,59 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 部门管理&gt;&gt;修改部门信息</span>
+    <ul id="operation">
+    	<li><input type="button" name="Submit2" value="返回" class="button" onclick="window.history.go(-1);"/></li>
+    </ul>
+</div>
+<form id="form1" name="form1" method="post" action="">
+  <table width="920" id="add_table">
+    <tr>
+      <td colspan="5">以下带*为必填项：</td>
+    </tr>
+    <tr>
+      <td align="center">*部门名称：</td>
+      <td><input type="text" name="dep_name" id="dep_name" value="财务部" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">*联系电话：</td>
+      <td><label for="dep_name">
+        <input type="text" name="dep_name2" id="dep_name2" value="11111111"/>
+      </label></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center">部门简介：</td>
+      <td><label for="dep_desc"></label>
+      <textarea name="dep_desc" id="dep_desc" cols="45" rows="5" >132465487654613213213132135465412313413543132131324153</textarea></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+
+    <tr>
+      <td rowspan="2">&nbsp;</td>
+      <td align="center" valign="middle">&nbsp;</td>
+      <td rowspan="2">&nbsp;</td>
+    </tr>
+    <tr>
+      <td align="center" valign="middle"><input type="submit" name="button" id="button" value="保存" />&nbsp;&nbsp;
+      <input type="reset" name="button" id="button" value="返回" /></td>
+    </tr>
+  </table>
+</form>
+</body>
+</html>

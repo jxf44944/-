@@ -1,0 +1,81 @@
+package com.service.impl;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.BaseDAO;
+import com.dao.IWorkprojectsDao;
+import com.entity.Clients;
+import com.entity.Users;
+import com.entity.Workitems;
+import com.entity.Workprojects;
+import com.service.IWorkprojectsService;
+
+@Service("workprojectsService")
+public class WorkprojectsServiceImpl implements IWorkprojectsService{
+	private IWorkprojectsDao workprojectsDao;
+	
+	@Resource(name="workprojectsDao")
+	public void setWorkprojectsDao(IWorkprojectsDao workprojectsDao) {
+		this.workprojectsDao = workprojectsDao;
+	}
+
+	//新增提交
+	public boolean insWorkprojects(Workprojects Workprojects) {
+		if(workprojectsDao.insert(Workprojects))
+			return true;
+		else
+			return false;
+	}
+
+	//获取工作项目所有数据
+	public List<Workitems> selectWorkitemsList() {
+		return workprojectsDao.selectWorkitemsList();
+	}
+
+	//获取客户所有数据
+	public List<Clients> selectClientsList() {
+		return workprojectsDao.selectClientsList();
+	}
+
+	//获取用户所有数据
+	public List<Users> selectUsersList() {
+		return workprojectsDao.selectUsersList();
+	}
+	//列出所有工作任务
+	public List<Workprojects> selectWorkprojectList(String sql) {
+		if(sql==null)
+		return workprojectsDao.selectAll();
+		else
+		return workprojectsDao.selectWorkprojectsList(sql);
+	}
+	//删除一条工作任务
+	public boolean delWorkprojects(Workprojects workprojects) {
+		return workprojectsDao.delete(workprojects);
+	}
+	//获取一条工作任务
+	public Workprojects getWorkprojects(Workprojects workprojects) {
+		return workprojectsDao.getWorkprojects(workprojects);
+	}
+	//更新一条工作任务
+	public boolean uptWorkprojects(Workprojects workprojects) {
+		return workprojectsDao.update(workprojects);
+	}
+	//获取今天所有的工作任务
+	public List<Workprojects> tdEventWorkprojects(String s,String sql) {
+		return workprojectsDao.tdEventWorkprojects(s,sql);
+	}
+	//获取今天之前所有的工作任务
+	public List<Workprojects> tmEventWorkprojects(String s,String sql) {
+		return workprojectsDao.tmEventWorkprojects(s,sql);
+	}
+	//获取所有用户已完成的工作安排
+	public List<Workprojects> getPerformance() {
+		return workprojectsDao.getPerformance();
+	}
+
+}

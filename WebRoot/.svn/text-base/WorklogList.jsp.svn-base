@@ -1,0 +1,92 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>无标题文档</title>
+<script language="javascript">
+   function deleteWorklog(paraproid)
+     {
+	var msg = "您确认要删除编号为" + paraproid + "的工作记录吗?";
+    var r =window.confirm(msg);
+    if (r==true)
+        {
+         location.href="<%=request.getContextPath()%>/Worklog_Del?worklog.worklogId="+paraproid;
+        }
+      }
+   function getWorklog(paraproid)
+     {
+         location.href="<%=request.getContextPath()%>/WorklogtoUpdate?worklog.worklogId="+paraproid;
+      }
+
+  </script>
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+</head>
+
+
+<body>
+<div id="title_bar">
+	<span id="title" > 工作管理&gt;&gt;工作记录列表</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10" /><a href="WorklogtoAdd"> 添加</a></li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+<table id="list_table" >
+      <tr>
+        <th width="4%"   >
+          
+        </th>
+       
+        
+         <th width="44">编号</th>
+    <th width="200">工作任务</th>
+    <th width="76">负责人</th>
+    <th width="125">记录时间</th>
+    <th width="150" colspan="5">任务情况描述</th>
+    <th width="125">操作</th>
+      </tr>
+      
+      <s:iterator value="workloglist" var="l">
+      <tr>
+        <td  >
+          <input type="checkbox" name="checkbox2" id="checkbox2" />
+        </td>
+    <td><s:property value="#l.worklogId"/></td>
+    <s:iterator value="workprojectslist" var="p">     
+	<s:if test="#p.projectId==#l.workprojects.projectId">        
+	<td><s:property value="#p.projectTitle"/></td>     
+	</s:if>     
+	</s:iterator>
+	<s:iterator value="usersList" var="u">
+	<s:if test="#u.userId==#l.users.userId">
+    <td><s:property value="#u.username"/></td>
+    </s:if>
+    </s:iterator>
+    <td><s:property value="#l.worklogDate"/></td>
+    <td colspan="5"><s:property value="#l.worklogDesc"/></td>
+    <td><a href="javascript:getWorklog('<s:property value="#l.worklogId"/>')">修改</a>|
+    	<a href="javascript:deleteWorklog('<s:property value="#l.worklogId"/>')">删除</a>
+    </td>
+    
+      </tr>   
+      </s:iterator>   
+    </table>
+<div id="page_bar">
+	<div id="page">
+    	共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong> 页
+    </div>
+    
+   <div id="tool">
+  	<a href="#">首页</a>
+    <a href="#">上一页</a>
+    <a href="#">下一页</a>
+    <a href="#">末页</a>
+    转到<input type="text" name="currentPage" value="5"/>页
+  </div>
+</div>
+</body>
+
+</html>

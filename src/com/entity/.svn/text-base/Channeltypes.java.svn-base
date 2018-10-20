@@ -1,0 +1,67 @@
+package com.entity;
+
+import java.util.HashSet;
+import java.util.Set;
+
+/**
+ * Channeltypes entity. @author MyEclipse Persistence Tools
+ */
+
+public class Channeltypes implements java.io.Serializable {
+
+	// Fields
+
+	private Integer channeltypeId;
+	private String channeltypeName;
+	private String channeltypeDesc;
+	private Set channelses = new HashSet(0);
+
+	// Constructors
+
+	/** default constructor */
+	public Channeltypes() {
+	}
+
+	/** full constructor */
+	public Channeltypes(String channeltypeName, String channeltypeDesc,
+			Set channelses) {
+		this.channeltypeName = channeltypeName;
+		this.channeltypeDesc = channeltypeDesc;
+		this.channelses = channelses;
+	}
+
+	// Property accessors
+
+	public Integer getChanneltypeId() {
+		return this.channeltypeId;
+	}
+
+	public void setChanneltypeId(Integer channeltypeId) {
+		this.channeltypeId = channeltypeId;
+	}
+
+	public String getChanneltypeName() {
+		return this.channeltypeName;
+	}
+
+	public void setChanneltypeName(String channeltypeName) {
+		this.channeltypeName = channeltypeName;
+	}
+
+	public String getChanneltypeDesc() {
+		return this.channeltypeDesc;
+	}
+
+	public void setChanneltypeDesc(String channeltypeDesc) {
+		this.channeltypeDesc = channeltypeDesc;
+	}
+
+	public Set getChannelses() {
+		return this.channelses;
+	}
+
+	public void setChannelses(Set channelses) {
+		this.channelses = channelses;
+	}
+
+}

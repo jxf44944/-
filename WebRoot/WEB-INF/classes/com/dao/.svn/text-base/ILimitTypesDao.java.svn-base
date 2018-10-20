@@ -1,0 +1,24 @@
+package com.dao;
+
+import java.util.List;
+
+import com.entity.Limittype;
+
+/***
+ * 菜单类别 dao接口
+ * @author Administrator
+ * 2014-2-24
+ */
+public interface ILimitTypesDao {
+
+	public boolean insert(Limittype limtype);
+	
+	public boolean update(Limittype limtype);
+	
+	public boolean delete(Limittype type);
+	
+	public Limittype getLimtype(Limittype type);
+	
+	public List<Limittype> list(String sql);
+	
+}

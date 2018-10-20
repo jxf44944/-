@@ -1,0 +1,66 @@
+package com.service.impl;
+
+import java.util.List;
+
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
+import com.dao.IWorkchangeDao;
+import com.dao.IWorkprojectsDao;
+import com.entity.Users;
+import com.entity.Workchange;
+import com.entity.Workprojects;
+import com.service.IWorkchangeService;
+
+@Service("WorkchangeService")
+public class WorkchangeServiceImpl implements IWorkchangeService {
+
+	private IWorkchangeDao workchangedao;
+	
+	private IWorkprojectsDao workprojectsdao;
+	
+	public IWorkchangeDao getWorkchangeDao() {
+		return workchangedao;
+	}
+	@Resource(name="WorkchangeDao")
+	public void setWorkchangedao(IWorkchangeDao workchangedao) {
+		this.workchangedao = workchangedao;
+	}
+	@Resource(name="workprojectsDao")
+	public void setWorkprojectsdao(IWorkprojectsDao workprojectsdao) {
+		this.workprojectsdao = workprojectsdao;
+	}
+	//查找所有工作移交的记录
+	public List<Workchange> searchWorkchange(String sql) {
+		List<Workchange> workchangelist=null;
+		if(sql==null)
+			workchangelist=workchangedao.SelectAll();
+		else
+			workchangelist=workchangedao.Select(sql);
+		return workchangelist;
+	}
+	//插入一条工作移交记录
+	public boolean insWorkchange(Workchange workchange) {
+		if (workchangedao.insert(workchange))
+		{return true;}
+		else
+		{return false;}
+	}
+	//获取用户所有数据
+	public List<Users> selectUsersList() {	
+		return workchangedao.selectUsersList();
+	}
+	//更新一条工作安排的负责人
+	public boolean uptWorkprojects(Workchange workchange) {
+		Workprojects w=new Workprojects();
+		w.setProjectId(workchange.getWorkprojects().getProjectId());
+		Workprojects w2=workprojectsdao.getWorkprojects(w);
+		Users u=new Users();
+		u.setUserId(Integer.parseInt(workchange.getChangeUsername()));
+		w2.setUsers(u);	
+		workprojectsdao.update(w2);
+		return true;
+	}
+
+}

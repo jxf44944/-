@@ -1,0 +1,46 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IChannelsDao;
+import com.entity.Channels;
+import com.entity.Clienttypes;
+@Repository(value="channelsDao")
+public class ChannelsDaoImpl extends BaseDAO implements IChannelsDao {
+
+	public boolean insert(Channels cli) {
+		this.getHibernateTemplate().save(cli);
+		return true;
+	}
+
+	public boolean update(Channels cli) {
+		this.getHibernateTemplate().update(cli);
+		return true;
+	}
+
+	public boolean delete(Channels cli) {
+		Channels delcli = (Channels) this.getHibernateTemplate().load(
+				Channels.class, cli.getChannelId());
+		this.getHibernateTemplate().delete(delcli);
+		return true;
+	}
+
+	public List select(Channels cli) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public Channels getChannels(Channels cli) {
+		return this.getHibernateTemplate()
+				.get(Channels.class, cli.getChannelId());
+	}
+
+	public List selectAll() {
+		List<Channels> li=this.getHibernateTemplate().find("from Channels");
+		return li;
+	}
+
+}

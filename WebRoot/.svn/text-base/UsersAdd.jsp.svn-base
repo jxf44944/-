@@ -1,0 +1,161 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<title>添加用户</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 添加用户</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10"  /><a href="#"> 添加</a></li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+<s:form id="form1" name="form1" method="post" action="Users_add">
+  <table width="1055" id="add_table" >
+    <tr>
+      <td>以下带*为必填项：</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+    	<s:select list="deptList"  name="user.depts.deptId" label="所在部门" 
+    			listKey="deptId" listValue="deptName">
+    	
+    	</s:select>
+    </tr>
+   <!--   <tr>
+     <td>用户角色：</td>
+     <td>
+     <select name="user.roles.roleId" >
+     <s:iterator value="roleList" var="role">
+    	<option value="role.roleId" >
+    		 ${role.roleName } 
+    	</option>    	
+    	</s:iterator>
+    	</select>
+    	</td>
+    </tr> -->
+    <tr>
+    	<s:select list="roleList"  name="user.roles.roleId" label="用户角色" 
+    			listKey="roleId" listValue="roleName">
+    	
+    	</s:select>
+  
+    </tr>
+    
+    <tr>
+      <td><label for="textfield"></label>
+      <s:textfield name="user.username" label="用户名"/>
+      </td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td><label for="textfield2"></label>
+      <s:password name="user.password" label="密码" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>*确认密码：</td>
+      <td><label for="textfield3"></label>
+      <input type="password" name="textfield3" id="textfield3" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <s:select list="#{'true':'开放','false':'禁用'}"  name="user.userStatus" 
+    				label="用户状态" >
+    	
+    	</s:select>
+    </tr>
+    <tr>
+    	<td>
+  	 	 <s:radio name="user.gender" label="性别：" list="#{'男':'男','女':'女'}" ></s:radio>
+  	  </td>
+    </tr>
+    <tr>
+      <s:textfield name="user.age" label="年龄："></s:textfield>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+     <td>
+     	<s:textfield name="user.birthday" label="生日：" />
+     </td>
+     <td></td>
+    </tr>
+    <tr>
+      	<s:textarea name="user.userDesc" label="描述："></s:textarea>
+       <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    
+    
+    
+    
+    <!-- 以下代码 未作修改 -->
+    
+    
+    <tr>
+      <td>手机号码：</td>
+      <td><label for="textfield7"></label>
+      <input type="text" name="textfield7" id="textfield7" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>QQ：</td>
+      <td><label for="textfield8"></label>
+      <input type="text" name="textfield8" id="textfield8" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>MSN：</td>
+      <td><input type="text" name="textfield9" id="textfield9" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>Email:</td>
+      <td><input type="text" name="textfield10" id="textfield10" /></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <s:submit></s:submit><s:reset></s:reset><td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+  </table>
+</s:form>
+<p>&nbsp;</p>
+</body>
+</html>

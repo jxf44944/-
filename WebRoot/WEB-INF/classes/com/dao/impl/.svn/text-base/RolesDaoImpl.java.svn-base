@@ -1,0 +1,51 @@
+package com.dao.impl;
+
+import java.util.List;
+
+import org.springframework.stereotype.Repository;
+
+import com.dao.BaseDAO;
+import com.dao.IDeptsDao;
+import com.dao.IRolesDao;
+import com.entity.Depts;
+import com.entity.Roles;
+/***
+ * 
+ * @author Feng
+ *
+ */
+@Repository("roleDao")
+public class RolesDaoImpl extends BaseDAO implements IRolesDao{
+
+	/**添加角色*/
+	public boolean insert(Roles role){
+		this.getHibernateTemplate().save(role);
+		return true;
+	}
+	
+	/**删除角色*/
+	public boolean delete(Roles role){
+		this.getHibernateTemplate().delete(role);
+		return true;
+	}
+	
+	/**修改角色**/
+	public boolean update(Roles role){
+		this.getHibernateTemplate().update(role);
+		return true;
+	}
+	
+	/**查询单个角色**/
+	public Roles getRole(Roles role){
+		Roles role2 = this.getHibernateTemplate().get(Roles.class, role.getRoleId());
+		return role2;
+	}
+	
+	/**查询所有角色*/
+	public List<Roles> list(){
+		List<Roles> list = this.getHibernateTemplate().find("from Roles ");
+		return list;
+		
+	}
+	
+}

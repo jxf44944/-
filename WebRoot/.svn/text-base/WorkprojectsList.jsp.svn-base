@@ -1,0 +1,99 @@
+﻿<%@ page contentType="text/html; charset=utf-8" language="java"  errorPage="" %>
+<%@ taglib prefix="s" uri="/struts-tags" %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css"/>
+<script language="javascript">
+   function deleteWorkprojects(paraproid)
+     {
+	var msg = "您确认要删除编号为" + paraproid + "的工作任务吗?";
+    var r =window.confirm(msg);
+    if (r==true)
+        {
+         location.href="<%=request.getContextPath()%>/Workprojects_Del?workprojects.projectId="+paraproid;
+        }
+      }
+   function getWorkprojects(paraproid)
+     {
+         location.href="<%=request.getContextPath()%>/WorkprojectstoUpdate?workprojects.projectId="+paraproid;
+      }
+   function get2Workprojects(paraproid)
+     {
+         location.href="<%=request.getContextPath()%>/WorkprojectsGet?workprojects.projectId="+paraproid;
+      }
+
+  </script>
+<title>无标题文档</title>
+</head>
+
+<body>
+<div id="title_bar">
+	<span id="title" > 工作管理&gt;&gt;工作安排表</span>
+    <ul id="operation">
+    	<li><input type="checkbox" name="checkbox11" id="checkbox11" />全选</li>
+        <li><img src="images/add.gif" width="10" height="10"  /><a href="${pageContext.request.contextPath }/WorkprojectstoAdd"> 添加</a></li>
+        <li><img src="images/del.gif" width="10" height="10" /> 删除</li>
+    </ul>
+</div>
+  <table width="1079" border="1" id="list_table" >
+    <tr>
+      <th width="30" >选择</th>
+      <th width="30">序号</th>
+      <th width="100">主题</th>
+      <th width="50">负责人</th>
+      <th width="130">执行时间</th>
+      <th width="70">任务状态</th>
+      <th width="180">任务描述</th>     
+	  <th width="130">操作</th>  
+    </tr> 
+    <s:iterator value="workprojectslist" var="p">  
+     <tr>
+     <td>
+     <input type="checkbox" name="checkbox2" id="checkbox2" />
+     </td>  
+	<td><s:property value="#p.projectId"/></td>          
+    <td><s:property value="#p.projectTitle"/></td>
+    <s:iterator value="usersList" var="u">  
+    <s:if test="#u.userId==#p.users.userId">
+     <td><s:property value="#u.username"/></td>
+     </s:if>
+     </s:iterator>
+    <td><s:property value="#p.projectUptime"/>至<s:property value="#p.projectDowntime"/></td>
+    <td><s:if test="#p.projectState==0">
+                    未处理
+       </s:if>
+       <s:elseif test="#p.projectState==1">
+                  处理失败
+       </s:elseif>
+       <s:else>
+                  处理成功
+       </s:else></td>
+    <td><s:property value="#p.projectDesc"/></td>
+    <td>
+    <s:if test="#p.projectState==0">
+        <a href="javascript:get2Workprojects('<s:property value="#p.projectId"/>')">修改任务状态</a>|
+    </s:if>
+    	<a href="javascript:getWorkprojects('<s:property value="#p.projectId"/>')">修改</a>|
+    	<a href="javascript:deleteWorkprojects('<s:property value="#p.projectId"/>')">删除</a>
+    </td>
+      </tr>   
+          </s:iterator> 
+    
+     </table>
+<div id="page_bar">
+	<div id="page">
+    	共有<strong> 243</strong> 条记录，当前第<strong> 1</strong> 页，共 <strong>10</strong> 页
+    </div>
+    
+   <div id="tool">
+  	<a href="#">首页</a>
+    <a href="#">上一页</a>
+    <a href="#">下一页</a>
+    <a href="#">末页</a>
+    转到<input type="text" name="currentPage" value="5"/>页
+  </div>
+  </div>
+</body>
+</html>

@@ -1,0 +1,71 @@
+<%@ page contentType="text/html; charset=utf-8" language="java"
+	errorPage=""%>
+<%@ taglib prefix="s" uri="/struts-tags"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<link rel="stylesheet" type="text/css" href="css/main.css" />
+<title>无标题文档</title>
+</head>
+
+<body>
+	<div id="title_bar">
+		<span id="title"> 业务管理&gt;&gt;修改来源渠道</span>
+	</div>
+	<div align="center">
+		<tr>
+			<td width="100%">
+				<s:form method="post" action="Channels_Update" name="fom" id="fom">
+					<tr>
+						<td bgcolor="#A0A0A0"></td>
+					</tr>
+					<tr>
+						<td height="40" class="font42">
+							<table width="600px" border="0" align="center" cellpadding="4"
+								cellspacing="1" bgcolor="#DDD" class="newfont03" id="tblist" />
+						</td>
+					</tr>
+					<tr>
+						<td height="20" colspan="13" align="center" bgcolor="#EEEEEE"
+							class="tablestyle_title" style="text-align: center;">修改渠道信息</td>
+					</tr>
+					<tr>
+						<td>
+							<table width="95%" border="0" align="center" cellpadding="0"
+								cellspacing="0">
+								<tr>
+									<td height="40" class="font42">
+										<table width="100%" border="0" align="center" cellpadding="4"
+											cellspacing="1" bgcolor="#DDD" class="newfont03" id="tblist">
+											<tr>
+												<td>
+													<s:textfield name="channels.channelId" type="hidden" value="%{channels.channelId}"/>
+													
+													<s:select name="channels.channeltypes.channeltypeId" label="渠道大类" emptyOption="true"
+														  list="ChanneltypesList"  listKey="channeltypeId" 
+														  value="%{channels.channeltypes.channeltypeId}" listValue="channeltypeName">
+													</s:select>
+										    	</td>
+												
+												<td><s:textfield name="channels.channelName" label="具体渠道" value="%{channels.channelName}"/></td>
+											</tr>
+											<tr>
+												<td><s:textarea name="channels.channelDesc" cols="45" rows="5" label="描述" value="%{channels.channelDesc}"/></td>
+											</tr>
+										</table>
+									</td>
+								</tr>
+								<tr>
+									<s:submit align="center" value="保存" />
+									<s:reset align="center" value="重置" />
+								</tr>
+							</table>
+						</td>
+					</tr>
+				</s:form>
+			</td>
+		</tr>
+	</div>
+</body>
+</html>
